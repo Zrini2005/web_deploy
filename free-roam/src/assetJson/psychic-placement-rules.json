@@ -1,0 +1,302 @@
+{
+  "highElevation": [
+    {
+      "name": "red-tree",
+      "range": [
+        0.3,
+        1
+      ],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {
+        "x": 90,
+        "y": 30
+      },
+      "collisionOffset": {
+        "x": 24,
+        "y": 97
+      },
+      "collidableFrameWidth": 128,
+      "collidableFrameHeight": 127,
+      "nonCollidableFrames": [
+        -1, 22, 24
+      ],
+      "extraCondition": {
+        "min": 0.3,
+        "max": 0.34
+      }
+    },
+    {
+      "name": "huge-house",
+      "range": [
+        -1,
+        -0.5
+      ],
+      "collidableFrameIndex": 1,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 127,
+        "y": 100
+      },
+      "collisionOffset": {
+        "x": 0,
+        "y": 30
+      },
+      "collidableFrameWidth": 127,
+      "collidableFrameHeight": 133,
+      "nonCollidableFrames": [
+        -1, 24
+      ],
+      "extraCondition": {
+        "min": -0.5,
+        "max": -0.47
+      }
+    },
+    {
+      "name": "tree-1",
+      "range": [
+        -0.4,
+        -0.3
+      ],
+      "collidableFrameIndex": 2,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 30,
+        "y": 10
+      },
+      "collisionOffset": {
+        "x": 29,
+        "y": 84
+      },
+      "collidableFrameWidth": 88,
+      "collidableFrameHeight": 94,
+      "nonCollidableFrames": [
+        -1,-1, -1, 14
+      ],
+      "extraCondition": {
+        "min": 0,
+        "max": 0.1
+      }
+    },
+    {
+      "name": "tree-2",
+      "range": [
+        -0.4,
+        -0.3
+      ],
+      "collidableFrameIndex": 3,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 30,
+        "y": 10
+      },
+      "collisionOffset": {
+        "x": 36,
+        "y": 100
+      },
+      "collidableFrameWidth": 102,
+      "collidableFrameHeight": 110,
+      "nonCollidableFrames": [
+        -1, -1, 0
+      ],
+      "extraCondition": {
+        "min": -0.22,
+        "max": -0.2
+      }
+    },
+    {
+      "name": "tree-3",
+      "range": [
+        -0.4,
+        -0.3
+      ],
+      "collidableFrameIndex": 4,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 30,
+        "y": 10
+      },
+      "collisionOffset": {
+        "x": 30,
+        "y": 83
+      },
+      "collidableFrameWidth": 90,
+      "collidableFrameHeight": 93,
+      "nonCollidableFrames": [
+        -1, -1, 6, 10
+      ],
+      "extraCondition": {
+        "min": 0.2,
+        "max": 0.21
+      }
+    },
+    {
+      "name": "tree-4",
+      "range": [
+        -0.4,
+        -0.3
+      ],
+      "collidableFrameIndex": 5,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 30,
+        "y": 10
+      },
+      "collisionOffset": {
+        "x": 24.5,
+        "y": 80
+      },
+      "collidableFrameWidth": 79,
+      "collidableFrameHeight": 90,
+      "nonCollidableFrames": [
+        -1
+      ],
+      "extraCondition": {
+        "min": 0.54,
+        "max": 0.57
+      }
+    }
+  ],
+  "lowElevation": [
+    {
+      "name": "big-house",
+      "range": [
+        -0.2,
+        -0.18
+      ],
+      "collidableFrameIndex": 6,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 61,
+        "y": 30
+      },
+      "collisionOffset": {
+        "x": 0,
+        "y": 31
+      },
+      "collidableFrameWidth": 61,
+      "collidableFrameHeight": 61,
+      "nonCollidableFrames": [
+        -1,
+        -1,-1,-1,-1,
+        22
+      ],
+      "extraCondition": {
+        "min": -0.22,
+        "max": -0.12
+      }
+    },
+    {
+      "name": "small-house",
+      "range": [
+        -0.2,
+        -0.18
+      ],
+      "collidableFrameIndex": 7,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 47,
+        "y": 15
+      },
+      "collisionOffset": {
+        "x": 0,
+        "y": 18
+      },
+      "collidableFrameWidth": 47,
+      "collidableFrameHeight": 36,
+      "nonCollidableFrames": [
+        -1,
+        -1,-1, -1, -1,
+        22
+      ],
+      "extraCondition": {
+        "min": -0.24,
+        "max": -0.12
+      }
+    },
+    {
+      "name": "pink-tree",
+      "range": [
+        0.4,
+        0.5
+      ],
+      "collidableFrameIndex": 8,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 14,
+        "y": 10
+      },
+      "collisionOffset": {
+        "x": 29,
+        "y": 89
+      },
+      "collidableFrameWidth": 70,
+      "collidableFrameHeight": 99,
+      "nonCollidableFrames": [
+        -1,
+        -1,
+        15
+      ],
+      "extraCondition": {
+        "min": 0.4,
+        "max": 0.46
+      }
+    },
+    {
+      "name": "tree-3",
+      "range": [
+        -1,
+        -0.3
+      ],
+      "collidableFrameIndex": 4,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 30,
+        "y": 10
+      },
+      "collisionOffset": {
+        "x": 30,
+        "y": 83
+      },
+      "collidableFrameWidth": 90,
+      "collidableFrameHeight": 93,
+      "nonCollidableFrames": [
+        -1, -1
+      ],
+      "extraCondition": {
+        "min": 0,
+        "max": 0.2
+      }
+    },
+    {
+      "name": "tree-4",
+      "range": [
+        0.5,
+        1
+      ],
+      "collidableFrameIndex": 5,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {
+        "x": 30,
+        "y": 10
+      },
+      "collisionOffset": {
+        "x": 24.5,
+        "y": 80
+      },
+      "collidableFrameWidth": 79,
+      "collidableFrameHeight": 90,
+      "nonCollidableFrames": [
+        -1,
+        -1,
+        -1,
+        17,
+        18
+      ],
+      "extraCondition": {
+        "min": 0.3,
+        "max": 0.32
+      }
+    }
+  ]
+}

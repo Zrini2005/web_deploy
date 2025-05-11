@@ -1,0 +1,148 @@
+{
+  "highElevation": [
+    {
+      "name": "rock",
+      "range": [0.15, 0.18],
+      "collidableFrameIndex": 1,
+      "collidableFrameDepth": 10.1,
+      "collisionBounds": {"x": 20, "y": 15},
+      "collisionOffset": {"x": 5, "y": 10},
+      "collidableFrameWidth": 40,
+      "collidableFrameHeight": 55,
+      "nonCollidableFrames": [-1, -1, -1, -1, 5],
+      "extraCondition": {"min": 0.16, "max": 0.17}
+    },
+    {
+      "name": "rock",
+      "range": [0.26, 0.3],
+      "collidableFrameIndex": 1,
+      "collidableFrameDepth": 10.1,
+      "collisionBounds": {"x": 20, "y": 15},
+      "collisionOffset": {"x": 5, "y": 10},
+      "collidableFrameWidth": 40,
+      "collidableFrameHeight": 55,
+      "nonCollidableFrames": [-1, -1, -1, -1, 5],
+      "extraCondition": {"min": 0.27, "max": 0.29}
+    },
+    {
+      "name": "stall",
+      "range": [0.3, 0.325],
+      "collidableFrameIndex": 2,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {"x": 32, "y": 22},
+      "collisionOffset": {"x": 8, "y": 16},
+      "collidableFrameWidth": 48,
+      "collidableFrameHeight": 48,
+      "nonCollidableFrames": [-1, -1, 5, 10],
+      "extraCondition": {"min": 0.31, "max": 0.315}
+    },
+    {
+      "name": "tree-grass",
+      "range": [0.4, 0.45],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {"x": 10, "y": 10},
+      "collisionOffset": {"x": 19, "y": 50},
+      "collidableFrameWidth": 48,
+      "collidableFrameHeight": 64,
+      "nonCollidableFrames": [-1, -1, -1, -1, -1, -1, 0, 8, 3, 4, 11],
+      "extraCondition": {"min": 0.42, "max": 0.44}
+    },
+    {
+      "name": "tree-grass",
+      "range": [0.5, 0.58],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {"x": 10, "y": 10},
+      "collisionOffset": {"x": 19, "y": 50},
+      "collidableFrameWidth": 48,
+      "collidableFrameHeight": 64,
+      "nonCollidableFrames": [-1, -1, -1, -1, -1, -1, 0, 8, 3, 4, 11],
+      "extraCondition": {"min": 0.52, "max": 0.58}
+    },
+    {
+      "name": "tent",
+      "range": [0.58, 0.6],
+      "collidableFrameIndex": 3,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {"x": 38, "y": 42},
+      "collisionOffset": {"x": 5, "y": 16},
+      "collidableFrameWidth": 48,
+      "collidableFrameHeight": 90,
+      "nonCollidableFrames": [-1, -1],
+      "extraCondition": {"min": 0.54, "max": 0.57}
+    },
+    {
+      "name": "tree-grass",
+      "range": [0.6, 0.1],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {"x": 10, "y": 10},
+      "collisionOffset": {"x": 19, "y": 50},
+      "collidableFrameWidth": 48,
+      "collidableFrameHeight": 64,
+      "nonCollidableFrames": [-1, -1, -1, -1, -1, -1, 0, 8, 3, 4, 11],
+      "extraCondition": {"min": 0.62, "max": 0.63}
+    }
+  ],
+  "lowElevation": [
+    {
+      "name": "dried-tree-1",
+      "range": [-0.1, 0],
+      "collidableFrameIndex": 4,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {"x": 18, "y": 10},
+      "collisionOffset": {"x": 18, "y": 30},
+      "collidableFrameWidth": 55,
+      "collidableFrameHeight": 90,
+      "nonCollidableFrames": [-1, -1, 6, 14],
+      "extraCondition": {"min": -0.1, "max": -0.09}
+    },
+    {
+      "name": "rock",
+      "range": [-0.32, -0.3],
+      "collidableFrameIndex": 1,
+      "collidableFrameDepth": 10.1,
+      "collisionBounds": {"x": 20, "y": 15},
+      "collisionOffset": {"x": 5, "y": 10},
+      "collidableFrameWidth": 40,
+      "collidableFrameHeight": 55,
+      "nonCollidableFrames": [-1, -1, 5, 10],
+      "extraCondition": {"min": -0.34, "max": -0.32}
+    },
+    {
+      "name": "dried-tree-2",
+      "range": [-0.25, -0.2],
+      "collidableFrameIndex": 5,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {"x": 18, "y": 10},
+      "collisionOffset": {"x": 18, "y": 30},
+      "collidableFrameWidth": 55,
+      "collidableFrameHeight": 90,
+      "nonCollidableFrames": [-1, -1, 6, 14],
+      "extraCondition": {"min": -0.23, "max": -0.22}
+    },
+    {
+      "name": "tree-sand",
+      "range": [-0.6, -0.35],
+      "collidableFrameIndex": 6,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {"x": 18, "y": 13},
+      "collisionOffset": {"x": 16, "y": 44},
+      "collidableFrameWidth": 70,
+      "collidableFrameHeight": 80
+    },
+    {
+      "name": "house-sand",
+      "range": [-1, -0.55],
+      "collidableFrameIndex": 7,
+      "collidableFrameDepth": 10,
+      "collisionBounds": {"x": 80, "y": 80},
+      "collisionOffset": {"x": 0, "y": 16},
+      "collidableFrameWidth": 80,
+      "collidableFrameHeight": 120,
+      "nonCollidableFrames": [-1, -1, 9, 9, 9, 12],
+      "extraCondition": {"min": -0.59, "max": -0.58}
+    }
+  ]
+}

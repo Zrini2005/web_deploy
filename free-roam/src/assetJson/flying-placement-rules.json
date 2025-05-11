@@ -1,0 +1,150 @@
+{
+  "highElevation": [
+    {
+      "name": "waterRockPlaceholder",
+      "range": [0, 0],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 58, "y": 60},
+      "collisionOffset": {"x": 0, "y": 0},
+      "collidableFrameWidth": 58,
+      "collidableFrameHeight": 64,
+      "nonCollidableFrames": [-1, -1, -1, -1, 0, 1],
+      "extraCondition": {"min": 0.3, "max": 0.4}
+    },
+    {
+      "name": "waterRockPlaceholder",
+      "range": [0, 0],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 58, "y": 60},
+      "collisionOffset": {"x": 0, "y": 0},
+      "collidableFrameWidth": 58,
+      "collidableFrameHeight": 64,
+      "nonCollidableFrames": [-1, -1, -1, -1, -1, -1, 2, 3],
+      "extraCondition": {"min": 0.4, "max": 0.44}
+    },
+    {
+      "name": "waterRockPlaceholder",
+      "range": [0, 0],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 58, "y": 60},
+      "collisionOffset": {"x": 0, "y": 0},
+      "collidableFrameWidth": 58,
+      "collidableFrameHeight": 64,
+      "nonCollidableFrames": [-1, -1, -1, -1, -1, -1, -1, 4, 5, 6],
+      "extraCondition": {"min": 0.55, "max": 0.7}
+    },
+    {
+      "name": "waterRockPlaceholder",
+      "range": [0, 0],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 58, "y": 60},
+      "collisionOffset": {"x": 0, "y": 0},
+      "collidableFrameWidth": 58,
+      "collidableFrameHeight": 64,
+      "nonCollidableFrames": [-1, -1, -1, -1, -1, -1, -1, 9],
+      "extraCondition": {"min": 0, "max": 0.2}
+    }
+  ],
+  "lowElevation": [
+    {
+      "name": "house",
+      "range": [-1, -0.6],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 112, "y": 60},
+      "collisionOffset": {"x": 0, "y": 15},
+      "collidableFrameWidth": 112,
+      "collidableFrameHeight": 80,
+      "nonCollidableFrames": [-1, 18],
+      "extraCondition": {"min": -1, "max": -0.98}
+    },
+    {
+      "name": "tree-1",
+      "range": [0.2, 0.3],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 10, "y": 10},
+      "collisionOffset": {"x": 11, "y": 25},
+      "collidableFrameWidth": 32,
+      "collidableFrameHeight": 41,
+      "nonCollidableFrames": [-1, -1, -1, -1, 11, 12],
+      "extraCondition": {"min": 0.1, "max": 0.4}
+    },
+    {
+      "name": "shop",
+      "range": [0, 0.001],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 80, "y": 70},
+      "collisionOffset": {"x": 0, "y": 25},
+      "collidableFrameWidth": 80,
+      "collidableFrameHeight": 100,
+      "nonCollidableFrames": [-1],
+      "extraCondition": {"min": -0.001, "max": 0.002}
+    },
+    {
+      "name": "tree-1",
+      "range": [-0.12, 0],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 10, "y": 10},
+      "collisionOffset": {"x": 11, "y": 25},
+      "collidableFrameWidth": 32,
+      "collidableFrameHeight": 41,
+      "nonCollidableFrames": [-1, -1, -1, -1, 12, 13],
+      "extraCondition": {"min": -0.12, "max": -0.11}
+    },
+    {
+      "name": "fountain",
+      "range": [-0.15, -0.149],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 58, "y": 64},
+      "collisionOffset": {"x": 0, "y": 0},
+      "collidableFrameWidth": 58,
+      "collidableFrameHeight": 64,
+      "nonCollidableFrames": [-1, 17, 20],
+      "extraCondition": {"min": -0.151, "max": -0.145}
+    },
+    {
+      "name": "tree-2",
+      "range": [-0.3, -0.2],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 10, "y": 10},
+      "collisionOffset": {"x": 11, "y": 25},
+      "collidableFrameWidth": 32,
+      "collidableFrameHeight": 41,
+      "nonCollidableFrames": [-1, -1, -1, -1, 14, 15],
+      "extraCondition": {"min": -0.51, "max": -0.44}
+    },
+    {
+      "name": "tree-large",
+      "range": [-0.4, -0.3],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 13, "y": 10},
+      "collisionOffset": {"x": 14, "y": 47},
+      "collidableFrameWidth": 42,
+      "collidableFrameHeight": 62,
+      "nonCollidableFrames": [-1, -1, -1, -1, 15, 16],
+      "extraCondition": {"min": -0.61, "max": -0.55}
+    },
+    {
+      "name": "tree-3",
+      "range": [-0.5, -0.4],
+      "collidableFrameIndex": 0,
+      "collidableFrameDepth": 11,
+      "collisionBounds": {"x": 10, "y": 10},
+      "collisionOffset": {"x": 11, "y": 30},
+      "collidableFrameWidth": 32,
+      "collidableFrameHeight": 48,
+      "nonCollidableFrames": [-1, -1, -1, 14, 15, 16],
+      "extraCondition": {"min": -0.9, "max": -0.6}
+    }
+  ]
+}

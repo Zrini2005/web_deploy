@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"composite": true,
+		"noEmit": false,
+		"esModuleInterop": true,
+		"resolveJsonModule": true
+	},
+	"include": ["**/*.ts", "**/*.tsx", "../old_maps.ts"],
+	"exclude": ["node_modules", "dist"]
+}
