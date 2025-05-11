@@ -1,0 +1,78 @@
+{ "frames": {
+  "fountain": {
+   "frame": { "x": 0, "y": 0, "w": 58, "h": 64 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 58, "h": 64 },
+   "sourceSize": { "w": 58, "h": 64 },
+   "duration": 100
+  },
+  "tree-1": {
+   "frame": { "x": 58, "y": 0, "w": 32, "h": 41 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 41 },
+   "sourceSize": { "w": 32, "h": 41 },
+   "duration": 100
+  },
+  "tree-2": {
+   "frame": { "x": 90, "y": 0, "w": 32, "h": 42 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 42 },
+   "sourceSize": { "w": 32, "h": 42 },
+   "duration": 100
+  },
+  "tree-3": {
+   "frame": { "x": 122, "y": 0, "w": 32, "h": 48 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+   "sourceSize": { "w": 32, "h": 48 },
+   "duration": 100
+  },
+  "tree-large": {
+   "frame": { "x": 154, "y": 0, "w": 42, "h": 62 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 42, "h": 62 },
+   "sourceSize": { "w": 42, "h": 62 },
+   "duration": 100
+  },
+  "house": {
+   "frame": { "x": 196, "y": 0, "w": 112, "h": 80 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 112, "h": 80 },
+   "sourceSize": { "w": 112, "h": 80 },
+   "duration": 100
+  },
+  "shop": {
+   "frame": { "x": 308, "y": 0, "w": 80, "h": 100 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 100 },
+   "sourceSize": { "w": 80, "h": 100 },
+   "duration": 100
+  }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.3.12-dev",
+  "image": "flying-biome-assets-collide-atlas.png",
+  "format": "RGBA8888",
+  "size": { "w": 388, "h": 100 },
+  "scale": "1",
+  "layers": [
+   { "name": "fountain", "opacity": 255, "blendMode": "normal" },
+   { "name": "tree-1", "opacity": 255, "blendMode": "normal" },
+   { "name": "tree-2", "opacity": 255, "blendMode": "normal" },
+   { "name": "tree-3", "opacity": 255, "blendMode": "normal" },
+   { "name": "tree-large", "opacity": 255, "blendMode": "normal" },
+   { "name": "house", "opacity": 255, "blendMode": "normal" },
+   { "name": "shop", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

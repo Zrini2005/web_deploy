@@ -1,0 +1,96 @@
+{ "frames": {
+  "red-tree": {
+   "frame": { "x": 0, "y": 0, "w": 128, "h": 127 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 128, "h": 127 },
+   "sourceSize": { "w": 128, "h": 127 },
+   "duration": 100
+  },
+  "big-house": {
+   "frame": { "x": 128, "y": 0, "w": 61, "h": 61 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 61, "h": 61 },
+   "sourceSize": { "w": 61, "h": 61 },
+   "duration": 100
+  },
+  "small-house": {
+   "frame": { "x": 189, "y": 0, "w": 47, "h": 36 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 47, "h": 36 },
+   "sourceSize": { "w": 47, "h": 36 },
+   "duration": 100
+  },
+  "tree-1": {
+   "frame": { "x": 236, "y": 0, "w": 88, "h": 94 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 88, "h": 94 },
+   "sourceSize": { "w": 88, "h": 94 },
+   "duration": 100
+  },
+  "tree-2": {
+   "frame": { "x": 324, "y": 0, "w": 102, "h": 110 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 102, "h": 110 },
+   "sourceSize": { "w": 102, "h": 110 },
+   "duration": 100
+  },
+  "tree-3": {
+   "frame": { "x": 426, "y": 0, "w": 90, "h": 93 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 93 },
+   "sourceSize": { "w": 90, "h": 93 },
+   "duration": 100
+  },
+  "tree-4": {
+   "frame": { "x": 516, "y": 0, "w": 79, "h": 90 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 79, "h": 90 },
+   "sourceSize": { "w": 79, "h": 90 },
+   "duration": 100
+  },
+  "huge-house": {
+   "frame": { "x": 595, "y": 0, "w": 127, "h": 133 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 127, "h": 133 },
+   "sourceSize": { "w": 127, "h": 133 },
+   "duration": 100
+  },
+  "pink-tree": {
+   "frame": { "x": 722, "y": 0, "w": 63, "h": 99 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 63, "h": 99 },
+   "sourceSize": { "w": 63, "h": 99 },
+   "duration": 100
+  }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.3.12-dev",
+  "image": "psychic-biome-assets-collide-atlas.png",
+  "format": "RGBA8888",
+  "size": { "w": 785, "h": 133 },
+  "scale": "1",
+  "layers": [
+   { "name": "red-tree", "opacity": 255, "blendMode": "normal" },
+   { "name": "big-house", "opacity": 255, "blendMode": "normal" },
+   { "name": "small-house", "opacity": 255, "blendMode": "normal" },
+   { "name": "tree-1", "opacity": 255, "blendMode": "normal" },
+   { "name": "tree-2", "opacity": 255, "blendMode": "normal" },
+   { "name": "tree-3", "opacity": 255, "blendMode": "normal" },
+   { "name": "tree-4", "opacity": 255, "blendMode": "normal" },
+   { "name": "huge-house", "opacity": 255, "blendMode": "normal" },
+   { "name": "pink-tree", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

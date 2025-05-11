@@ -1,0 +1,89 @@
+{ "frames": {
+  "tree-grass": {
+   "frame": { "x": 80, "y": 0, "w": 48, "h": 64 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 64 },
+   "sourceSize": { "w": 48, "h": 64 },
+   "duration": 100
+  },
+  "tree-sand": {
+   "frame": { "x": 128, "y": 0, "w": 48, "h": 64 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 64 },
+   "sourceSize": { "w": 48, "h": 64 },
+   "duration": 100
+  },
+  "rock": {
+   "frame": { "x": 0, "y": 96, "w": 32, "h": 32 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 32 },
+   "sourceSize": { "w": 32, "h": 32 },
+   "duration": 100
+  },
+  "dried-tree-1": {
+   "frame": { "x": 80, "y": 64, "w": 48, "h": 48 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+   "sourceSize": { "w": 48, "h": 48 },
+   "duration": 100
+  },
+  "dried-tree-2": {
+   "frame": { "x": 128, "y": 64, "w": 48, "h": 48 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+   "sourceSize": { "w": 48, "h": 48 },
+   "duration": 100
+  },
+  "house-sand": {
+   "frame": { "x": 0, "y": 0, "w": 80, "h": 96 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 96 },
+   "sourceSize": { "w": 80, "h": 96 },
+   "duration": 100
+  },
+  "tent": {
+   "frame": { "x": 176, "y": 0, "w": 48, "h": 64 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 64 },
+   "sourceSize": { "w": 48, "h": 64 },
+   "duration": 100
+  },
+  "stall": {
+   "frame": { "x": 176, "y": 64, "w": 48, "h": 48 },
+   "rotated": false,
+   "trimmed": true,
+   "spriteSourceSize": { "x": 0, "y": 0, "w": 48, "h": 48 },
+   "sourceSize": { "w": 48, "h": 48 },
+   "duration": 100
+  }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.3.12-dev",
+  "image": "ground-biome-assets-collide-atlas.png",
+  "format": "RGBA8888",
+  "size": { "w": 224, "h": 128 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "tree-grass", "opacity": 255, "blendMode": "normal" },
+   { "name": "tree-sand", "opacity": 255, "blendMode": "normal" },
+   { "name": "rock", "opacity": 255, "blendMode": "normal" },
+   { "name": "dried-tree-1", "opacity": 255, "blendMode": "normal" },
+   { "name": "dried-tree-2", "opacity": 255, "blendMode": "normal" },
+   { "name": "house-sand", "opacity": 255, "blendMode": "normal" },
+   { "name": "tent", "opacity": 255, "blendMode": "normal" },
+   { "name": "stall", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
