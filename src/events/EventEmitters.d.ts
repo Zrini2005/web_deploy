@@ -1,0 +1,20 @@
+declare const Events: {
+    LOOTBOX_OPEN: string;
+    LOOTBOX_OPENED: string;
+    START_MATCHMAKING: string;
+    RESUME_GAME: string;
+    PAUSE_GAME: string;
+    CHANGE_CHARACTER: string;
+    MATCH_ENDED: string;
+    OPEN_DASHBOARD: string;
+    CLOSE_DASHBOARD: string;
+    TELEPORT: string;
+    TELEPORT_ANIM: string;
+    TELEPORTED: string;
+    ENTER_DUNGEON: string;
+    OPEN_MARKET: string;
+    OPEN_LEADERBOARD: string;
+    OPEN_DAILY_LEADERBOARD: string;
+};
+declare const eventEmitter: Phaser.Events.EventEmitter;
+export { Events, eventEmitter };

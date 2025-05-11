@@ -1,45 +1,42 @@
-var Ke = Object.defineProperty;
-var ze = (r, t, e) => t in r ? Ke(r, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : r[t] = e;
-var p = (r, t, e) => (ze(r, typeof t != "symbol" ? t + "" : t, e), e);
-import { css as Ne, LitElement as We, html as je } from "lit";
-import ie, { GameObjects as me, Physics as He, Scene as Me } from "phaser";
+import { css as Ne, LitElement as Ke, html as He } from "lit";
+import se, { GameObjects as pe, Physics as We, Scene as Me } from "phaser";
 import "buffer";
-import Ye from "react";
+import ze from "react";
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const Ve = (r) => (t) => typeof t == "function" ? ((e, i) => (customElements.define(e, i), i))(r, t) : ((e, i) => {
-  const { kind: s, elements: n } = i;
-  return { kind: s, elements: n, finisher(o) {
-    customElements.define(e, o);
+const je = (r) => (e) => typeof e == "function" ? ((t, s) => (customElements.define(t, s), s))(r, e) : ((t, s) => {
+  const { kind: i, elements: n } = s;
+  return { kind: i, elements: n, finisher(l) {
+    customElements.define(t, l);
   } };
-})(r, t);
+})(r, e);
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const Ge = (r, t) => t.kind === "method" && t.descriptor && !("value" in t.descriptor) ? { ...t, finisher(e) {
-  e.createProperty(t.key, r);
-} } : { kind: "field", key: Symbol(), placement: "own", descriptor: {}, originalKey: t.key, initializer() {
-  typeof t.initializer == "function" && (this[t.key] = t.initializer.call(this));
-}, finisher(e) {
-  e.createProperty(t.key, r);
+const Ge = (r, e) => e.kind === "method" && e.descriptor && !("value" in e.descriptor) ? { ...e, finisher(t) {
+  t.createProperty(e.key, r);
+} } : { kind: "field", key: Symbol(), placement: "own", descriptor: {}, originalKey: e.key, initializer() {
+  typeof e.initializer == "function" && (this[e.key] = e.initializer.call(this));
+}, finisher(t) {
+  t.createProperty(e.key, r);
 } };
-function pe(r) {
-  return (t, e) => e !== void 0 ? ((i, s, n) => {
-    s.constructor.createProperty(n, i);
-  })(r, t, e) : Ge(r, t);
+function fe(r) {
+  return (e, t) => t !== void 0 ? ((s, i, n) => {
+    i.constructor.createProperty(n, s);
+  })(r, e, t) : Ge(r, e);
 }
 /**
  * @license
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-var fe;
-((fe = window.HTMLSlotElement) === null || fe === void 0 ? void 0 : fe.prototype.assignedElements) != null;
+var ye;
+((ye = window.HTMLSlotElement) === null || ye === void 0 ? void 0 : ye.prototype.assignedElements) != null;
 const R = {
   fps: {
     min: 10,
@@ -107,1070 +104,1076 @@ const R = {
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const Xe = /* @__PURE__ */ new Set(["children", "localName", "ref", "style", "className"]), ve = /* @__PURE__ */ new WeakMap(), Ue = (r, t, e, i, s) => {
-  const n = s == null ? void 0 : s[t];
-  n === void 0 || e === i ? e == null && t in HTMLElement.prototype ? r.removeAttribute(t) : r[t] = e : ((o, l, a) => {
-    let h = ve.get(o);
-    h === void 0 && ve.set(o, h = /* @__PURE__ */ new Map());
-    let u = h.get(l);
-    a !== void 0 ? u === void 0 ? (h.set(l, u = { handleEvent: a }), o.addEventListener(l, u)) : u.handleEvent = a : u !== void 0 && (h.delete(l), o.removeEventListener(l, u));
-  })(r, n, e);
+const Ye = /* @__PURE__ */ new Set(["children", "localName", "ref", "style", "className"]), Ee = /* @__PURE__ */ new WeakMap(), Ve = (r, e, t, s, i) => {
+  const n = i == null ? void 0 : i[e];
+  n === void 0 || t === s ? t == null && e in HTMLElement.prototype ? r.removeAttribute(e) : r[e] = t : ((l, o, a) => {
+    let h = Ee.get(l);
+    h === void 0 && Ee.set(l, h = /* @__PURE__ */ new Map());
+    let d = h.get(o);
+    a !== void 0 ? d === void 0 ? (h.set(o, d = { handleEvent: a }), l.addEventListener(o, d)) : d.handleEvent = a : d !== void 0 && (h.delete(o), l.removeEventListener(o, d));
+  })(r, n, t);
 };
-function $e(r = window.React, t, e, i, s) {
-  let n, o, l;
-  if (t === void 0) {
+function Xe(r = window.React, e, t, s, i) {
+  let n, l, o;
+  if (e === void 0) {
     const m = r;
-    ({ tagName: o, elementClass: l, events: i, displayName: s } = m), n = m.react;
+    ({ tagName: l, elementClass: o, events: s, displayName: i } = m), n = m.react;
   } else
-    n = r, l = e, o = t;
-  const a = n.Component, h = n.createElement, u = new Set(Object.keys(i ?? {}));
+    n = r, o = t, l = e;
+  const a = n.Component, h = n.createElement, d = new Set(Object.keys(s ?? {}));
   class c extends a {
     constructor() {
       super(...arguments), this.o = null;
     }
-    t(f) {
+    t(p) {
       if (this.o !== null)
-        for (const y in this.i)
-          Ue(this.o, y, this.props[y], f ? f[y] : void 0, i);
+        for (const f in this.i)
+          Ve(this.o, f, this.props[f], p ? p[f] : void 0, s);
     }
     componentDidMount() {
       this.t();
     }
-    componentDidUpdate(f) {
-      this.t(f);
+    componentDidUpdate(p) {
+      this.t(p);
     }
     render() {
-      const { _$Gl: f, ...y } = this.props;
-      this.h !== f && (this.u = (g) => {
-        f !== null && ((x, C) => {
-          typeof x == "function" ? x(C) : x.current = C;
-        })(f, g), this.o = g, this.h = f;
+      const { _$Gl: p, ...f } = this.props;
+      this.h !== p && (this.u = (y) => {
+        p !== null && ((b, C) => {
+          typeof b == "function" ? b(C) : b.current = C;
+        })(p, y), this.o = y, this.h = p;
       }), this.i = {};
-      const w = { ref: this.u };
-      for (const [g, x] of Object.entries(y))
-        Xe.has(g) ? w[g === "className" ? "class" : g] = x : u.has(g) || g in l.prototype ? this.i[g] = x : w[g] = x;
-      return h(o, w);
+      const x = { ref: this.u };
+      for (const [y, b] of Object.entries(f))
+        Ye.has(y) ? x[y === "className" ? "class" : y] = b : d.has(y) || y in o.prototype ? this.i[y] = b : x[y] = b;
+      return h(l, x);
     }
   }
-  c.displayName = s ?? l.name;
-  const d = n.forwardRef((m, f) => h(c, { ...m, _$Gl: f }, m == null ? void 0 : m.children));
-  return d.displayName = c.displayName, d;
+  c.displayName = i ?? o.name;
+  const u = n.forwardRef((m, p) => h(c, { ...m, _$Gl: p }, m == null ? void 0 : m.children));
+  return u.displayName = c.displayName, u;
 }
-const Y = 11102230246251565e-32, K = 134217729, Je = (3 + 8 * Y) * Y;
-function ye(r, t, e, i, s) {
-  let n, o, l, a, h = t[0], u = i[0], c = 0, d = 0;
-  u > h == u > -h ? (n = h, h = t[++c]) : (n = u, u = i[++d]);
+const H = {
+  LOOTBOX_OPEN: "LOOTBOX_OPEN",
+  // event sent by phaser when a lootbox is opened
+  LOOTBOX_OPENED: "LOOTBOX_OPENED",
+  // event sent by the server to confirm that a lootbox has been opened
+  START_MATCHMAKING: "START_MATCHMAKING",
+  // event sent by phaser to start matchmaking
+  RESUME_GAME: "RESUME_GAME",
+  // event sent by react to resume the game
+  PAUSE_GAME: "PAUSE_GAME",
+  // event sent by react to pause the game
+  CHANGE_CHARACTER: "CHANGE_CHARACTER",
+  // event sent by react after character selection
+  MATCH_ENDED: "MATCH_ENDED",
+  // event sent by the react app when the match ends
+  OPEN_DASHBOARD: "OPEN_DASHBOARD",
+  // event sent by the react app when the dashboard is opened
+  CLOSE_DASHBOARD: "CLOSE_DASHBOARD",
+  // event sent by the react app when the dashboard is closed
+  TELEPORT: "TELEPORT",
+  // event sent by phaser to trigger teleport menu open
+  TELEPORT_ANIM: "TELEPORT_ANIM",
+  // event sent by react after destination has been selected, to play teleport animation
+  TELEPORTED: "TELEPORTED",
+  // event sent by phaser, to trigger the teleportation
+  ENTER_DUNGEON: "ENTER_DUNGEON",
+  // event sent by phaser to enter dungeon
+  OPEN_MARKET: "OPEN_MARKET",
+  // event sent by phaser, to open market menu
+  OPEN_LEADERBOARD: "OPEN_LEADERBOARD",
+  // event sent by phaser to open leaderboard
+  OPEN_DAILY_LEADERBOARD: "OPEN_DAILY_LEADERBOARD"
+  // event sent by phaser to open daily leaderboard
+}, G = new Phaser.Events.EventEmitter(), Y = 11102230246251565e-32, L = 134217729, Ue = (3 + 8 * Y) * Y;
+function ge(r, e, t, s, i) {
+  let n, l, o, a, h = e[0], d = s[0], c = 0, u = 0;
+  d > h == d > -h ? (n = h, h = e[++c]) : (n = d, d = s[++u]);
   let m = 0;
-  if (c < r && d < e)
-    for (u > h == u > -h ? (o = h + n, l = n - (o - h), h = t[++c]) : (o = u + n, l = n - (o - u), u = i[++d]), n = o, l !== 0 && (s[m++] = l); c < r && d < e; )
-      u > h == u > -h ? (o = n + h, a = o - n, l = n - (o - a) + (h - a), h = t[++c]) : (o = n + u, a = o - n, l = n - (o - a) + (u - a), u = i[++d]), n = o, l !== 0 && (s[m++] = l);
+  if (c < r && u < t)
+    for (d > h == d > -h ? (l = h + n, o = n - (l - h), h = e[++c]) : (l = d + n, o = n - (l - d), d = s[++u]), n = l, o !== 0 && (i[m++] = o); c < r && u < t; )
+      d > h == d > -h ? (l = n + h, a = l - n, o = n - (l - a) + (h - a), h = e[++c]) : (l = n + d, a = l - n, o = n - (l - a) + (d - a), d = s[++u]), n = l, o !== 0 && (i[m++] = o);
   for (; c < r; )
-    o = n + h, a = o - n, l = n - (o - a) + (h - a), h = t[++c], n = o, l !== 0 && (s[m++] = l);
-  for (; d < e; )
-    o = n + u, a = o - n, l = n - (o - a) + (u - a), u = i[++d], n = o, l !== 0 && (s[m++] = l);
-  return (n !== 0 || m === 0) && (s[m++] = n), m;
+    l = n + h, a = l - n, o = n - (l - a) + (h - a), h = e[++c], n = l, o !== 0 && (i[m++] = o);
+  for (; u < t; )
+    l = n + d, a = l - n, o = n - (l - a) + (d - a), d = s[++u], n = l, o !== 0 && (i[m++] = o);
+  return (n !== 0 || m === 0) && (i[m++] = n), m;
 }
-function qe(r, t) {
-  let e = t[0];
-  for (let i = 1; i < r; i++)
-    e += t[i];
-  return e;
+function $e(r, e) {
+  let t = e[0];
+  for (let s = 1; s < r; s++)
+    t += e[s];
+  return t;
 }
-function ne(r) {
+function oe(r) {
   return new Float64Array(r);
 }
-const Ze = (3 + 16 * Y) * Y, Qe = (2 + 12 * Y) * Y, et = (9 + 64 * Y) * Y * Y, q = ne(4), Se = ne(8), Fe = ne(12), _e = ne(16), N = ne(4);
-function tt(r, t, e, i, s, n, o) {
-  let l, a, h, u, c, d, m, f, y, w, g, x, C, _, F, I, E, P;
-  const b = r - s, S = e - s, v = t - n, k = i - n;
-  _ = b * k, d = K * b, m = d - (d - b), f = b - m, d = K * k, y = d - (d - k), w = k - y, F = f * w - (_ - m * y - f * y - m * w), I = v * S, d = K * v, m = d - (d - v), f = v - m, d = K * S, y = d - (d - S), w = S - y, E = f * w - (I - m * y - f * y - m * w), g = F - E, c = F - g, q[0] = F - (g + c) + (c - E), x = _ + g, c = x - _, C = _ - (x - c) + (g - c), g = C - I, c = C - g, q[1] = C - (g + c) + (c - I), P = x + g, c = P - x, q[2] = x - (P - c) + (g - c), q[3] = P;
-  let O = qe(4, q), M = Qe * o;
-  if (O >= M || -O >= M || (c = r - b, l = r - (b + c) + (c - s), c = e - S, h = e - (S + c) + (c - s), c = t - v, a = t - (v + c) + (c - n), c = i - k, u = i - (k + c) + (c - n), l === 0 && a === 0 && h === 0 && u === 0) || (M = et * o + Je * Math.abs(O), O += b * u + k * l - (v * h + S * a), O >= M || -O >= M))
+const Je = (3 + 16 * Y) * Y, qe = (2 + 12 * Y) * Y, Ze = (9 + 64 * Y) * Y * Y, Z = oe(4), Se = oe(8), _e = oe(12), Fe = oe(16), K = oe(4);
+function Qe(r, e, t, s, i, n, l) {
+  let o, a, h, d, c, u, m, p, f, x, y, b, C, S, E, D, k, I;
+  const g = r - i, v = t - i, w = e - n, _ = s - n;
+  S = g * _, u = L * g, m = u - (u - g), p = g - m, u = L * _, f = u - (u - _), x = _ - f, E = p * x - (S - m * f - p * f - m * x), D = w * v, u = L * w, m = u - (u - w), p = w - m, u = L * v, f = u - (u - v), x = v - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, Z[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, Z[1] = C - (y + c) + (c - D), I = b + y, c = I - b, Z[2] = b - (I - c) + (y - c), Z[3] = I;
+  let O = $e(4, Z), A = qe * l;
+  if (O >= A || -O >= A || (c = r - g, o = r - (g + c) + (c - i), c = t - v, h = t - (v + c) + (c - i), c = e - w, a = e - (w + c) + (c - n), c = s - _, d = s - (_ + c) + (c - n), o === 0 && a === 0 && h === 0 && d === 0) || (A = Ze * l + Ue * Math.abs(O), O += g * d + _ * o - (w * h + v * a), O >= A || -O >= A))
     return O;
-  _ = l * k, d = K * l, m = d - (d - l), f = l - m, d = K * k, y = d - (d - k), w = k - y, F = f * w - (_ - m * y - f * y - m * w), I = a * S, d = K * a, m = d - (d - a), f = a - m, d = K * S, y = d - (d - S), w = S - y, E = f * w - (I - m * y - f * y - m * w), g = F - E, c = F - g, N[0] = F - (g + c) + (c - E), x = _ + g, c = x - _, C = _ - (x - c) + (g - c), g = C - I, c = C - g, N[1] = C - (g + c) + (c - I), P = x + g, c = P - x, N[2] = x - (P - c) + (g - c), N[3] = P;
-  const L = ye(4, q, 4, N, Se);
-  _ = b * u, d = K * b, m = d - (d - b), f = b - m, d = K * u, y = d - (d - u), w = u - y, F = f * w - (_ - m * y - f * y - m * w), I = v * h, d = K * v, m = d - (d - v), f = v - m, d = K * h, y = d - (d - h), w = h - y, E = f * w - (I - m * y - f * y - m * w), g = F - E, c = F - g, N[0] = F - (g + c) + (c - E), x = _ + g, c = x - _, C = _ - (x - c) + (g - c), g = C - I, c = C - g, N[1] = C - (g + c) + (c - I), P = x + g, c = P - x, N[2] = x - (P - c) + (g - c), N[3] = P;
-  const D = ye(L, Se, 4, N, Fe);
-  _ = l * u, d = K * l, m = d - (d - l), f = l - m, d = K * u, y = d - (d - u), w = u - y, F = f * w - (_ - m * y - f * y - m * w), I = a * h, d = K * a, m = d - (d - a), f = a - m, d = K * h, y = d - (d - h), w = h - y, E = f * w - (I - m * y - f * y - m * w), g = F - E, c = F - g, N[0] = F - (g + c) + (c - E), x = _ + g, c = x - _, C = _ - (x - c) + (g - c), g = C - I, c = C - g, N[1] = C - (g + c) + (c - I), P = x + g, c = P - x, N[2] = x - (P - c) + (g - c), N[3] = P;
-  const A = ye(D, Fe, 4, N, _e);
-  return _e[A - 1];
+  S = o * _, u = L * o, m = u - (u - o), p = o - m, u = L * _, f = u - (u - _), x = _ - f, E = p * x - (S - m * f - p * f - m * x), D = a * v, u = L * a, m = u - (u - a), p = a - m, u = L * v, f = u - (u - v), x = v - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, K[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, K[1] = C - (y + c) + (c - D), I = b + y, c = I - b, K[2] = b - (I - c) + (y - c), K[3] = I;
+  const B = ge(4, Z, 4, K, Se);
+  S = g * d, u = L * g, m = u - (u - g), p = g - m, u = L * d, f = u - (u - d), x = d - f, E = p * x - (S - m * f - p * f - m * x), D = w * h, u = L * w, m = u - (u - w), p = w - m, u = L * h, f = u - (u - h), x = h - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, K[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, K[1] = C - (y + c) + (c - D), I = b + y, c = I - b, K[2] = b - (I - c) + (y - c), K[3] = I;
+  const F = ge(B, Se, 4, K, _e);
+  S = o * d, u = L * o, m = u - (u - o), p = o - m, u = L * d, f = u - (u - d), x = d - f, E = p * x - (S - m * f - p * f - m * x), D = a * h, u = L * a, m = u - (u - a), p = a - m, u = L * h, f = u - (u - h), x = h - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, K[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, K[1] = C - (y + c) + (c - D), I = b + y, c = I - b, K[2] = b - (I - c) + (y - c), K[3] = I;
+  const T = ge(F, _e, 4, K, Fe);
+  return Fe[T - 1];
 }
-function ae(r, t, e, i, s, n) {
-  const o = (t - n) * (e - s), l = (r - s) * (i - n), a = o - l, h = Math.abs(o + l);
-  return Math.abs(a) >= Ze * h ? a : -tt(r, t, e, i, s, n, h);
+function re(r, e, t, s, i, n) {
+  const l = (e - n) * (t - i), o = (r - i) * (s - n), a = l - o, h = Math.abs(l + o);
+  return Math.abs(a) >= Je * h ? a : -Qe(r, e, t, s, i, n, h);
 }
-const ke = Math.pow(2, -52), re = new Uint32Array(512);
-class de {
-  static from(t, e = lt, i = at) {
-    const s = t.length, n = new Float64Array(s * 2);
-    for (let o = 0; o < s; o++) {
-      const l = t[o];
-      n[2 * o] = e(l), n[2 * o + 1] = i(l);
+const De = Math.pow(2, -52), he = new Uint32Array(512);
+class ue {
+  static from(e, t = nt, s = ot) {
+    const i = e.length, n = new Float64Array(i * 2);
+    for (let l = 0; l < i; l++) {
+      const o = e[l];
+      n[2 * l] = t(o), n[2 * l + 1] = s(o);
     }
-    return new de(n);
+    return new ue(n);
   }
-  constructor(t) {
-    const e = t.length >> 1;
-    if (e > 0 && typeof t[0] != "number")
+  constructor(e) {
+    const t = e.length >> 1;
+    if (t > 0 && typeof e[0] != "number")
       throw new Error("Expected coords to contain numbers.");
-    this.coords = t;
-    const i = Math.max(2 * e - 5, 0);
-    this._triangles = new Uint32Array(i * 3), this._halfedges = new Int32Array(i * 3), this._hashSize = Math.ceil(Math.sqrt(e)), this._hullPrev = new Uint32Array(e), this._hullNext = new Uint32Array(e), this._hullTri = new Uint32Array(e), this._hullHash = new Int32Array(this._hashSize), this._ids = new Uint32Array(e), this._dists = new Float64Array(e), this.update();
+    this.coords = e;
+    const s = Math.max(2 * t - 5, 0);
+    this._triangles = new Uint32Array(s * 3), this._halfedges = new Int32Array(s * 3), this._hashSize = Math.ceil(Math.sqrt(t)), this._hullPrev = new Uint32Array(t), this._hullNext = new Uint32Array(t), this._hullTri = new Uint32Array(t), this._hullHash = new Int32Array(this._hashSize), this._ids = new Uint32Array(t), this._dists = new Float64Array(t), this.update();
   }
   update() {
-    const { coords: t, _hullPrev: e, _hullNext: i, _hullTri: s, _hullHash: n } = this, o = t.length >> 1;
-    let l = 1 / 0, a = 1 / 0, h = -1 / 0, u = -1 / 0;
-    for (let b = 0; b < o; b++) {
-      const S = t[2 * b], v = t[2 * b + 1];
-      S < l && (l = S), v < a && (a = v), S > h && (h = S), v > u && (u = v), this._ids[b] = b;
+    const { coords: e, _hullPrev: t, _hullNext: s, _hullTri: i, _hullHash: n } = this, l = e.length >> 1;
+    let o = 1 / 0, a = 1 / 0, h = -1 / 0, d = -1 / 0;
+    for (let g = 0; g < l; g++) {
+      const v = e[2 * g], w = e[2 * g + 1];
+      v < o && (o = v), w < a && (a = w), v > h && (h = v), w > d && (d = w), this._ids[g] = g;
     }
-    const c = (l + h) / 2, d = (a + u) / 2;
-    let m, f, y;
-    for (let b = 0, S = 1 / 0; b < o; b++) {
-      const v = ge(c, d, t[2 * b], t[2 * b + 1]);
-      v < S && (m = b, S = v);
+    const c = (o + h) / 2, u = (a + d) / 2;
+    let m, p, f;
+    for (let g = 0, v = 1 / 0; g < l; g++) {
+      const w = be(c, u, e[2 * g], e[2 * g + 1]);
+      w < v && (m = g, v = w);
     }
-    const w = t[2 * m], g = t[2 * m + 1];
-    for (let b = 0, S = 1 / 0; b < o; b++) {
-      if (b === m)
+    const x = e[2 * m], y = e[2 * m + 1];
+    for (let g = 0, v = 1 / 0; g < l; g++) {
+      if (g === m)
         continue;
-      const v = ge(w, g, t[2 * b], t[2 * b + 1]);
-      v < S && v > 0 && (f = b, S = v);
+      const w = be(x, y, e[2 * g], e[2 * g + 1]);
+      w < v && w > 0 && (p = g, v = w);
     }
-    let x = t[2 * f], C = t[2 * f + 1], _ = 1 / 0;
-    for (let b = 0; b < o; b++) {
-      if (b === m || b === f)
+    let b = e[2 * p], C = e[2 * p + 1], S = 1 / 0;
+    for (let g = 0; g < l; g++) {
+      if (g === m || g === p)
         continue;
-      const S = nt(w, g, x, C, t[2 * b], t[2 * b + 1]);
-      S < _ && (y = b, _ = S);
+      const v = it(x, y, b, C, e[2 * g], e[2 * g + 1]);
+      v < S && (f = g, S = v);
     }
-    let F = t[2 * y], I = t[2 * y + 1];
-    if (_ === 1 / 0) {
-      for (let v = 0; v < o; v++)
-        this._dists[v] = t[2 * v] - t[0] || t[2 * v + 1] - t[1];
-      Q(this._ids, this._dists, 0, o - 1);
-      const b = new Uint32Array(o);
-      let S = 0;
-      for (let v = 0, k = -1 / 0; v < o; v++) {
-        const O = this._ids[v], M = this._dists[O];
-        M > k && (b[S++] = O, k = M);
+    let E = e[2 * f], D = e[2 * f + 1];
+    if (S === 1 / 0) {
+      for (let w = 0; w < l; w++)
+        this._dists[w] = e[2 * w] - e[0] || e[2 * w + 1] - e[1];
+      ee(this._ids, this._dists, 0, l - 1);
+      const g = new Uint32Array(l);
+      let v = 0;
+      for (let w = 0, _ = -1 / 0; w < l; w++) {
+        const O = this._ids[w], A = this._dists[O];
+        A > _ && (g[v++] = O, _ = A);
       }
-      this.hull = b.subarray(0, S), this.triangles = new Uint32Array(0), this.halfedges = new Uint32Array(0);
+      this.hull = g.subarray(0, v), this.triangles = new Uint32Array(0), this.halfedges = new Uint32Array(0);
       return;
     }
-    if (ae(w, g, x, C, F, I) < 0) {
-      const b = f, S = x, v = C;
-      f = y, x = F, C = I, y = b, F = S, I = v;
+    if (re(x, y, b, C, E, D) < 0) {
+      const g = p, v = b, w = C;
+      p = f, b = E, C = D, f = g, E = v, D = w;
     }
-    const E = ot(w, g, x, C, F, I);
-    this._cx = E.x, this._cy = E.y;
-    for (let b = 0; b < o; b++)
-      this._dists[b] = ge(t[2 * b], t[2 * b + 1], E.x, E.y);
-    Q(this._ids, this._dists, 0, o - 1), this._hullStart = m;
-    let P = 3;
-    i[m] = e[y] = f, i[f] = e[m] = y, i[y] = e[f] = m, s[m] = 0, s[f] = 1, s[y] = 2, n.fill(-1), n[this._hashKey(w, g)] = m, n[this._hashKey(x, C)] = f, n[this._hashKey(F, I)] = y, this.trianglesLen = 0, this._addTriangle(m, f, y, -1, -1, -1);
-    for (let b = 0, S, v; b < this._ids.length; b++) {
-      const k = this._ids[b], O = t[2 * k], M = t[2 * k + 1];
-      if (b > 0 && Math.abs(O - S) <= ke && Math.abs(M - v) <= ke || (S = O, v = M, k === m || k === f || k === y))
+    const k = st(x, y, b, C, E, D);
+    this._cx = k.x, this._cy = k.y;
+    for (let g = 0; g < l; g++)
+      this._dists[g] = be(e[2 * g], e[2 * g + 1], k.x, k.y);
+    ee(this._ids, this._dists, 0, l - 1), this._hullStart = m;
+    let I = 3;
+    s[m] = t[f] = p, s[p] = t[m] = f, s[f] = t[p] = m, i[m] = 0, i[p] = 1, i[f] = 2, n.fill(-1), n[this._hashKey(x, y)] = m, n[this._hashKey(b, C)] = p, n[this._hashKey(E, D)] = f, this.trianglesLen = 0, this._addTriangle(m, p, f, -1, -1, -1);
+    for (let g = 0, v, w; g < this._ids.length; g++) {
+      const _ = this._ids[g], O = e[2 * _], A = e[2 * _ + 1];
+      if (g > 0 && Math.abs(O - v) <= De && Math.abs(A - w) <= De || (v = O, w = A, _ === m || _ === p || _ === f))
         continue;
-      let L = 0;
-      for (let W = 0, U = this._hashKey(O, M); W < this._hashSize && (L = n[(U + W) % this._hashSize], !(L !== -1 && L !== i[L])); W++)
+      let B = 0;
+      for (let W = 0, $ = this._hashKey(O, A); W < this._hashSize && (B = n[($ + W) % this._hashSize], !(B !== -1 && B !== s[B])); W++)
         ;
-      L = e[L];
-      let D = L, A;
-      for (; A = i[D], ae(O, M, t[2 * D], t[2 * D + 1], t[2 * A], t[2 * A + 1]) >= 0; )
-        if (D = A, D === L) {
-          D = -1;
+      B = t[B];
+      let F = B, T;
+      for (; T = s[F], re(O, A, e[2 * F], e[2 * F + 1], e[2 * T], e[2 * T + 1]) >= 0; )
+        if (F = T, F === B) {
+          F = -1;
           break;
         }
-      if (D === -1)
+      if (F === -1)
         continue;
-      let z = this._addTriangle(D, k, i[D], -1, -1, s[D]);
-      s[k] = this._legalize(z + 2), s[D] = z, P++;
-      let B = i[D];
-      for (; A = i[B], ae(O, M, t[2 * B], t[2 * B + 1], t[2 * A], t[2 * A + 1]) < 0; )
-        z = this._addTriangle(B, k, A, s[k], -1, s[B]), s[k] = this._legalize(z + 2), i[B] = B, P--, B = A;
-      if (D === L)
-        for (; A = e[D], ae(O, M, t[2 * A], t[2 * A + 1], t[2 * D], t[2 * D + 1]) < 0; )
-          z = this._addTriangle(A, k, D, -1, s[D], s[A]), this._legalize(z + 2), s[A] = z, i[D] = D, P--, D = A;
-      this._hullStart = e[k] = D, i[D] = e[B] = k, i[k] = B, n[this._hashKey(O, M)] = k, n[this._hashKey(t[2 * D], t[2 * D + 1])] = D;
+      let N = this._addTriangle(F, _, s[F], -1, -1, i[F]);
+      i[_] = this._legalize(N + 2), i[F] = N, I++;
+      let M = s[F];
+      for (; T = s[M], re(O, A, e[2 * M], e[2 * M + 1], e[2 * T], e[2 * T + 1]) < 0; )
+        N = this._addTriangle(M, _, T, i[_], -1, i[M]), i[_] = this._legalize(N + 2), s[M] = M, I--, M = T;
+      if (F === B)
+        for (; T = t[F], re(O, A, e[2 * T], e[2 * T + 1], e[2 * F], e[2 * F + 1]) < 0; )
+          N = this._addTriangle(T, _, F, -1, i[F], i[T]), this._legalize(N + 2), i[T] = N, s[F] = F, I--, F = T;
+      this._hullStart = t[_] = F, s[F] = t[M] = _, s[_] = M, n[this._hashKey(O, A)] = _, n[this._hashKey(e[2 * F], e[2 * F + 1])] = F;
     }
-    this.hull = new Uint32Array(P);
-    for (let b = 0, S = this._hullStart; b < P; b++)
-      this.hull[b] = S, S = i[S];
+    this.hull = new Uint32Array(I);
+    for (let g = 0, v = this._hullStart; g < I; g++)
+      this.hull[g] = v, v = s[v];
     this.triangles = this._triangles.subarray(0, this.trianglesLen), this.halfedges = this._halfedges.subarray(0, this.trianglesLen);
   }
-  _hashKey(t, e) {
-    return Math.floor(it(t - this._cx, e - this._cy) * this._hashSize) % this._hashSize;
+  _hashKey(e, t) {
+    return Math.floor(et(e - this._cx, t - this._cy) * this._hashSize) % this._hashSize;
   }
-  _legalize(t) {
-    const { _triangles: e, _halfedges: i, coords: s } = this;
-    let n = 0, o = 0;
+  _legalize(e) {
+    const { _triangles: t, _halfedges: s, coords: i } = this;
+    let n = 0, l = 0;
     for (; ; ) {
-      const l = i[t], a = t - t % 3;
-      if (o = a + (t + 2) % 3, l === -1) {
+      const o = s[e], a = e - e % 3;
+      if (l = a + (e + 2) % 3, o === -1) {
         if (n === 0)
           break;
-        t = re[--n];
+        e = he[--n];
         continue;
       }
-      const h = l - l % 3, u = a + (t + 1) % 3, c = h + (l + 2) % 3, d = e[o], m = e[t], f = e[u], y = e[c];
-      if (st(
-        s[2 * d],
-        s[2 * d + 1],
-        s[2 * m],
-        s[2 * m + 1],
-        s[2 * f],
-        s[2 * f + 1],
-        s[2 * y],
-        s[2 * y + 1]
+      const h = o - o % 3, d = a + (e + 1) % 3, c = h + (o + 2) % 3, u = t[l], m = t[e], p = t[d], f = t[c];
+      if (tt(
+        i[2 * u],
+        i[2 * u + 1],
+        i[2 * m],
+        i[2 * m + 1],
+        i[2 * p],
+        i[2 * p + 1],
+        i[2 * f],
+        i[2 * f + 1]
       )) {
-        e[t] = y, e[l] = d;
-        const g = i[c];
-        if (g === -1) {
+        t[e] = f, t[o] = u;
+        const y = s[c];
+        if (y === -1) {
           let C = this._hullStart;
           do {
             if (this._hullTri[C] === c) {
-              this._hullTri[C] = t;
+              this._hullTri[C] = e;
               break;
             }
             C = this._hullPrev[C];
           } while (C !== this._hullStart);
         }
-        this._link(t, g), this._link(l, i[o]), this._link(o, c);
-        const x = h + (l + 1) % 3;
-        n < re.length && (re[n++] = x);
+        this._link(e, y), this._link(o, s[l]), this._link(l, c);
+        const b = h + (o + 1) % 3;
+        n < he.length && (he[n++] = b);
       } else {
         if (n === 0)
           break;
-        t = re[--n];
+        e = he[--n];
       }
     }
-    return o;
+    return l;
   }
-  _link(t, e) {
-    this._halfedges[t] = e, e !== -1 && (this._halfedges[e] = t);
+  _link(e, t) {
+    this._halfedges[e] = t, t !== -1 && (this._halfedges[t] = e);
   }
   // add a new triangle given vertex indices and adjacent half-edge ids
-  _addTriangle(t, e, i, s, n, o) {
-    const l = this.trianglesLen;
-    return this._triangles[l] = t, this._triangles[l + 1] = e, this._triangles[l + 2] = i, this._link(l, s), this._link(l + 1, n), this._link(l + 2, o), this.trianglesLen += 3, l;
+  _addTriangle(e, t, s, i, n, l) {
+    const o = this.trianglesLen;
+    return this._triangles[o] = e, this._triangles[o + 1] = t, this._triangles[o + 2] = s, this._link(o, i), this._link(o + 1, n), this._link(o + 2, l), this.trianglesLen += 3, o;
   }
 }
-function it(r, t) {
-  const e = r / (Math.abs(r) + Math.abs(t));
-  return (t > 0 ? 3 - e : 1 + e) / 4;
+function et(r, e) {
+  const t = r / (Math.abs(r) + Math.abs(e));
+  return (e > 0 ? 3 - t : 1 + t) / 4;
 }
-function ge(r, t, e, i) {
-  const s = r - e, n = t - i;
-  return s * s + n * n;
+function be(r, e, t, s) {
+  const i = r - t, n = e - s;
+  return i * i + n * n;
 }
-function st(r, t, e, i, s, n, o, l) {
-  const a = r - o, h = t - l, u = e - o, c = i - l, d = s - o, m = n - l, f = a * a + h * h, y = u * u + c * c, w = d * d + m * m;
-  return a * (c * w - y * m) - h * (u * w - y * d) + f * (u * m - c * d) < 0;
+function tt(r, e, t, s, i, n, l, o) {
+  const a = r - l, h = e - o, d = t - l, c = s - o, u = i - l, m = n - o, p = a * a + h * h, f = d * d + c * c, x = u * u + m * m;
+  return a * (c * x - f * m) - h * (d * x - f * u) + p * (d * m - c * u) < 0;
 }
-function nt(r, t, e, i, s, n) {
-  const o = e - r, l = i - t, a = s - r, h = n - t, u = o * o + l * l, c = a * a + h * h, d = 0.5 / (o * h - l * a), m = (h * u - l * c) * d, f = (o * c - a * u) * d;
-  return m * m + f * f;
+function it(r, e, t, s, i, n) {
+  const l = t - r, o = s - e, a = i - r, h = n - e, d = l * l + o * o, c = a * a + h * h, u = 0.5 / (l * h - o * a), m = (h * d - o * c) * u, p = (l * c - a * d) * u;
+  return m * m + p * p;
 }
-function ot(r, t, e, i, s, n) {
-  const o = e - r, l = i - t, a = s - r, h = n - t, u = o * o + l * l, c = a * a + h * h, d = 0.5 / (o * h - l * a), m = r + (h * u - l * c) * d, f = t + (o * c - a * u) * d;
-  return { x: m, y: f };
+function st(r, e, t, s, i, n) {
+  const l = t - r, o = s - e, a = i - r, h = n - e, d = l * l + o * o, c = a * a + h * h, u = 0.5 / (l * h - o * a), m = r + (h * d - o * c) * u, p = e + (l * c - a * d) * u;
+  return { x: m, y: p };
 }
-function Q(r, t, e, i) {
-  if (i - e <= 20)
-    for (let s = e + 1; s <= i; s++) {
-      const n = r[s], o = t[n];
-      let l = s - 1;
-      for (; l >= e && t[r[l]] > o; )
-        r[l + 1] = r[l--];
-      r[l + 1] = n;
+function ee(r, e, t, s) {
+  if (s - t <= 20)
+    for (let i = t + 1; i <= s; i++) {
+      const n = r[i], l = e[n];
+      let o = i - 1;
+      for (; o >= t && e[r[o]] > l; )
+        r[o + 1] = r[o--];
+      r[o + 1] = n;
     }
   else {
-    const s = e + i >> 1;
-    let n = e + 1, o = i;
-    te(r, s, n), t[r[e]] > t[r[i]] && te(r, e, i), t[r[n]] > t[r[i]] && te(r, n, i), t[r[e]] > t[r[n]] && te(r, e, n);
-    const l = r[n], a = t[l];
+    const i = t + s >> 1;
+    let n = t + 1, l = s;
+    ie(r, i, n), e[r[t]] > e[r[s]] && ie(r, t, s), e[r[n]] > e[r[s]] && ie(r, n, s), e[r[t]] > e[r[n]] && ie(r, t, n);
+    const o = r[n], a = e[o];
     for (; ; ) {
       do
         n++;
-      while (t[r[n]] < a);
+      while (e[r[n]] < a);
       do
-        o--;
-      while (t[r[o]] > a);
-      if (o < n)
+        l--;
+      while (e[r[l]] > a);
+      if (l < n)
         break;
-      te(r, n, o);
+      ie(r, n, l);
     }
-    r[e + 1] = r[o], r[o] = l, i - n + 1 >= o - e ? (Q(r, t, n, i), Q(r, t, e, o - 1)) : (Q(r, t, e, o - 1), Q(r, t, n, i));
+    r[t + 1] = r[l], r[l] = o, s - n + 1 >= l - t ? (ee(r, e, n, s), ee(r, e, t, l - 1)) : (ee(r, e, t, l - 1), ee(r, e, n, s));
   }
 }
-function te(r, t, e) {
-  const i = r[t];
-  r[t] = r[e], r[e] = i;
+function ie(r, e, t) {
+  const s = r[e];
+  r[e] = r[t], r[t] = s;
 }
-function lt(r) {
+function nt(r) {
   return r[0];
 }
-function at(r) {
+function ot(r) {
   return r[1];
 }
-const De = 1e-6;
-class J {
+const ke = 1e-6;
+class q {
   constructor() {
     this._x0 = this._y0 = // start of current subpath
     this._x1 = this._y1 = null, this._ = "";
   }
-  moveTo(t, e) {
-    this._ += `M${this._x0 = this._x1 = +t},${this._y0 = this._y1 = +e}`;
+  moveTo(e, t) {
+    this._ += `M${this._x0 = this._x1 = +e},${this._y0 = this._y1 = +t}`;
   }
   closePath() {
     this._x1 !== null && (this._x1 = this._x0, this._y1 = this._y0, this._ += "Z");
   }
-  lineTo(t, e) {
-    this._ += `L${this._x1 = +t},${this._y1 = +e}`;
+  lineTo(e, t) {
+    this._ += `L${this._x1 = +e},${this._y1 = +t}`;
   }
-  arc(t, e, i) {
-    t = +t, e = +e, i = +i;
-    const s = t + i, n = e;
-    if (i < 0)
+  arc(e, t, s) {
+    e = +e, t = +t, s = +s;
+    const i = e + s, n = t;
+    if (s < 0)
       throw new Error("negative radius");
-    this._x1 === null ? this._ += `M${s},${n}` : (Math.abs(this._x1 - s) > De || Math.abs(this._y1 - n) > De) && (this._ += "L" + s + "," + n), i && (this._ += `A${i},${i},0,1,1,${t - i},${e}A${i},${i},0,1,1,${this._x1 = s},${this._y1 = n}`);
+    this._x1 === null ? this._ += `M${i},${n}` : (Math.abs(this._x1 - i) > ke || Math.abs(this._y1 - n) > ke) && (this._ += "L" + i + "," + n), s && (this._ += `A${s},${s},0,1,1,${e - s},${t}A${s},${s},0,1,1,${this._x1 = i},${this._y1 = n}`);
   }
-  rect(t, e, i, s) {
-    this._ += `M${this._x0 = this._x1 = +t},${this._y0 = this._y1 = +e}h${+i}v${+s}h${-i}Z`;
+  rect(e, t, s, i) {
+    this._ += `M${this._x0 = this._x1 = +e},${this._y0 = this._y1 = +t}h${+s}v${+i}h${-s}Z`;
   }
   value() {
     return this._ || null;
   }
 }
-class xe {
+class Ce {
   constructor() {
     this._ = [];
   }
-  moveTo(t, e) {
-    this._.push([t, e]);
+  moveTo(e, t) {
+    this._.push([e, t]);
   }
   closePath() {
     this._.push(this._[0].slice());
   }
-  lineTo(t, e) {
-    this._.push([t, e]);
+  lineTo(e, t) {
+    this._.push([e, t]);
   }
   value() {
     return this._.length ? this._ : null;
   }
 }
-class rt {
-  constructor(t, [e, i, s, n] = [0, 0, 960, 500]) {
-    if (!((s = +s) >= (e = +e)) || !((n = +n) >= (i = +i)))
+class lt {
+  constructor(e, [t, s, i, n] = [0, 0, 960, 500]) {
+    if (!((i = +i) >= (t = +t)) || !((n = +n) >= (s = +s)))
       throw new Error("invalid bounds");
-    this.delaunay = t, this._circumcenters = new Float64Array(t.points.length * 2), this.vectors = new Float64Array(t.points.length * 2), this.xmax = s, this.xmin = e, this.ymax = n, this.ymin = i, this._init();
+    this.delaunay = e, this._circumcenters = new Float64Array(e.points.length * 2), this.vectors = new Float64Array(e.points.length * 2), this.xmax = i, this.xmin = t, this.ymax = n, this.ymin = s, this._init();
   }
   update() {
     return this.delaunay.update(), this._init(), this;
   }
   _init() {
-    const { delaunay: { points: t, hull: e, triangles: i }, vectors: s } = this;
-    let n, o;
-    const l = this.circumcenters = this._circumcenters.subarray(0, i.length / 3 * 2);
-    for (let y = 0, w = 0, g = i.length, x, C; y < g; y += 3, w += 2) {
-      const _ = i[y] * 2, F = i[y + 1] * 2, I = i[y + 2] * 2, E = t[_], P = t[_ + 1], b = t[F], S = t[F + 1], v = t[I], k = t[I + 1], O = b - E, M = S - P, L = v - E, D = k - P, A = (O * D - M * L) * 2;
-      if (Math.abs(A) < 1e-9) {
+    const { delaunay: { points: e, hull: t, triangles: s }, vectors: i } = this;
+    let n, l;
+    const o = this.circumcenters = this._circumcenters.subarray(0, s.length / 3 * 2);
+    for (let f = 0, x = 0, y = s.length, b, C; f < y; f += 3, x += 2) {
+      const S = s[f] * 2, E = s[f + 1] * 2, D = s[f + 2] * 2, k = e[S], I = e[S + 1], g = e[E], v = e[E + 1], w = e[D], _ = e[D + 1], O = g - k, A = v - I, B = w - k, F = _ - I, T = (O * F - A * B) * 2;
+      if (Math.abs(T) < 1e-9) {
         if (n === void 0) {
-          n = o = 0;
-          for (const B of e)
-            n += t[B * 2], o += t[B * 2 + 1];
-          n /= e.length, o /= e.length;
+          n = l = 0;
+          for (const M of t)
+            n += e[M * 2], l += e[M * 2 + 1];
+          n /= t.length, l /= t.length;
         }
-        const z = 1e9 * Math.sign((n - E) * D - (o - P) * L);
-        x = (E + v) / 2 - z * D, C = (P + k) / 2 + z * L;
+        const N = 1e9 * Math.sign((n - k) * F - (l - I) * B);
+        b = (k + w) / 2 - N * F, C = (I + _) / 2 + N * B;
       } else {
-        const z = 1 / A, B = O * O + M * M, W = L * L + D * D;
-        x = E + (D * B - M * W) * z, C = P + (O * W - L * B) * z;
+        const N = 1 / T, M = O * O + A * A, W = B * B + F * F;
+        b = k + (F * M - A * W) * N, C = I + (O * W - B * M) * N;
       }
-      l[w] = x, l[w + 1] = C;
+      o[x] = b, o[x + 1] = C;
     }
-    let a = e[e.length - 1], h, u = a * 4, c, d = t[2 * a], m, f = t[2 * a + 1];
-    s.fill(0);
-    for (let y = 0; y < e.length; ++y)
-      a = e[y], h = u, c = d, m = f, u = a * 4, d = t[2 * a], f = t[2 * a + 1], s[h + 2] = s[u] = m - f, s[h + 3] = s[u + 1] = d - c;
+    let a = t[t.length - 1], h, d = a * 4, c, u = e[2 * a], m, p = e[2 * a + 1];
+    i.fill(0);
+    for (let f = 0; f < t.length; ++f)
+      a = t[f], h = d, c = u, m = p, d = a * 4, u = e[2 * a], p = e[2 * a + 1], i[h + 2] = i[d] = m - p, i[h + 3] = i[d + 1] = u - c;
   }
-  render(t) {
-    const e = t == null ? t = new J() : void 0, { delaunay: { halfedges: i, inedges: s, hull: n }, circumcenters: o, vectors: l } = this;
+  render(e) {
+    const t = e == null ? e = new q() : void 0, { delaunay: { halfedges: s, inedges: i, hull: n }, circumcenters: l, vectors: o } = this;
     if (n.length <= 1)
       return null;
-    for (let u = 0, c = i.length; u < c; ++u) {
-      const d = i[u];
-      if (d < u)
+    for (let d = 0, c = s.length; d < c; ++d) {
+      const u = s[d];
+      if (u < d)
         continue;
-      const m = Math.floor(u / 3) * 2, f = Math.floor(d / 3) * 2, y = o[m], w = o[m + 1], g = o[f], x = o[f + 1];
-      this._renderSegment(y, w, g, x, t);
+      const m = Math.floor(d / 3) * 2, p = Math.floor(u / 3) * 2, f = l[m], x = l[m + 1], y = l[p], b = l[p + 1];
+      this._renderSegment(f, x, y, b, e);
     }
     let a, h = n[n.length - 1];
-    for (let u = 0; u < n.length; ++u) {
-      a = h, h = n[u];
-      const c = Math.floor(s[h] / 3) * 2, d = o[c], m = o[c + 1], f = a * 4, y = this._project(d, m, l[f + 2], l[f + 3]);
-      y && this._renderSegment(d, m, y[0], y[1], t);
+    for (let d = 0; d < n.length; ++d) {
+      a = h, h = n[d];
+      const c = Math.floor(i[h] / 3) * 2, u = l[c], m = l[c + 1], p = a * 4, f = this._project(u, m, o[p + 2], o[p + 3]);
+      f && this._renderSegment(u, m, f[0], f[1], e);
     }
-    return e && e.value();
+    return t && t.value();
   }
-  renderBounds(t) {
-    const e = t == null ? t = new J() : void 0;
-    return t.rect(this.xmin, this.ymin, this.xmax - this.xmin, this.ymax - this.ymin), e && e.value();
+  renderBounds(e) {
+    const t = e == null ? e = new q() : void 0;
+    return e.rect(this.xmin, this.ymin, this.xmax - this.xmin, this.ymax - this.ymin), t && t.value();
   }
-  renderCell(t, e) {
-    const i = e == null ? e = new J() : void 0, s = this._clip(t);
-    if (s === null || !s.length)
+  renderCell(e, t) {
+    const s = t == null ? t = new q() : void 0, i = this._clip(e);
+    if (i === null || !i.length)
       return;
-    e.moveTo(s[0], s[1]);
-    let n = s.length;
-    for (; s[0] === s[n - 2] && s[1] === s[n - 1] && n > 1; )
+    t.moveTo(i[0], i[1]);
+    let n = i.length;
+    for (; i[0] === i[n - 2] && i[1] === i[n - 1] && n > 1; )
       n -= 2;
-    for (let o = 2; o < n; o += 2)
-      (s[o] !== s[o - 2] || s[o + 1] !== s[o - 1]) && e.lineTo(s[o], s[o + 1]);
-    return e.closePath(), i && i.value();
+    for (let l = 2; l < n; l += 2)
+      (i[l] !== i[l - 2] || i[l + 1] !== i[l - 1]) && t.lineTo(i[l], i[l + 1]);
+    return t.closePath(), s && s.value();
   }
   *cellPolygons() {
-    const { delaunay: { points: t } } = this;
-    for (let e = 0, i = t.length / 2; e < i; ++e) {
-      const s = this.cellPolygon(e);
-      s && (s.index = e, yield s);
+    const { delaunay: { points: e } } = this;
+    for (let t = 0, s = e.length / 2; t < s; ++t) {
+      const i = this.cellPolygon(t);
+      i && (i.index = t, yield i);
     }
   }
-  cellPolygon(t) {
-    const e = new xe();
-    return this.renderCell(t, e), e.value();
+  cellPolygon(e) {
+    const t = new Ce();
+    return this.renderCell(e, t), t.value();
   }
-  _renderSegment(t, e, i, s, n) {
-    let o;
-    const l = this._regioncode(t, e), a = this._regioncode(i, s);
-    l === 0 && a === 0 ? (n.moveTo(t, e), n.lineTo(i, s)) : (o = this._clipSegment(t, e, i, s, l, a)) && (n.moveTo(o[0], o[1]), n.lineTo(o[2], o[3]));
+  _renderSegment(e, t, s, i, n) {
+    let l;
+    const o = this._regioncode(e, t), a = this._regioncode(s, i);
+    o === 0 && a === 0 ? (n.moveTo(e, t), n.lineTo(s, i)) : (l = this._clipSegment(e, t, s, i, o, a)) && (n.moveTo(l[0], l[1]), n.lineTo(l[2], l[3]));
   }
-  contains(t, e, i) {
-    return e = +e, e !== e || (i = +i, i !== i) ? !1 : this.delaunay._step(t, e, i) === t;
+  contains(e, t, s) {
+    return t = +t, t !== t || (s = +s, s !== s) ? !1 : this.delaunay._step(e, t, s) === e;
   }
-  *neighbors(t) {
-    const e = this._clip(t);
-    if (e)
-      for (const i of this.delaunay.neighbors(t)) {
-        const s = this._clip(i);
-        if (s) {
+  *neighbors(e) {
+    const t = this._clip(e);
+    if (t)
+      for (const s of this.delaunay.neighbors(e)) {
+        const i = this._clip(s);
+        if (i) {
           e:
-            for (let n = 0, o = e.length; n < o; n += 2)
-              for (let l = 0, a = s.length; l < a; l += 2)
-                if (e[n] === s[l] && e[n + 1] === s[l + 1] && e[(n + 2) % o] === s[(l + a - 2) % a] && e[(n + 3) % o] === s[(l + a - 1) % a]) {
-                  yield i;
+            for (let n = 0, l = t.length; n < l; n += 2)
+              for (let o = 0, a = i.length; o < a; o += 2)
+                if (t[n] === i[o] && t[n + 1] === i[o + 1] && t[(n + 2) % l] === i[(o + a - 2) % a] && t[(n + 3) % l] === i[(o + a - 1) % a]) {
+                  yield s;
                   break e;
                 }
         }
       }
   }
-  _cell(t) {
-    const { circumcenters: e, delaunay: { inedges: i, halfedges: s, triangles: n } } = this, o = i[t];
-    if (o === -1)
+  _cell(e) {
+    const { circumcenters: t, delaunay: { inedges: s, halfedges: i, triangles: n } } = this, l = s[e];
+    if (l === -1)
       return null;
-    const l = [];
-    let a = o;
+    const o = [];
+    let a = l;
     do {
       const h = Math.floor(a / 3);
-      if (l.push(e[h * 2], e[h * 2 + 1]), a = a % 3 === 2 ? a - 2 : a + 1, n[a] !== t)
+      if (o.push(t[h * 2], t[h * 2 + 1]), a = a % 3 === 2 ? a - 2 : a + 1, n[a] !== e)
         break;
-      a = s[a];
-    } while (a !== o && a !== -1);
-    return l;
+      a = i[a];
+    } while (a !== l && a !== -1);
+    return o;
   }
-  _clip(t) {
-    if (t === 0 && this.delaunay.hull.length === 1)
+  _clip(e) {
+    if (e === 0 && this.delaunay.hull.length === 1)
       return [this.xmax, this.ymin, this.xmax, this.ymax, this.xmin, this.ymax, this.xmin, this.ymin];
-    const e = this._cell(t);
-    if (e === null)
+    const t = this._cell(e);
+    if (t === null)
       return null;
-    const { vectors: i } = this, s = t * 4;
-    return this._simplify(i[s] || i[s + 1] ? this._clipInfinite(t, e, i[s], i[s + 1], i[s + 2], i[s + 3]) : this._clipFinite(t, e));
+    const { vectors: s } = this, i = e * 4;
+    return this._simplify(s[i] || s[i + 1] ? this._clipInfinite(e, t, s[i], s[i + 1], s[i + 2], s[i + 3]) : this._clipFinite(e, t));
   }
-  _clipFinite(t, e) {
-    const i = e.length;
-    let s = null, n, o, l = e[i - 2], a = e[i - 1], h, u = this._regioncode(l, a), c, d = 0;
-    for (let m = 0; m < i; m += 2)
-      if (n = l, o = a, l = e[m], a = e[m + 1], h = u, u = this._regioncode(l, a), h === 0 && u === 0)
-        c = d, d = 0, s ? s.push(l, a) : s = [l, a];
+  _clipFinite(e, t) {
+    const s = t.length;
+    let i = null, n, l, o = t[s - 2], a = t[s - 1], h, d = this._regioncode(o, a), c, u = 0;
+    for (let m = 0; m < s; m += 2)
+      if (n = o, l = a, o = t[m], a = t[m + 1], h = d, d = this._regioncode(o, a), h === 0 && d === 0)
+        c = u, u = 0, i ? i.push(o, a) : i = [o, a];
       else {
-        let f, y, w, g, x;
+        let p, f, x, y, b;
         if (h === 0) {
-          if ((f = this._clipSegment(n, o, l, a, h, u)) === null)
+          if ((p = this._clipSegment(n, l, o, a, h, d)) === null)
             continue;
-          [y, w, g, x] = f;
+          [f, x, y, b] = p;
         } else {
-          if ((f = this._clipSegment(l, a, n, o, u, h)) === null)
+          if ((p = this._clipSegment(o, a, n, l, d, h)) === null)
             continue;
-          [g, x, y, w] = f, c = d, d = this._edgecode(y, w), c && d && this._edge(t, c, d, s, s.length), s ? s.push(y, w) : s = [y, w];
+          [y, b, f, x] = p, c = u, u = this._edgecode(f, x), c && u && this._edge(e, c, u, i, i.length), i ? i.push(f, x) : i = [f, x];
         }
-        c = d, d = this._edgecode(g, x), c && d && this._edge(t, c, d, s, s.length), s ? s.push(g, x) : s = [g, x];
+        c = u, u = this._edgecode(y, b), c && u && this._edge(e, c, u, i, i.length), i ? i.push(y, b) : i = [y, b];
       }
-    if (s)
-      c = d, d = this._edgecode(s[0], s[1]), c && d && this._edge(t, c, d, s, s.length);
-    else if (this.contains(t, (this.xmin + this.xmax) / 2, (this.ymin + this.ymax) / 2))
+    if (i)
+      c = u, u = this._edgecode(i[0], i[1]), c && u && this._edge(e, c, u, i, i.length);
+    else if (this.contains(e, (this.xmin + this.xmax) / 2, (this.ymin + this.ymax) / 2))
       return [this.xmax, this.ymin, this.xmax, this.ymax, this.xmin, this.ymax, this.xmin, this.ymin];
-    return s;
+    return i;
   }
-  _clipSegment(t, e, i, s, n, o) {
-    const l = n < o;
-    for (l && ([t, e, i, s, n, o] = [i, s, t, e, o, n]); ; ) {
-      if (n === 0 && o === 0)
-        return l ? [i, s, t, e] : [t, e, i, s];
-      if (n & o)
+  _clipSegment(e, t, s, i, n, l) {
+    const o = n < l;
+    for (o && ([e, t, s, i, n, l] = [s, i, e, t, l, n]); ; ) {
+      if (n === 0 && l === 0)
+        return o ? [s, i, e, t] : [e, t, s, i];
+      if (n & l)
         return null;
-      let a, h, u = n || o;
-      u & 8 ? (a = t + (i - t) * (this.ymax - e) / (s - e), h = this.ymax) : u & 4 ? (a = t + (i - t) * (this.ymin - e) / (s - e), h = this.ymin) : u & 2 ? (h = e + (s - e) * (this.xmax - t) / (i - t), a = this.xmax) : (h = e + (s - e) * (this.xmin - t) / (i - t), a = this.xmin), n ? (t = a, e = h, n = this._regioncode(t, e)) : (i = a, s = h, o = this._regioncode(i, s));
+      let a, h, d = n || l;
+      d & 8 ? (a = e + (s - e) * (this.ymax - t) / (i - t), h = this.ymax) : d & 4 ? (a = e + (s - e) * (this.ymin - t) / (i - t), h = this.ymin) : d & 2 ? (h = t + (i - t) * (this.xmax - e) / (s - e), a = this.xmax) : (h = t + (i - t) * (this.xmin - e) / (s - e), a = this.xmin), n ? (e = a, t = h, n = this._regioncode(e, t)) : (s = a, i = h, l = this._regioncode(s, i));
     }
   }
-  _clipInfinite(t, e, i, s, n, o) {
-    let l = Array.from(e), a;
-    if ((a = this._project(l[0], l[1], i, s)) && l.unshift(a[0], a[1]), (a = this._project(l[l.length - 2], l[l.length - 1], n, o)) && l.push(a[0], a[1]), l = this._clipFinite(t, l))
-      for (let h = 0, u = l.length, c, d = this._edgecode(l[u - 2], l[u - 1]); h < u; h += 2)
-        c = d, d = this._edgecode(l[h], l[h + 1]), c && d && (h = this._edge(t, c, d, l, h), u = l.length);
+  _clipInfinite(e, t, s, i, n, l) {
+    let o = Array.from(t), a;
+    if ((a = this._project(o[0], o[1], s, i)) && o.unshift(a[0], a[1]), (a = this._project(o[o.length - 2], o[o.length - 1], n, l)) && o.push(a[0], a[1]), o = this._clipFinite(e, o))
+      for (let h = 0, d = o.length, c, u = this._edgecode(o[d - 2], o[d - 1]); h < d; h += 2)
+        c = u, u = this._edgecode(o[h], o[h + 1]), c && u && (h = this._edge(e, c, u, o, h), d = o.length);
     else
-      this.contains(t, (this.xmin + this.xmax) / 2, (this.ymin + this.ymax) / 2) && (l = [this.xmin, this.ymin, this.xmax, this.ymin, this.xmax, this.ymax, this.xmin, this.ymax]);
-    return l;
+      this.contains(e, (this.xmin + this.xmax) / 2, (this.ymin + this.ymax) / 2) && (o = [this.xmin, this.ymin, this.xmax, this.ymin, this.xmax, this.ymax, this.xmin, this.ymax]);
+    return o;
   }
-  _edge(t, e, i, s, n) {
-    for (; e !== i; ) {
-      let o, l;
-      switch (e) {
+  _edge(e, t, s, i, n) {
+    for (; t !== s; ) {
+      let l, o;
+      switch (t) {
         case 5:
-          e = 4;
+          t = 4;
           continue;
         case 4:
-          e = 6, o = this.xmax, l = this.ymin;
+          t = 6, l = this.xmax, o = this.ymin;
           break;
         case 6:
-          e = 2;
+          t = 2;
           continue;
         case 2:
-          e = 10, o = this.xmax, l = this.ymax;
+          t = 10, l = this.xmax, o = this.ymax;
           break;
         case 10:
-          e = 8;
+          t = 8;
           continue;
         case 8:
-          e = 9, o = this.xmin, l = this.ymax;
+          t = 9, l = this.xmin, o = this.ymax;
           break;
         case 9:
-          e = 1;
+          t = 1;
           continue;
         case 1:
-          e = 5, o = this.xmin, l = this.ymin;
+          t = 5, l = this.xmin, o = this.ymin;
           break;
       }
-      (s[n] !== o || s[n + 1] !== l) && this.contains(t, o, l) && (s.splice(n, 0, o, l), n += 2);
+      (i[n] !== l || i[n + 1] !== o) && this.contains(e, l, o) && (i.splice(n, 0, l, o), n += 2);
     }
     return n;
   }
-  _project(t, e, i, s) {
-    let n = 1 / 0, o, l, a;
-    if (s < 0) {
-      if (e <= this.ymin)
+  _project(e, t, s, i) {
+    let n = 1 / 0, l, o, a;
+    if (i < 0) {
+      if (t <= this.ymin)
         return null;
-      (o = (this.ymin - e) / s) < n && (a = this.ymin, l = t + (n = o) * i);
-    } else if (s > 0) {
-      if (e >= this.ymax)
+      (l = (this.ymin - t) / i) < n && (a = this.ymin, o = e + (n = l) * s);
+    } else if (i > 0) {
+      if (t >= this.ymax)
         return null;
-      (o = (this.ymax - e) / s) < n && (a = this.ymax, l = t + (n = o) * i);
+      (l = (this.ymax - t) / i) < n && (a = this.ymax, o = e + (n = l) * s);
     }
-    if (i > 0) {
-      if (t >= this.xmax)
+    if (s > 0) {
+      if (e >= this.xmax)
         return null;
-      (o = (this.xmax - t) / i) < n && (l = this.xmax, a = e + (n = o) * s);
-    } else if (i < 0) {
-      if (t <= this.xmin)
+      (l = (this.xmax - e) / s) < n && (o = this.xmax, a = t + (n = l) * i);
+    } else if (s < 0) {
+      if (e <= this.xmin)
         return null;
-      (o = (this.xmin - t) / i) < n && (l = this.xmin, a = e + (n = o) * s);
+      (l = (this.xmin - e) / s) < n && (o = this.xmin, a = t + (n = l) * i);
     }
-    return [l, a];
+    return [o, a];
   }
-  _edgecode(t, e) {
-    return (t === this.xmin ? 1 : t === this.xmax ? 2 : 0) | (e === this.ymin ? 4 : e === this.ymax ? 8 : 0);
+  _edgecode(e, t) {
+    return (e === this.xmin ? 1 : e === this.xmax ? 2 : 0) | (t === this.ymin ? 4 : t === this.ymax ? 8 : 0);
   }
-  _regioncode(t, e) {
-    return (t < this.xmin ? 1 : t > this.xmax ? 2 : 0) | (e < this.ymin ? 4 : e > this.ymax ? 8 : 0);
+  _regioncode(e, t) {
+    return (e < this.xmin ? 1 : e > this.xmax ? 2 : 0) | (t < this.ymin ? 4 : t > this.ymax ? 8 : 0);
   }
-  _simplify(t) {
-    if (t && t.length > 4) {
-      for (let e = 0; e < t.length; e += 2) {
-        const i = (e + 2) % t.length, s = (e + 4) % t.length;
-        (t[e] === t[i] && t[i] === t[s] || t[e + 1] === t[i + 1] && t[i + 1] === t[s + 1]) && (t.splice(i, 2), e -= 2);
+  _simplify(e) {
+    if (e && e.length > 4) {
+      for (let t = 0; t < e.length; t += 2) {
+        const s = (t + 2) % e.length, i = (t + 4) % e.length;
+        (e[t] === e[s] && e[s] === e[i] || e[t + 1] === e[s + 1] && e[s + 1] === e[i + 1]) && (e.splice(s, 2), t -= 2);
       }
-      t.length || (t = null);
+      e.length || (e = null);
     }
-    return t;
+    return e;
   }
 }
-const ht = 2 * Math.PI, Z = Math.pow;
-function ct(r) {
+const at = 2 * Math.PI, Q = Math.pow;
+function rt(r) {
   return r[0];
 }
-function dt(r) {
+function ht(r) {
   return r[1];
 }
-function ut(r) {
-  const { triangles: t, coords: e } = r;
-  for (let i = 0; i < t.length; i += 3) {
-    const s = 2 * t[i], n = 2 * t[i + 1], o = 2 * t[i + 2];
-    if ((e[o] - e[s]) * (e[n + 1] - e[s + 1]) - (e[n] - e[s]) * (e[o + 1] - e[s + 1]) > 1e-10)
+function ct(r) {
+  const { triangles: e, coords: t } = r;
+  for (let s = 0; s < e.length; s += 3) {
+    const i = 2 * e[s], n = 2 * e[s + 1], l = 2 * e[s + 2];
+    if ((t[l] - t[i]) * (t[n + 1] - t[i + 1]) - (t[n] - t[i]) * (t[l + 1] - t[i + 1]) > 1e-10)
       return !1;
   }
   return !0;
 }
-function mt(r, t, e) {
-  return [r + Math.sin(r + t) * e, t + Math.cos(r - t) * e];
+function dt(r, e, t) {
+  return [r + Math.sin(r + e) * t, e + Math.cos(r - e) * t];
 }
 class we {
-  static from(t, e = ct, i = dt, s) {
-    return new we("length" in t ? pt(t, e, i, s) : Float64Array.from(ft(t, e, i, s)));
+  static from(e, t = rt, s = ht, i) {
+    return new we("length" in e ? ut(e, t, s, i) : Float64Array.from(mt(e, t, s, i)));
   }
-  constructor(t) {
-    this._delaunator = new de(t), this.inedges = new Int32Array(t.length / 2), this._hullIndex = new Int32Array(t.length / 2), this.points = this._delaunator.coords, this._init();
+  constructor(e) {
+    this._delaunator = new ue(e), this.inedges = new Int32Array(e.length / 2), this._hullIndex = new Int32Array(e.length / 2), this.points = this._delaunator.coords, this._init();
   }
   update() {
     return this._delaunator.update(), this._init(), this;
   }
   _init() {
-    const t = this._delaunator, e = this.points;
-    if (t.hull && t.hull.length > 2 && ut(t)) {
-      this.collinear = Int32Array.from({ length: e.length / 2 }, (d, m) => m).sort((d, m) => e[2 * d] - e[2 * m] || e[2 * d + 1] - e[2 * m + 1]);
-      const a = this.collinear[0], h = this.collinear[this.collinear.length - 1], u = [e[2 * a], e[2 * a + 1], e[2 * h], e[2 * h + 1]], c = 1e-8 * Math.hypot(u[3] - u[1], u[2] - u[0]);
-      for (let d = 0, m = e.length / 2; d < m; ++d) {
-        const f = mt(e[2 * d], e[2 * d + 1], c);
-        e[2 * d] = f[0], e[2 * d + 1] = f[1];
+    const e = this._delaunator, t = this.points;
+    if (e.hull && e.hull.length > 2 && ct(e)) {
+      this.collinear = Int32Array.from({ length: t.length / 2 }, (u, m) => m).sort((u, m) => t[2 * u] - t[2 * m] || t[2 * u + 1] - t[2 * m + 1]);
+      const a = this.collinear[0], h = this.collinear[this.collinear.length - 1], d = [t[2 * a], t[2 * a + 1], t[2 * h], t[2 * h + 1]], c = 1e-8 * Math.hypot(d[3] - d[1], d[2] - d[0]);
+      for (let u = 0, m = t.length / 2; u < m; ++u) {
+        const p = dt(t[2 * u], t[2 * u + 1], c);
+        t[2 * u] = p[0], t[2 * u + 1] = p[1];
       }
-      this._delaunator = new de(e);
+      this._delaunator = new ue(t);
     } else
       delete this.collinear;
-    const i = this.halfedges = this._delaunator.halfedges, s = this.hull = this._delaunator.hull, n = this.triangles = this._delaunator.triangles, o = this.inedges.fill(-1), l = this._hullIndex.fill(-1);
-    for (let a = 0, h = i.length; a < h; ++a) {
-      const u = n[a % 3 === 2 ? a - 2 : a + 1];
-      (i[a] === -1 || o[u] === -1) && (o[u] = a);
+    const s = this.halfedges = this._delaunator.halfedges, i = this.hull = this._delaunator.hull, n = this.triangles = this._delaunator.triangles, l = this.inedges.fill(-1), o = this._hullIndex.fill(-1);
+    for (let a = 0, h = s.length; a < h; ++a) {
+      const d = n[a % 3 === 2 ? a - 2 : a + 1];
+      (s[a] === -1 || l[d] === -1) && (l[d] = a);
     }
-    for (let a = 0, h = s.length; a < h; ++a)
-      l[s[a]] = a;
-    s.length <= 2 && s.length > 0 && (this.triangles = new Int32Array(3).fill(-1), this.halfedges = new Int32Array(3).fill(-1), this.triangles[0] = s[0], o[s[0]] = 1, s.length === 2 && (o[s[1]] = 0, this.triangles[1] = s[1], this.triangles[2] = s[1]));
+    for (let a = 0, h = i.length; a < h; ++a)
+      o[i[a]] = a;
+    i.length <= 2 && i.length > 0 && (this.triangles = new Int32Array(3).fill(-1), this.halfedges = new Int32Array(3).fill(-1), this.triangles[0] = i[0], l[i[0]] = 1, i.length === 2 && (l[i[1]] = 0, this.triangles[1] = i[1], this.triangles[2] = i[1]));
   }
-  voronoi(t) {
-    return new rt(this, t);
+  voronoi(e) {
+    return new lt(this, e);
   }
-  *neighbors(t) {
-    const { inedges: e, hull: i, _hullIndex: s, halfedges: n, triangles: o, collinear: l } = this;
-    if (l) {
-      const c = l.indexOf(t);
-      c > 0 && (yield l[c - 1]), c < l.length - 1 && (yield l[c + 1]);
+  *neighbors(e) {
+    const { inedges: t, hull: s, _hullIndex: i, halfedges: n, triangles: l, collinear: o } = this;
+    if (o) {
+      const c = o.indexOf(e);
+      c > 0 && (yield o[c - 1]), c < o.length - 1 && (yield o[c + 1]);
       return;
     }
-    const a = e[t];
+    const a = t[e];
     if (a === -1)
       return;
-    let h = a, u = -1;
+    let h = a, d = -1;
     do {
-      if (yield u = o[h], h = h % 3 === 2 ? h - 2 : h + 1, o[h] !== t)
+      if (yield d = l[h], h = h % 3 === 2 ? h - 2 : h + 1, l[h] !== e)
         return;
       if (h = n[h], h === -1) {
-        const c = i[(s[t] + 1) % i.length];
-        c !== u && (yield c);
+        const c = s[(i[e] + 1) % s.length];
+        c !== d && (yield c);
         return;
       }
     } while (h !== a);
   }
-  find(t, e, i = 0) {
-    if (t = +t, t !== t || (e = +e, e !== e))
+  find(e, t, s = 0) {
+    if (e = +e, e !== e || (t = +t, t !== t))
       return -1;
-    const s = i;
+    const i = s;
     let n;
-    for (; (n = this._step(i, t, e)) >= 0 && n !== i && n !== s; )
-      i = n;
+    for (; (n = this._step(s, e, t)) >= 0 && n !== s && n !== i; )
+      s = n;
     return n;
   }
-  _step(t, e, i) {
-    const { inedges: s, hull: n, _hullIndex: o, halfedges: l, triangles: a, points: h } = this;
-    if (s[t] === -1 || !h.length)
-      return (t + 1) % (h.length >> 1);
-    let u = t, c = Z(e - h[t * 2], 2) + Z(i - h[t * 2 + 1], 2);
-    const d = s[t];
-    let m = d;
+  _step(e, t, s) {
+    const { inedges: i, hull: n, _hullIndex: l, halfedges: o, triangles: a, points: h } = this;
+    if (i[e] === -1 || !h.length)
+      return (e + 1) % (h.length >> 1);
+    let d = e, c = Q(t - h[e * 2], 2) + Q(s - h[e * 2 + 1], 2);
+    const u = i[e];
+    let m = u;
     do {
-      let f = a[m];
-      const y = Z(e - h[f * 2], 2) + Z(i - h[f * 2 + 1], 2);
-      if (y < c && (c = y, u = f), m = m % 3 === 2 ? m - 2 : m + 1, a[m] !== t)
+      let p = a[m];
+      const f = Q(t - h[p * 2], 2) + Q(s - h[p * 2 + 1], 2);
+      if (f < c && (c = f, d = p), m = m % 3 === 2 ? m - 2 : m + 1, a[m] !== e)
         break;
-      if (m = l[m], m === -1) {
-        if (m = n[(o[t] + 1) % n.length], m !== f && Z(e - h[m * 2], 2) + Z(i - h[m * 2 + 1], 2) < c)
+      if (m = o[m], m === -1) {
+        if (m = n[(l[e] + 1) % n.length], m !== p && Q(t - h[m * 2], 2) + Q(s - h[m * 2 + 1], 2) < c)
           return m;
         break;
       }
-    } while (m !== d);
-    return u;
+    } while (m !== u);
+    return d;
   }
-  render(t) {
-    const e = t == null ? t = new J() : void 0, { points: i, halfedges: s, triangles: n } = this;
-    for (let o = 0, l = s.length; o < l; ++o) {
-      const a = s[o];
-      if (a < o)
+  render(e) {
+    const t = e == null ? e = new q() : void 0, { points: s, halfedges: i, triangles: n } = this;
+    for (let l = 0, o = i.length; l < o; ++l) {
+      const a = i[l];
+      if (a < l)
         continue;
-      const h = n[o] * 2, u = n[a] * 2;
-      t.moveTo(i[h], i[h + 1]), t.lineTo(i[u], i[u + 1]);
+      const h = n[l] * 2, d = n[a] * 2;
+      e.moveTo(s[h], s[h + 1]), e.lineTo(s[d], s[d + 1]);
     }
-    return this.renderHull(t), e && e.value();
+    return this.renderHull(e), t && t.value();
   }
-  renderPoints(t, e) {
-    e === void 0 && (!t || typeof t.moveTo != "function") && (e = t, t = null), e = e == null ? 2 : +e;
-    const i = t == null ? t = new J() : void 0, { points: s } = this;
-    for (let n = 0, o = s.length; n < o; n += 2) {
-      const l = s[n], a = s[n + 1];
-      t.moveTo(l + e, a), t.arc(l, a, e, 0, ht);
+  renderPoints(e, t) {
+    t === void 0 && (!e || typeof e.moveTo != "function") && (t = e, e = null), t = t == null ? 2 : +t;
+    const s = e == null ? e = new q() : void 0, { points: i } = this;
+    for (let n = 0, l = i.length; n < l; n += 2) {
+      const o = i[n], a = i[n + 1];
+      e.moveTo(o + t, a), e.arc(o, a, t, 0, at);
     }
-    return i && i.value();
+    return s && s.value();
   }
-  renderHull(t) {
-    const e = t == null ? t = new J() : void 0, { hull: i, points: s } = this, n = i[0] * 2, o = i.length;
-    t.moveTo(s[n], s[n + 1]);
-    for (let l = 1; l < o; ++l) {
-      const a = 2 * i[l];
-      t.lineTo(s[a], s[a + 1]);
+  renderHull(e) {
+    const t = e == null ? e = new q() : void 0, { hull: s, points: i } = this, n = s[0] * 2, l = s.length;
+    e.moveTo(i[n], i[n + 1]);
+    for (let o = 1; o < l; ++o) {
+      const a = 2 * s[o];
+      e.lineTo(i[a], i[a + 1]);
     }
-    return t.closePath(), e && e.value();
+    return e.closePath(), t && t.value();
   }
   hullPolygon() {
-    const t = new xe();
-    return this.renderHull(t), t.value();
+    const e = new Ce();
+    return this.renderHull(e), e.value();
   }
-  renderTriangle(t, e) {
-    const i = e == null ? e = new J() : void 0, { points: s, triangles: n } = this, o = n[t *= 3] * 2, l = n[t + 1] * 2, a = n[t + 2] * 2;
-    return e.moveTo(s[o], s[o + 1]), e.lineTo(s[l], s[l + 1]), e.lineTo(s[a], s[a + 1]), e.closePath(), i && i.value();
+  renderTriangle(e, t) {
+    const s = t == null ? t = new q() : void 0, { points: i, triangles: n } = this, l = n[e *= 3] * 2, o = n[e + 1] * 2, a = n[e + 2] * 2;
+    return t.moveTo(i[l], i[l + 1]), t.lineTo(i[o], i[o + 1]), t.lineTo(i[a], i[a + 1]), t.closePath(), s && s.value();
   }
   *trianglePolygons() {
-    const { triangles: t } = this;
-    for (let e = 0, i = t.length / 3; e < i; ++e)
-      yield this.trianglePolygon(e);
+    const { triangles: e } = this;
+    for (let t = 0, s = e.length / 3; t < s; ++t)
+      yield this.trianglePolygon(t);
   }
-  trianglePolygon(t) {
-    const e = new xe();
-    return this.renderTriangle(t, e), e.value();
+  trianglePolygon(e) {
+    const t = new Ce();
+    return this.renderTriangle(e, t), t.value();
   }
 }
-function pt(r, t, e, i) {
-  const s = r.length, n = new Float64Array(s * 2);
-  for (let o = 0; o < s; ++o) {
-    const l = r[o];
-    n[o * 2] = t.call(i, l, o, r), n[o * 2 + 1] = e.call(i, l, o, r);
+function ut(r, e, t, s) {
+  const i = r.length, n = new Float64Array(i * 2);
+  for (let l = 0; l < i; ++l) {
+    const o = r[l];
+    n[l * 2] = e.call(s, o, l, r), n[l * 2 + 1] = t.call(s, o, l, r);
   }
   return n;
 }
-function* ft(r, t, e, i) {
-  let s = 0;
+function* mt(r, e, t, s) {
+  let i = 0;
   for (const n of r)
-    yield t.call(i, n, s, r), yield e.call(i, n, s, r), ++s;
+    yield e.call(s, n, i, r), yield t.call(s, n, i, r), ++i;
 }
-var ue = (
+var me = (
   /** @class */
   function() {
-    function r(t) {
-      this._value = NaN, typeof t == "string" ? this._seed = this.hashCode(t) : typeof t == "number" ? this._seed = this.getSafeSeed(t) : this._seed = this.getSafeSeed(r.MIN + Math.floor((r.MAX - r.MIN) * Math.random())), this.reset();
+    function r(e) {
+      this._value = NaN, typeof e == "string" ? this._seed = this.hashCode(e) : typeof e == "number" ? this._seed = this.getSafeSeed(e) : this._seed = this.getSafeSeed(r.MIN + Math.floor((r.MAX - r.MIN) * Math.random())), this.reset();
     }
-    return r.prototype.next = function(t, e) {
-      return t === void 0 && (t = 0), e === void 0 && (e = 1), this.recalculate(), this.map(this._value, r.MIN, r.MAX, t, e);
-    }, r.prototype.nextInt = function(t, e) {
-      return t === void 0 && (t = 10), e === void 0 && (e = 100), this.recalculate(), Math.floor(this.map(this._value, r.MIN, r.MAX, t, e + 1));
-    }, r.prototype.nextString = function(t, e) {
-      t === void 0 && (t = 16), e === void 0 && (e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789");
-      for (var i = ""; i.length < t; )
-        i += this.nextChar(e);
-      return i;
-    }, r.prototype.nextChar = function(t) {
-      return t === void 0 && (t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"), t.substr(this.nextInt(0, t.length - 1), 1);
-    }, r.prototype.nextArrayItem = function(t) {
-      return t[this.nextInt(0, t.length - 1)];
+    return r.prototype.next = function(e, t) {
+      return e === void 0 && (e = 0), t === void 0 && (t = 1), this.recalculate(), this.map(this._value, r.MIN, r.MAX, e, t);
+    }, r.prototype.nextInt = function(e, t) {
+      return e === void 0 && (e = 10), t === void 0 && (t = 100), this.recalculate(), Math.floor(this.map(this._value, r.MIN, r.MAX, e, t + 1));
+    }, r.prototype.nextString = function(e, t) {
+      e === void 0 && (e = 16), t === void 0 && (t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789");
+      for (var s = ""; s.length < e; )
+        s += this.nextChar(t);
+      return s;
+    }, r.prototype.nextChar = function(e) {
+      return e === void 0 && (e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"), e.substr(this.nextInt(0, e.length - 1), 1);
+    }, r.prototype.nextArrayItem = function(e) {
+      return e[this.nextInt(0, e.length - 1)];
     }, r.prototype.nextBoolean = function() {
       return this.recalculate(), this._value > 0.5;
-    }, r.prototype.skip = function(t) {
-      for (t === void 0 && (t = 1); t-- > 0; )
+    }, r.prototype.skip = function(e) {
+      for (e === void 0 && (e = 1); e-- > 0; )
         this.recalculate();
     }, r.prototype.reset = function() {
       this._value = this._seed;
     }, r.prototype.recalculate = function() {
       this._value = this.xorshift(this._value);
-    }, r.prototype.xorshift = function(t) {
-      return t ^= t << 13, t ^= t >> 17, t ^= t << 5, t;
-    }, r.prototype.map = function(t, e, i, s, n) {
-      return (t - e) / (i - e) * (n - s) + s;
-    }, r.prototype.hashCode = function(t) {
-      var e = 0;
-      if (t)
-        for (var i = t.length, s = 0; s < i; s++)
-          e = (e << 5) - e + t.charCodeAt(s), e |= 0, e = this.xorshift(e);
-      return this.getSafeSeed(e);
-    }, r.prototype.getSafeSeed = function(t) {
-      return t === 0 ? 1 : t;
+    }, r.prototype.xorshift = function(e) {
+      return e ^= e << 13, e ^= e >> 17, e ^= e << 5, e;
+    }, r.prototype.map = function(e, t, s, i, n) {
+      return (e - t) / (s - t) * (n - i) + i;
+    }, r.prototype.hashCode = function(e) {
+      var t = 0;
+      if (e)
+        for (var s = e.length, i = 0; i < s; i++)
+          t = (t << 5) - t + e.charCodeAt(i), t |= 0, t = this.xorshift(t);
+      return this.getSafeSeed(t);
+    }, r.prototype.getSafeSeed = function(e) {
+      return e === 0 ? 1 : e;
     }, r.MIN = -2147483648, r.MAX = 2147483647, r;
   }()
 );
-class yt {
-  constructor(t) {
-    p(this, "SEED");
-    p(this, "GRIDSIZE", 7);
-    p(this, "JITTER", 0.6);
-    p(this, "points", []);
-    p(this, "voronoi");
-    p(this, "polygonData", []);
-    p(this, "deterministicRng");
-    p(this, "walkerIndices");
-    this.SEED = t, this.deterministicRng = new ue(this.SEED), this.initializePoints(), this.initializeVoronoi();
+class pt {
+  constructor(e) {
+    this.GRIDSIZE = 7, this.JITTER = 0.6, this.points = [], this.polygonData = [], this.walkerIndices = void 0, this.SEED = e, this.deterministicRng = new me(this.SEED), this.initializePoints(), this.initializeVoronoi();
   }
   initializePoints() {
-    for (let t = 1; t <= this.GRIDSIZE; t++)
-      for (let e = 1; e <= this.GRIDSIZE; e++)
+    for (let e = 1; e <= this.GRIDSIZE; e++)
+      for (let t = 1; t <= this.GRIDSIZE; t++)
         this.points.push({
-          x: t + this.JITTER * (this.deterministicRng.next() - this.deterministicRng.next()),
-          y: e + this.JITTER * (this.deterministicRng.next() - this.deterministicRng.next())
+          x: e + this.JITTER * (this.deterministicRng.next() - this.deterministicRng.next()),
+          y: t + this.JITTER * (this.deterministicRng.next() - this.deterministicRng.next())
         });
   }
   initializeVoronoi() {
-    const t = we.from(this.points, (e) => e.x, (e) => e.y);
-    this.voronoi = t.voronoi([0, 0, this.GRIDSIZE, this.GRIDSIZE]);
+    const e = we.from(this.points, (t) => t.x, (t) => t.y);
+    this.voronoi = e.voronoi([0, 0, this.GRIDSIZE, this.GRIDSIZE]);
   }
   randomWalkGen() {
-    let t = new ue(this.SEED), e = [24];
-    const i = /* @__PURE__ */ new Set([24]), s = [-1, 1, -7, 7], n = (a) => a % 7 !== 0 && a % 7 !== 6 && a > 6 && a < 42;
-    let o = 0, l = 0;
-    for (; e.length < 20; ) {
-      const a = e[l];
-      let h = s.filter((u) => {
-        const c = a + u;
-        return n(c) && !i.has(c);
+    let e = new me(this.SEED), t = [24];
+    const s = /* @__PURE__ */ new Set([24]), i = [-1, 1, -7, 7], n = (a) => a % 7 !== 0 && a % 7 !== 6 && a > 6 && a < 42;
+    let l = 0, o = 0;
+    for (; t.length < 20; ) {
+      const a = t[o];
+      let h = i.filter((d) => {
+        const c = a + d;
+        return n(c) && !s.has(c);
       });
       if (h.length > 0) {
-        const u = h[t.nextInt(0, h.length - 1)], c = a + u;
-        e.push(c), i.add(c), l = e.length - 1;
+        const d = h[e.nextInt(0, h.length - 1)], c = a + d;
+        t.push(c), s.add(c), o = t.length - 1;
       } else
-        l === 1 && (l = t.nextInt(0, e.length - 1)), l--;
-      if (o++, o > 200)
+        o === 1 && (o = e.nextInt(0, t.length - 1)), o--;
+      if (l++, l > 200)
         throw new Error("Random walker error: Infinite loop");
     }
-    return e;
+    return t;
   }
   calculatePolygonData() {
-    const t = Array.from(this.voronoi.cellPolygons()), e = this.randomWalkGen();
-    for (let i in e) {
-      const s = e[i];
+    const e = Array.from(this.voronoi.cellPolygons()), t = this.randomWalkGen();
+    for (let s in t) {
+      const i = t[s];
       let n = [];
-      for (let l = 0; l < t[s].length; l++)
+      for (let o = 0; o < e[i].length; o++)
         n.push({
-          x: Number(t[s][l][0]),
-          y: Number(t[s][l][1])
+          x: Number(e[i][o][0]),
+          y: Number(e[i][o][1])
         });
-      const o = this.calculateCentroid(n);
+      const l = this.calculateCentroid(n);
       this.polygonData.push({
-        index: Number(i),
+        index: Number(s),
         polygonIndex: 0,
         vertices: n,
         reducedVertices: [],
         lootBoxesCoordinates: [],
         gradientAreaCoordinates: [],
         outerBorderCoordinates: [],
-        centroid: o
+        centroid: l
       });
     }
-    this.addPolygonIndices(e), this.calculateReducedVertices(), this.calculateLootboxCoordinates(), this.calculateGradientAreaCoordinates(), this.calculateOuterBorder();
+    this.addPolygonIndices(t), this.calculateReducedVertices(), this.calculateLootboxCoordinates(), this.calculateGradientAreaCoordinates(), this.calculateOuterBorder();
   }
   getWorldBounds() {
-    const t = this.walkerIndices ?? this.randomWalkGen();
-    let e, i, s, n;
-    const o = this.polygonData.find((l) => t.includes(l.index));
-    if (!o)
+    const e = this.walkerIndices ?? this.randomWalkGen();
+    let t, s, i, n;
+    const l = this.polygonData.find((o) => e.includes(o.index));
+    if (!l)
       return null;
-    e = i = s = n = o.vertices[0];
-    for (let l of this.polygonData)
-      if (t.includes(l.index))
-        for (const a of l.vertices)
-          a.y < e.y && (e = a), a.y > i.y && (i = a), a.x < s.x && (s = a), a.x > n.x && (n = a);
+    t = s = i = n = l.vertices[0];
+    for (let o of this.polygonData)
+      if (e.includes(o.index))
+        for (const a of o.vertices)
+          a.y < t.y && (t = a), a.y > s.y && (s = a), a.x < i.x && (i = a), a.x > n.x && (n = a);
     return {
-      x: s.x,
-      y: e.y,
-      width: n.x - s.x,
-      height: i.y - e.y
+      x: i.x,
+      y: t.y,
+      width: n.x - i.x,
+      height: s.y - t.y
     };
   }
-  calculateCentroid(t) {
-    let e = { x: 0, y: 0 };
-    for (const i of t)
-      e.x += Number(i.x), e.y += Number(i.y);
-    return e.x /= t.length, e.y /= t.length, e;
+  calculateCentroid(e) {
+    let t = { x: 0, y: 0 };
+    for (const s of e)
+      t.x += Number(s.x), t.y += Number(s.y);
+    return t.x /= e.length, t.y /= e.length, t;
   }
-  addPolygonIndices(t) {
-    for (let e = 0; e < this.polygonData.length; e++)
-      this.polygonData[e].polygonIndex = t[e];
+  addPolygonIndices(e) {
+    for (let t = 0; t < this.polygonData.length; t++)
+      this.polygonData[t].polygonIndex = e[t];
   }
   calculateReducedVertices() {
-    for (const t of this.polygonData) {
-      let e = this.calculateScaledVertices(t.vertices, 0.75);
-      t.reducedVertices = e;
+    for (const e of this.polygonData) {
+      let t = this.calculateScaledVertices(e.vertices, 0.75);
+      e.reducedVertices = t;
     }
   }
   calculateGradientAreaCoordinates() {
-    for (const t of this.polygonData) {
-      let e = this.calculateScaledVertices(t.vertices, 0.8);
-      t.gradientAreaCoordinates = e;
+    for (const e of this.polygonData) {
+      let t = this.calculateScaledVertices(e.vertices, 0.8);
+      e.gradientAreaCoordinates = t;
     }
   }
   calculateOuterBorder() {
-    for (const t of this.polygonData) {
-      let e = this.calculateScaledVertices(t.vertices, 0.83);
-      t.outerBorderCoordinates = e;
+    for (const e of this.polygonData) {
+      let t = this.calculateScaledVertices(e.vertices, 0.83);
+      e.outerBorderCoordinates = t;
     }
   }
   calculateLootboxCoordinates() {
-    for (let t = 1; t < this.polygonData.length; t++) {
-      let e = this.calculateScaledVertices(this.polygonData[t].vertices, 0.3);
-      this.polygonData[t].lootBoxesCoordinates = e;
+    for (let e = 1; e < this.polygonData.length; e++) {
+      let t = this.calculateScaledVertices(this.polygonData[e].vertices, 0.3);
+      this.polygonData[e].lootBoxesCoordinates = t;
     }
   }
-  calculateScaledVertices(t, e) {
-    const i = this.calculateCentroid(t);
-    return t.map((s) => ({
-      x: i.x + (s.x - i.x) * e,
-      y: i.y + (s.y - i.y) * e
+  calculateScaledVertices(e, t) {
+    const s = this.calculateCentroid(e);
+    return e.map((i) => ({
+      x: s.x + (i.x - s.x) * t,
+      y: s.y + (i.y - s.y) * t
     }));
   }
 }
-class oe {
-  constructor(t, e, i, s, n, o, l, a) {
-    p(this, "scene");
-    p(this, "x");
-    p(this, "y");
-    p(this, "tiles");
-    p(this, "isLoaded");
-    p(this, "occupiedCollidables");
-    p(this, "occupiedNonCollidables");
-    p(this, "chunkSize");
-    p(this, "tileSize");
-    p(this, "perlin");
-    p(this, "polygonIdx");
-    p(this, "tileXYs", []);
-    p(this, "isDungeon");
-    p(this, "biomeConfig");
-    p(this, "deterministicRng");
-    p(this, "collidableOverlapThreshold", 30);
-    p(this, "elevationThreshold", 0.06);
-    this.scene = t, this.x = e, this.y = i, this.chunkSize = s, this.tileSize = n, this.tiles = this.scene.add.group(), this.isLoaded = !1, this.occupiedCollidables = [], this.occupiedNonCollidables = [], this.perlin = a, this.polygonIdx = o, this.isDungeon = l, this.deterministicRng = new ue(this.scene.seed);
+class le {
+  constructor(e, t, s, i, n, l, o, a) {
+    this.tileXYs = [], this.deterministicRng = void 0, this.collidableOverlapThreshold = 30, this.elevationThreshold = 0.06, this.scene = e, this.x = t, this.y = s, this.chunkSize = i, this.tileSize = n, this.tiles = this.scene.add.group(), this.isLoaded = !1, this.occupiedCollidables = [], this.occupiedNonCollidables = [], this.perlin = a, this.polygonIdx = l, this.isDungeon = o, this.deterministicRng = new me(this.scene.seed);
   }
   unload() {
     this.isLoaded && (this.tiles.clear(!0, !0), this.isLoaded = !1, this.occupiedCollidables = [], this.occupiedNonCollidables = [], this.tileXYs = []);
   }
   load() {
     if (!this.isLoaded) {
-      let i = [], s = [];
-      for (var t = 0; t < this.chunkSize; t++)
-        for (var e = 0; e < this.chunkSize; e++) {
-          const { lowElevationTiles: n, highElevationTiles: o } = this.generateDualGridTile(t, e, i, s);
-          s = n, i = o;
+      let s = [], i = [];
+      for (var e = 0; e < this.chunkSize; e++)
+        for (var t = 0; t < this.chunkSize; t++) {
+          const { lowElevationTiles: n, highElevationTiles: l } = this.generateDualGridTile(e, t, s, i);
+          i = n, s = l;
         }
-      this.isDungeon || (this.placeAssets(s, "lowElevation"), this.placeAssets(i, "highElevation")), this.isLoaded = !0;
+      this.isDungeon || (this.placeAssets(i, "lowElevation"), this.placeAssets(s, "highElevation")), this.isLoaded = !0;
     }
   }
-  placeAssets(t, e) {
+  placeAssets(e, t) {
   }
-  generateDualGridTile(t, e, i, s) {
-    var n = this.x * (this.chunkSize * this.tileSize) + t * this.tileSize, o = this.y * (this.chunkSize * this.tileSize) + e * this.tileSize;
+  generateDualGridTile(e, t, s, i) {
+    var n = this.x * (this.chunkSize * this.tileSize) + e * this.tileSize, l = this.y * (this.chunkSize * this.tileSize) + t * this.tileSize;
     this.tileXYs = [0, 1].flatMap(
       (a) => [0, 1].map((h) => ({
-        x: this.x * this.chunkSize * this.tileSize + (t + a) * this.tileSize,
-        y: this.y * this.chunkSize * this.tileSize + (e + h) * this.tileSize
+        x: this.x * this.chunkSize * this.tileSize + (e + a) * this.tileSize,
+        y: this.y * this.chunkSize * this.tileSize + (t + h) * this.tileSize
       }))
-    ), this.isDungeon && this.isWithinBounds(n, o) && this.placeDungeonTiles(t, e);
-    const l = this.placeTerrainTiles();
-    return l[0] < this.elevationThreshold - 0.1 ? s.push({ x: n, y: o }) : l[0] > this.elevationThreshold + 0.05 && i.push({ x: n, y: o }), { lowElevationTiles: s, highElevationTiles: i };
+    ), this.isDungeon && this.isWithinBounds(n, l) && this.placeDungeonTiles(e, t);
+    const o = this.placeTerrainTiles();
+    return o[0] < this.elevationThreshold - 0.1 ? i.push({ x: n, y: l }) : o[0] > this.elevationThreshold + 0.05 && s.push({ x: n, y: l }), { lowElevationTiles: i, highElevationTiles: s };
   }
   placeTerrainTiles() {
-    let t = 0, e = this.tileXYs.map(({ x: l, y: a }) => !this.isWithinBounds(l, a) && this.isWithinBorderBounds(l, a) ? 1 : this.isWithinBorderBounds(l, a) ? this.perlin.perlin2(l / 500, a / 500) : (t |= 16, 0));
-    const i = (l) => l < this.elevationThreshold ? 0 : 1;
-    for (const l in e)
-      t |= i(e[l]) << Number(l);
-    const s = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, n = (this.tileXYs[0].y + this.tileXYs[1].y) / 2, o = this.scene.add.image(s, n, this.biomeConfig.terrainSprite, t).setDepth(1);
-    return this.tiles.add(o), e;
+    let e = 0, t = this.tileXYs.map(({ x: o, y: a }) => !this.isWithinBounds(o, a) && this.isWithinBorderBounds(o, a) ? 1 : this.isWithinBorderBounds(o, a) ? this.perlin.perlin2(o / 500, a / 500) : (e |= 16, 0));
+    const s = (o) => o < this.elevationThreshold ? 0 : 1;
+    for (const o in t)
+      e |= s(t[o]) << Number(o);
+    const i = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, n = (this.tileXYs[0].y + this.tileXYs[1].y) / 2, l = this.scene.add.image(i, n, this.biomeConfig.terrainSprite, e).setDepth(1);
+    return this.tiles.add(l), t;
   }
-  placeDungeonTiles(t, e, i = 10, s = 3) {
-    if (t <= i + s && e <= i + s) {
-      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, o = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
-      if (t > s && e > s) {
-        const l = this.scene.add.image(n, o, this.biomeConfig.dungeonAsset, t - (s + 1) + (e - (s + 1)) * 10).setDepth(4);
-        this.tiles.add(l);
+  placeDungeonTiles(e, t, s = 10, i = 3) {
+    if (e <= s + i && t <= s + i) {
+      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, l = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
+      if (e > i && t > i) {
+        const o = this.scene.add.image(n, l, this.biomeConfig.dungeonAsset, e - (i + 1) + (t - (i + 1)) * 10).setDepth(4);
+        this.tiles.add(o);
       }
     }
   }
   //helper functions
-  isWithinBorderBounds(t, e) {
-    return this.polygonIdx === -1 ? !1 : !!this.point_in_polygon({ x: t, y: e }, this.scene.polygonData[this.polygonIdx].gradientAreaCoordinates);
+  isWithinBorderBounds(e, t) {
+    return this.polygonIdx === -1 ? !1 : !!this.point_in_polygon({ x: e, y: t }, this.scene.polygonData[this.polygonIdx].gradientAreaCoordinates);
   }
-  isWithinBounds(t, e) {
-    return this.polygonIdx === -1 ? !1 : !!this.point_in_polygon({ x: t, y: e }, this.scene.polygonData[this.polygonIdx].reducedVertices);
+  isWithinBounds(e, t) {
+    return this.polygonIdx === -1 ? !1 : !!this.point_in_polygon({ x: e, y: t }, this.scene.polygonData[this.polygonIdx].reducedVertices);
   }
-  isSpriteWithinBounds(t, e, i, s, n = 5) {
+  isSpriteWithinBounds(e, t, s, i, n = 5) {
     if (this.polygonIdx === -1)
       return !1;
-    const o = this.scene.polygonData[this.polygonIdx].reducedVertices, l = i / 2, a = { x: t - l - n, y: e + n }, h = { x: t + l + n, y: e + n }, u = { x: t - l - n, y: e - s - n }, c = { x: t + l + n, y: e - s - n };
-    return this.point_in_polygon(a, o) && this.point_in_polygon(h, o) && this.point_in_polygon(u, o) && this.point_in_polygon(c, o);
+    const l = this.scene.polygonData[this.polygonIdx].reducedVertices, o = s / 2, a = { x: e - o - n, y: t + n }, h = { x: e + o + n, y: t + n }, d = { x: e - o - n, y: t - i - n }, c = { x: e + o + n, y: t - i - n };
+    return this.point_in_polygon(a, l) && this.point_in_polygon(h, l) && this.point_in_polygon(d, l) && this.point_in_polygon(c, l);
   }
-  point_in_polygon(t, e) {
-    const i = e.length;
-    var s = t.x, n = t.y;
-    let o = !1, l = e[0], a;
-    for (let h = 1; h <= i; h++) {
-      if (a = e[h % i], n > Math.min(l.y, a.y) && n <= Math.max(l.y, a.y) && s <= Math.max(l.x, a.x)) {
-        const u = (n - l.y) * (a.x - l.x) / (a.y - l.y) + l.x;
-        (l.x === a.x || s <= u) && (o = !o);
+  point_in_polygon(e, t) {
+    const s = t.length;
+    var i = e.x, n = e.y;
+    let l = !1, o = t[0], a;
+    for (let h = 1; h <= s; h++) {
+      if (a = t[h % s], n > Math.min(o.y, a.y) && n <= Math.max(o.y, a.y) && i <= Math.max(o.x, a.x)) {
+        const d = (n - o.y) * (a.x - o.x) / (a.y - o.y) + o.x;
+        (o.x === a.x || i <= d) && (l = !l);
       }
-      l = a;
+      o = a;
     }
-    return o;
+    return l;
   }
-  isOverlapping(t, e, i, s, n) {
-    const o = n.isCollidable ? this.occupiedCollidables : this.occupiedNonCollidables, l = n.isCollidable ? this.collidableOverlapThreshold : 0, a = t - i / 2, h = e - s;
-    return o.some((u) => {
-      const c = u.x - u.width / 2, d = u.y - u.height, m = a < c + u.width + l && a + i > c - l && h < d + u.height + l && h + s > d - l, f = a >= c && a + i <= c + u.width && h >= d && h + s <= d + u.height;
-      return m || f;
+  isOverlapping(e, t, s, i, n) {
+    const l = n.isCollidable ? this.occupiedCollidables : this.occupiedNonCollidables, o = n.isCollidable ? this.collidableOverlapThreshold : 0, a = e - s / 2, h = t - i;
+    return l.some((d) => {
+      const c = d.x - d.width / 2, u = d.y - d.height, m = a < c + d.width + o && a + s > c - o && h < u + d.height + o && h + i > u - o, p = a >= c && a + s <= c + d.width && h >= u && h + i <= u + d.height;
+      return m || p;
     });
   }
-  isOutsideChunkBounds(t, e, i, s) {
-    const n = this.tileSize / 2, o = t - i / 2, l = e - s, a = this.x * this.chunkSize * this.tileSize, h = this.y * this.chunkSize * this.tileSize, u = a + this.chunkSize * this.tileSize, c = h + this.chunkSize * this.tileSize;
-    return o < a + n || // Left boundary
-    o + i > u - n || // Right boundary
-    l < h + n || // Top boundary
-    l + s > c - n;
+  isOutsideChunkBounds(e, t, s, i) {
+    const n = this.tileSize / 2, l = e - s / 2, o = t - i, a = this.x * this.chunkSize * this.tileSize, h = this.y * this.chunkSize * this.tileSize, d = a + this.chunkSize * this.tileSize, c = h + this.chunkSize * this.tileSize;
+    return l < a + n || // Left boundary
+    l + s > d - n || // Right boundary
+    o < h + n || // Top boundary
+    o + i > c - n;
   }
   // Helpers for child classes
-  placeCollidableSprite(t, e, i, s) {
-    if (!this.isOverlapping(t, e, s.width, s.height, { isCollidable: !0 }) && !this.isOutsideChunkBounds(t, e, s.width, s.height) && this.isSpriteWithinBounds(t, e, s.width, s.height)) {
-      const n = this.scene.physics.add.sprite(t, e, i, s.name).setOrigin(0.5, 1).setDepth(s.depth), o = n.body;
-      o.setSize(s.collisionBounds.x, s.collisionBounds.y), o.offset.set(s.collisionOffset.x, s.collisionOffset.y), n.setPushable(!1), this.scene.collidableObjects.add(n), this.tiles.add(n), this.occupiedCollidables.push({ x: t, y: e, width: s.width, height: s.height });
+  placeCollidableSprite(e, t, s, i) {
+    if (!this.isOverlapping(e, t, i.width, i.height, { isCollidable: !0 }) && !this.isOutsideChunkBounds(e, t, i.width, i.height) && this.isSpriteWithinBounds(e, t, i.width, i.height)) {
+      const n = this.scene.physics.add.sprite(e, t, s, i.name).setOrigin(0.5, 1).setDepth(i.depth), l = n.body;
+      l.setSize(i.collisionBounds.x, i.collisionBounds.y), l.offset.set(i.collisionOffset.x, i.collisionOffset.y), n.setPushable(!1), this.scene.collidableObjects.add(n), this.tiles.add(n), this.occupiedCollidables.push({ x: e, y: t, width: i.width, height: i.height });
     }
   }
-  placeNormalSprite(t, e, i, s, n = 9.6) {
-    if (!this.isOverlapping(t, e, this.tileSize, this.tileSize, { isCollidable: !1 }) && !this.isOutsideChunkBounds(t, e, this.tileSize, this.tileSize) && this.isSpriteWithinBounds(t, e, this.tileSize, this.tileSize)) {
-      const o = this.scene.add.image(t, e, i, String(s)).setDepth(n);
-      return this.tiles.add(o), this.occupiedNonCollidables.push({ x: t, y: e, width: this.tileSize, height: this.tileSize }), !0;
+  placeNormalSprite(e, t, s, i, n = 9.6) {
+    if (!this.isOverlapping(e, t, this.tileSize, this.tileSize, { isCollidable: !1 }) && !this.isOutsideChunkBounds(e, t, this.tileSize, this.tileSize) && this.isSpriteWithinBounds(e, t, this.tileSize, this.tileSize)) {
+      const l = this.scene.add.image(e, t, s, String(i)).setDepth(n);
+      return this.tiles.add(l), this.occupiedNonCollidables.push({ x: e, y: t, width: this.tileSize, height: this.tileSize }), !0;
     }
     return !1;
   }
-  chooseRandomSprite(t) {
-    return this.deterministicRng.nextArrayItem(t);
+  chooseRandomSprite(e) {
+    return this.deterministicRng.nextArrayItem(e);
   }
 }
-class di extends ie.GameObjects.Sprite {
-  constructor(e, i, s, n) {
-    super(e, i, s, n);
-    p(this, "scene");
-    this.scene = e, this.scene.add.existing(this), this.setOrigin(0);
+class ai extends se.GameObjects.Sprite {
+  constructor(e, t, s, i) {
+    super(e, t, s, i), this.scene = e, this.scene.add.existing(this), this.setOrigin(0);
   }
 }
-const gt = [
+const ft = [
   {
     name: "rock",
     range: [
@@ -1395,7 +1398,7 @@ const gt = [
       max: 0.63
     }
   }
-], bt = [
+], yt = [
   {
     name: "dried-tree-1",
     range: [
@@ -1533,37 +1536,37 @@ const gt = [
       max: -0.58
     }
   }
-], xt = {
-  highElevation: gt,
-  lowElevation: bt
+], gt = {
+  highElevation: ft,
+  lowElevation: yt
 };
-class wt extends oe {
-  constructor(t, e, i, s, n, o, l, a) {
-    super(t, e, i, s, n, o, l, a), this.biomeConfig = {
+class bt extends le {
+  constructor(e, t, s, i, n, l, o, a) {
+    super(e, t, s, i, n, l, o, a), this.biomeConfig = {
       dungeonAsset: "ground-biome-dungeon",
       terrainSprite: "ground-biome",
       collidableObjectSprite: "ground-atlas",
       nonCollidableObjectSprite: "groundNonCollidable"
     }, this.collidableOverlapThreshold = 10;
   }
-  placeAssets(t, e) {
-    t.forEach(({ x: i, y: s }) => {
-      const n = this.perlin.perlin2(i / 500, s / 500) - this.perlin.perlin2(i / 300, s / 300) * 0.5;
-      var o = (n + 1) / 2, l = Phaser.Display.Color.Interpolate.ColorWithColor(
+  placeAssets(e, t) {
+    e.forEach(({ x: s, y: i }) => {
+      const n = this.perlin.perlin2(s / 500, i / 500) - this.perlin.perlin2(s / 300, i / 300) * 0.5;
+      var l = (n + 1) / 2, o = Phaser.Display.Color.Interpolate.ColorWithColor(
         new Phaser.Display.Color(0, 255, 0),
         // Blue for low values
         new Phaser.Display.Color(255, 0, 0),
         // // Red for high values
         100,
-        Math.floor(o * 100)
+        Math.floor(l * 100)
         // Convert normalized value to range 0-100
       );
-      Phaser.Display.Color.GetColor(l.r, l.g, l.b), this.isWithinBounds(i, s);
-      const a = xt[e];
+      Phaser.Display.Color.GetColor(o.r, o.g, o.b), this.isWithinBounds(s, i);
+      const a = gt[t];
       for (const h of a) {
-        const [u, c] = h.range;
-        if (n >= u && n < c) {
-          const d = {
+        const [d, c] = h.range;
+        if (n >= d && n < c) {
+          const u = {
             name: h.name,
             width: h.collidableFrameWidth,
             height: h.collidableFrameHeight,
@@ -1571,31 +1574,31 @@ class wt extends oe {
             collisionBounds: h.collisionBounds,
             collisionOffset: h.collisionOffset
           };
-          this.placeCollidableSprite(i, s, this.biomeConfig.collidableObjectSprite, d);
+          this.placeCollidableSprite(s, i, this.biomeConfig.collidableObjectSprite, u);
         }
         if (h.extraCondition) {
-          const { min: d, max: m } = h.extraCondition;
-          if (n < d || n >= m)
+          const { min: u, max: m } = h.extraCondition;
+          if (n < u || n >= m)
             continue;
         }
         if (h.nonCollidableFrames) {
-          const d = this.chooseRandomSprite(h.nonCollidableFrames);
-          d !== -1 && ((d == 1 || d == 12) && this.placeNormalSprite(i, s, this.biomeConfig.nonCollidableObjectSprite, d) && this.placeNormalSprite(i + this.tileSize, s, this.biomeConfig.nonCollidableObjectSprite, d + 1), this.placeNormalSprite(i, s, this.biomeConfig.nonCollidableObjectSprite, d));
+          const u = this.chooseRandomSprite(h.nonCollidableFrames);
+          u !== -1 && ((u == 1 || u == 12) && this.placeNormalSprite(s, i, this.biomeConfig.nonCollidableObjectSprite, u) && this.placeNormalSprite(s + this.tileSize, i, this.biomeConfig.nonCollidableObjectSprite, u + 1), this.placeNormalSprite(s, i, this.biomeConfig.nonCollidableObjectSprite, u));
         }
       }
     });
   }
-  placeDungeonTiles(t, e, i = 10, s = 3) {
-    if (t <= i + s && e <= i + s) {
-      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, o = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
-      if (t > s && e > s) {
-        const l = this.scene.physics.add.image(n, o, this.biomeConfig.dungeonAsset, t - (s + 1) + (e - (s + 1)) * 10).setDepth(4);
-        e > 2 + s && e < 9 + s && (l.setPushable(!1), this.scene.collidableObjects.add(l)), this.tiles.add(l);
+  placeDungeonTiles(e, t, s = 10, i = 3) {
+    if (e <= s + i && t <= s + i) {
+      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, l = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
+      if (e > i && t > i) {
+        const o = this.scene.physics.add.image(n, l, this.biomeConfig.dungeonAsset, e - (i + 1) + (t - (i + 1)) * 10).setDepth(4);
+        t > 2 + i && t < 9 + i && (o.setPushable(!1), this.scene.collidableObjects.add(o)), this.tiles.add(o);
       }
     }
   }
 }
-const Ct = [
+const xt = [
   {
     name: "waterRockPlaceholder",
     range: [
@@ -1728,7 +1731,7 @@ const Ct = [
       max: 0.2
     }
   }
-], vt = [
+], Ct = [
   {
     name: "house",
     range: [
@@ -1965,38 +1968,38 @@ const Ct = [
       max: -0.6
     }
   }
-], St = {
-  highElevation: Ct,
-  lowElevation: vt
+], wt = {
+  highElevation: xt,
+  lowElevation: Ct
 };
-let Ft = class extends oe {
-  constructor(t, e, i, s, n, o, l, a) {
-    super(t, e, i, s, n, o, l, a), this.biomeConfig = {
+let vt = class extends le {
+  constructor(e, t, s, i, n, l, o, a) {
+    super(e, t, s, i, n, l, o, a), this.biomeConfig = {
       dungeonAsset: "flying-biome-dungeon",
       terrainSprite: "flying-biome",
       collidableObjectSprite: "flying-atlas",
       nonCollidableObjectSprite: "flyingNonCollidable"
     }, this.elevationThreshold = 0.2;
   }
-  placeAssets(t, e) {
-    t.forEach(
-      ({ x: i, y: s }) => {
-        const n = this.perlin.perlin2(i / 500, s / 500) - this.perlin.perlin2(i / 300, s / 300) * 0.5;
-        var o = (n + 1) / 2, l = Phaser.Display.Color.Interpolate.ColorWithColor(
+  placeAssets(e, t) {
+    e.forEach(
+      ({ x: s, y: i }) => {
+        const n = this.perlin.perlin2(s / 500, i / 500) - this.perlin.perlin2(s / 300, i / 300) * 0.5;
+        var l = (n + 1) / 2, o = Phaser.Display.Color.Interpolate.ColorWithColor(
           new Phaser.Display.Color(0, 255, 0),
           // Blue for low values
           new Phaser.Display.Color(255, 0, 0),
           // // Red for high values
           100,
-          Math.floor(o * 100)
+          Math.floor(l * 100)
           // Convert normalized value to range 0-100
         );
-        Phaser.Display.Color.GetColor(l.r, l.g, l.b), this.isWithinBounds(i, s);
-        const a = St[e];
+        Phaser.Display.Color.GetColor(o.r, o.g, o.b), this.isWithinBounds(s, i);
+        const a = wt[t];
         for (const h of a) {
-          const [u, c] = h.range;
-          if (n >= u && n < c) {
-            const d = {
+          const [d, c] = h.range;
+          if (n >= d && n < c) {
+            const u = {
               name: h.name,
               width: h.collidableFrameWidth,
               height: h.collidableFrameHeight,
@@ -2004,13 +2007,13 @@ let Ft = class extends oe {
               collisionBounds: h.collisionBounds,
               collisionOffset: h.collisionOffset
             };
-            this.placeCollidableSprite(i, s, this.biomeConfig.collidableObjectSprite, d);
+            this.placeCollidableSprite(s, i, this.biomeConfig.collidableObjectSprite, u);
           }
           if (h.extraCondition) {
-            const { min: d, max: m } = h.extraCondition;
-            if (n > d && n < m) {
-              const f = this.chooseRandomSprite(h.nonCollidableFrames);
-              f !== -1 && (f == 7 && this.placeNormalSprite(i, s, this.biomeConfig.nonCollidableObjectSprite, f) && this.placeNormalSprite(i + this.tileSize, s, this.biomeConfig.nonCollidableObjectSprite, f + 1), f == 9 && this.placeNormalSprite(i, s, this.biomeConfig.nonCollidableObjectSprite, f) && this.placeNormalSprite(i, s + this.tileSize, this.biomeConfig.nonCollidableObjectSprite, f + 1), this.placeNormalSprite(i, s, this.biomeConfig.nonCollidableObjectSprite, f));
+            const { min: u, max: m } = h.extraCondition;
+            if (n > u && n < m) {
+              const p = this.chooseRandomSprite(h.nonCollidableFrames);
+              p !== -1 && (p == 7 && this.placeNormalSprite(s, i, this.biomeConfig.nonCollidableObjectSprite, p) && this.placeNormalSprite(s + this.tileSize, i, this.biomeConfig.nonCollidableObjectSprite, p + 1), p == 9 && this.placeNormalSprite(s, i, this.biomeConfig.nonCollidableObjectSprite, p) && this.placeNormalSprite(s, i + this.tileSize, this.biomeConfig.nonCollidableObjectSprite, p + 1), this.placeNormalSprite(s, i, this.biomeConfig.nonCollidableObjectSprite, p));
             }
           }
         }
@@ -2018,7 +2021,7 @@ let Ft = class extends oe {
     );
   }
 };
-const _t = [
+const Et = [
   {
     name: "big-tree",
     range: [
@@ -2132,7 +2135,7 @@ const _t = [
       max: 0.31
     }
   }
-], kt = [
+], St = [
   {
     name: "green-shop",
     range: [
@@ -2362,39 +2365,39 @@ const _t = [
       max: 0.41
     }
   }
-], Dt = {
-  highElevation: _t,
-  lowElevation: kt
+], _t = {
+  highElevation: Et,
+  lowElevation: St
 };
-class It extends oe {
-  constructor(t, e, i, s, n, o, l = !1, a) {
-    super(t, e, i, s, n, o, l, a), this.biomeConfig = {
+class Ft extends le {
+  constructor(e, t, s, i, n, l, o = !1, a) {
+    super(e, t, s, i, n, l, o, a), this.biomeConfig = {
       dungeonAsset: "steel-biome-dungeon",
       terrainSprite: "steel-biome",
       collidableObjectSprite: "steel-atlas",
       nonCollidableObjectSprite: "steelNonCollidable"
     }, this.collidableOverlapThreshold = 0;
   }
-  placeAssets(t, e) {
-    t.forEach(
-      ({ x: i, y: s }) => {
-        const n = this.perlin.perlin2(i / 500, s / 500) - this.perlin.perlin2(i / 300, s / 300) * 0.5;
-        var o = (n + 1) / 2, l = Phaser.Display.Color.Interpolate.ColorWithColor(
+  placeAssets(e, t) {
+    e.forEach(
+      ({ x: s, y: i }) => {
+        const n = this.perlin.perlin2(s / 500, i / 500) - this.perlin.perlin2(s / 300, i / 300) * 0.5;
+        var l = (n + 1) / 2, o = Phaser.Display.Color.Interpolate.ColorWithColor(
           new Phaser.Display.Color(0, 255, 0),
           // Blue for low values
           new Phaser.Display.Color(255, 0, 0),
           // // Red for high values
           100,
           // Steps in gradient (arbitrary, can be tuned)
-          Math.floor(o * 100)
+          Math.floor(l * 100)
           // Convert normalized value to range 0-100
         );
-        Phaser.Display.Color.GetColor(l.r, l.g, l.b), this.isWithinBounds(i, s);
-        const a = Dt[e];
+        Phaser.Display.Color.GetColor(o.r, o.g, o.b), this.isWithinBounds(s, i);
+        const a = _t[t];
         for (const h of a) {
-          const [u, c] = h.range;
-          if (n >= u && n < c) {
-            const d = {
+          const [d, c] = h.range;
+          if (n >= d && n < c) {
+            const u = {
               name: h.name,
               width: h.collidableFrameWidth,
               height: h.collidableFrameHeight,
@@ -2402,13 +2405,13 @@ class It extends oe {
               collisionBounds: h.collisionBounds,
               collisionOffset: h.collisionOffset
             };
-            this.placeCollidableSprite(i, s, this.biomeConfig.collidableObjectSprite, d);
+            this.placeCollidableSprite(s, i, this.biomeConfig.collidableObjectSprite, u);
           }
           if (h.extraCondition) {
-            const { min: d, max: m } = h.extraCondition;
-            if (n > d && n < m) {
-              const f = this.chooseRandomSprite(h.nonCollidableFrames);
-              f !== -1 && this.placeNormalSprite(i, s, this.biomeConfig.nonCollidableObjectSprite, f);
+            const { min: u, max: m } = h.extraCondition;
+            if (n > u && n < m) {
+              const p = this.chooseRandomSprite(h.nonCollidableFrames);
+              p !== -1 && this.placeNormalSprite(s, i, this.biomeConfig.nonCollidableObjectSprite, p);
             }
           }
         }
@@ -2416,7 +2419,7 @@ class It extends oe {
     );
   }
 }
-const Et = [
+const Dt = [
   {
     name: "red-tree",
     range: [
@@ -2584,7 +2587,7 @@ const Et = [
       max: 0.57
     }
   }
-], Pt = [
+], kt = [
   {
     name: "big-house",
     range: [
@@ -2732,38 +2735,38 @@ const Et = [
       max: 0.32
     }
   }
-], Ot = {
-  highElevation: Et,
-  lowElevation: Pt
+], It = {
+  highElevation: Dt,
+  lowElevation: kt
 };
-class Tt extends oe {
-  constructor(t, e, i, s, n, o, l, a) {
-    super(t, e, i, s, n, o, l, a), this.biomeConfig = {
+class Ot extends le {
+  constructor(e, t, s, i, n, l, o, a) {
+    super(e, t, s, i, n, l, o, a), this.biomeConfig = {
       dungeonAsset: "psychic-biome-dungeon",
       terrainSprite: "psychic-biome",
       collidableObjectSprite: "psychic-atlas",
       nonCollidableObjectSprite: "psychicNonCollidable"
     };
   }
-  placeAssets(t, e) {
-    t.forEach(({ x: i, y: s }) => {
-      const n = this.perlin.perlin2(i / 300, s / 300);
-      var o = (n + 1) / 2, l = Phaser.Display.Color.Interpolate.ColorWithColor(
+  placeAssets(e, t) {
+    e.forEach(({ x: s, y: i }) => {
+      const n = this.perlin.perlin2(s / 300, i / 300);
+      var l = (n + 1) / 2, o = Phaser.Display.Color.Interpolate.ColorWithColor(
         new Phaser.Display.Color(0, 255, 0),
         // Blue for low values
         new Phaser.Display.Color(255, 0, 0),
         // // Red for high values
         100,
         // Steps in gradient (arbitrary, can be tuned)
-        Math.floor(o * 100)
+        Math.floor(l * 100)
         // Convert normalized value to range 0-100
       );
-      Phaser.Display.Color.GetColor(l.r, l.g, l.b), this.isWithinBounds(i, s);
-      const a = Ot[e];
+      Phaser.Display.Color.GetColor(o.r, o.g, o.b), this.isWithinBounds(s, i);
+      const a = It[t];
       for (const h of a) {
-        const [u, c] = h.range;
-        if (n >= u && n < c) {
-          const d = {
+        const [d, c] = h.range;
+        if (n >= d && n < c) {
+          const u = {
             name: h.name,
             width: h.collidableFrameWidth,
             height: h.collidableFrameHeight,
@@ -2771,70 +2774,70 @@ class Tt extends oe {
             collisionBounds: h.collisionBounds,
             collisionOffset: h.collisionOffset
           };
-          this.placeCollidableSprite(i, s, this.biomeConfig.collidableObjectSprite, d);
+          this.placeCollidableSprite(s, i, this.biomeConfig.collidableObjectSprite, u);
         }
         if (h.extraCondition) {
-          const { min: d, max: m } = h.extraCondition;
-          if (n < d || n >= m)
+          const { min: u, max: m } = h.extraCondition;
+          if (n < u || n >= m)
             continue;
         }
         if (h.nonCollidableFrames) {
-          const d = this.chooseRandomSprite(h.nonCollidableFrames);
-          if (d !== -1)
-            switch (d) {
+          const u = this.chooseRandomSprite(h.nonCollidableFrames);
+          if (u !== -1)
+            switch (u) {
               case 0:
               case 15:
-                this.placeVerticalSprite(i, s, this.biomeConfig.nonCollidableObjectSprite, d);
+                this.placeVerticalSprite(s, i, this.biomeConfig.nonCollidableObjectSprite, u);
                 break;
               case 14:
               case 17:
               case 22:
               case 23:
               case 24:
-                this.placeNormalSprite(i, s, this.biomeConfig.nonCollidableObjectSprite, d);
+                this.placeNormalSprite(s, i, this.biomeConfig.nonCollidableObjectSprite, u);
                 break;
               default:
-                this.placeSquareSprite(i, s, this.biomeConfig.nonCollidableObjectSprite, d);
+                this.placeSquareSprite(s, i, this.biomeConfig.nonCollidableObjectSprite, u);
             }
         }
       }
     });
   }
-  placeSquareSprite(t, e, i, s) {
+  placeSquareSprite(e, t, s, i) {
     const n = [
-      [t, e, i, s],
-      [t + this.tileSize, e, i, s + 1],
-      [t, e + this.tileSize, i, s + 2],
-      [t + this.tileSize, e + this.tileSize, i, s + 3]
+      [e, t, s, i],
+      [e + this.tileSize, t, s, i + 1],
+      [e, t + this.tileSize, s, i + 2],
+      [e + this.tileSize, t + this.tileSize, s, i + 3]
     ];
-    for (const o of n)
-      if (!this.placeNormalSprite(...o))
+    for (const l of n)
+      if (!this.placeNormalSprite(...l))
         break;
   }
-  placeVerticalSprite(t, e, i, s) {
+  placeVerticalSprite(e, t, s, i) {
     const n = [
-      [t, e, i, s],
-      [t, e + this.tileSize, i, s + 1]
+      [e, t, s, i],
+      [e, t + this.tileSize, s, i + 1]
     ];
-    for (const o of n)
-      if (!this.placeNormalSprite(...o))
+    for (const l of n)
+      if (!this.placeNormalSprite(...l))
         break;
   }
-  placeDungeonTiles(t, e, i = 10, s = 3) {
-    if (t <= i + s && e <= i + s) {
-      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, o = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
-      if (t > s && e > s) {
-        const l = this.scene.physics.add.image(n, o, this.biomeConfig.dungeonAsset, t - (s + 1) + (e - (s + 1)) * 10).setDepth(4);
-        e > 2 + s && e < 7 + s && (l.setPushable(!1), this.scene.collidableObjects.add(l)), this.tiles.add(l);
+  placeDungeonTiles(e, t, s = 10, i = 3) {
+    if (e <= s + i && t <= s + i) {
+      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, l = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
+      if (e > i && t > i) {
+        const o = this.scene.physics.add.image(n, l, this.biomeConfig.dungeonAsset, e - (i + 1) + (t - (i + 1)) * 10).setDepth(4);
+        t > 2 + i && t < 7 + i && (o.setPushable(!1), this.scene.collidableObjects.add(o)), this.tiles.add(o);
       }
     }
   }
 }
-var Ce = /* @__PURE__ */ ((r) => (r.CENTRAL = "CENTRAL", r))(Ce || {}), se = /* @__PURE__ */ ((r) => (r.BELOW_PLAYER = "BELOW_PLAYER_LAYER", r.ABOVE_PLAYER = "ABOVE_PLAYER_LAYER", r.OBJECTS = "OBJECTS_LAYER", r.PORTAL_LAYER = "PORTAL_LAYER", r.PORTAL_LAYER_ABOVE = "PORTAL_LAYER_ABOVE", r.EFFECT_LAYER = "EFFECT_LAYER", r.GLTICH_LAYER = "GLITCH_OVERLAY", r))(se || {});
-const V = (r) => `/assets/phaser/tilesets/${r}`, Ie = (r) => `/assets/phaser/characters/${r}`, j = (r) => `/assets/phaser/assetSprites/${r}`, he = (r) => `/assets/phaser/joystickAssets/${r}`;
-class Ee extends oe {
-  constructor(t, e, i, s, n, o, l) {
-    super(t, e, i, s, n, o, !1, l), this.biomeConfig = {
+var ve = /* @__PURE__ */ ((r) => (r.CENTRAL = "CENTRAL", r))(ve || {}), ne = /* @__PURE__ */ ((r) => (r.BELOW_PLAYER = "BELOW_PLAYER_LAYER", r.ABOVE_PLAYER = "ABOVE_PLAYER_LAYER", r.OBJECTS = "OBJECTS_LAYER", r.PORTAL_LAYER = "PORTAL_LAYER", r.PORTAL_LAYER_ABOVE = "PORTAL_LAYER_ABOVE", r.EFFECT_LAYER = "EFFECT_LAYER", r.GLTICH_LAYER = "GLITCH_OVERLAY", r))(ne || {});
+const V = (r) => `/assets/phaser/tilesets/${r}`, Ie = (r) => `/assets/phaser/characters/${r}`, z = (r) => `/assets/phaser/assetSprites/${r}`, ce = (r) => `/assets/phaser/joystickAssets/${r}`;
+class Oe extends le {
+  constructor(e, t, s, i, n, l, o) {
+    super(e, t, s, i, n, l, !1, o), this.biomeConfig = {
       dungeonAsset: "ground-biome-dungeon",
       terrainSprite: "ground-biome",
       collidableObjectSprite: "ground-biome-collidable",
@@ -2846,29 +2849,22 @@ class Ee extends oe {
   }
   load() {
     if (!this.isLoaded) {
-      for (var t = 0; t < this.chunkSize; t++)
-        for (var e = 0; e < this.chunkSize; e++) {
-          var i = this.x * (this.chunkSize * this.tileSize) + t * this.tileSize + this.tileSize / 2, s = this.y * (this.chunkSize * this.tileSize) + e * this.tileSize + this.tileSize / 2;
-          const n = this.perlin.perlin2(i / 100, s / 100);
-          let o = 16;
-          n > 0.2 && (o = 32);
-          const l = this.scene.add.image(i, s, this.biomeConfig.terrainSprite, o);
-          this.tiles.add(l);
+      for (var e = 0; e < this.chunkSize; e++)
+        for (var t = 0; t < this.chunkSize; t++) {
+          var s = this.x * (this.chunkSize * this.tileSize) + e * this.tileSize + this.tileSize / 2, i = this.y * (this.chunkSize * this.tileSize) + t * this.tileSize + this.tileSize / 2;
+          const n = this.perlin.perlin2(s / 100, i / 100);
+          let l = 16;
+          n > 0.2 && (l = 32);
+          const o = this.scene.add.image(s, i, this.biomeConfig.terrainSprite, l);
+          this.tiles.add(o);
         }
       this.isLoaded = !0;
     }
   }
 }
-class Mt extends me.Image {
-  constructor(e, i, s, n, o) {
-    super(e, i + e.tileSize, s, n ? R.lootboxOpen.key : R.lootboxClosed.key);
-    p(this, "ID");
-    p(this, "isOpened");
-    p(this, "canOpenLootbox", !1);
-    p(this, "parentScene");
-    p(this, "openImage");
-    p(this, "openInProgess", !1);
-    this.setDepth(4), this.isOpened = n, this.parentScene = e, this.ID = o, this.scale = 0.8, e.add.existing(this);
+class Pt extends pe.Image {
+  constructor(e, t, s, i, n) {
+    super(e, t + e.tileSize, s, i ? R.lootboxOpen.key : R.lootboxClosed.key), this.canOpenLootbox = !1, this.openImage = void 0, this.openInProgess = !1, this.setDepth(4), this.isOpened = i, this.parentScene = e, this.ID = n, this.scale = 0.8, e.add.existing(this);
   }
   checkIfPlayerIsNear() {
     return this.parentScene.player ? Phaser.Math.Distance.Between(
@@ -2882,7 +2878,9 @@ class Mt extends me.Image {
     this.openImage || (this.openImage = this.parentScene.add.image(this.x, this.y - 40, R.openLootbox.key).setDepth(10).setScale(0.4));
   }
   triggerOpen() {
-    this.openInProgess || (this.openInProgess = !0, this.openImage && (console.log("Destroying openImage:", this.openImage), this.openImage.destroy(), this.openImage = void 0), this.Open());
+    this.openInProgess || (this.openInProgess = !0, this.openImage && (console.log("Destroying openImage:", this.openImage), this.openImage.destroy(), this.openImage = void 0), G.emit(H.LOOTBOX_OPEN, {
+      lootboxID: this.ID
+    }), this.Open());
   }
   Open() {
     this.openInProgess = !1, this.isOpened = !0, this.setTexture(R.lootboxOpen.key), this.openImage && (console.log("Destroying openImage in Open method:", this.openImage), this.openImage.destroy(), this.openImage = void 0);
@@ -2902,25 +2900,25 @@ class Mt extends me.Image {
     e && !this.canOpenLootbox ? this.showPopup() : !e && this.canOpenLootbox && this.openImage && (console.log("Destroying openImage in Open method:", this.openImage), this.openImage.destroy(), this.openImage = void 0), this.canOpenLootbox = e, this.canOpenLootbox && !this.openInProgess && this.parentScene.ekey.isDown && this.triggerOpen();
   }
 }
-function At(r, t, e, i) {
-  const s = new ue(i), n = s.nextInt(-1, 1), o = s.nextInt(-1, 1);
-  var l = t * e * Math.round((r.x + n) / (t * e)), a = t * e * Math.round((r.y + o) / (t * e));
-  return l = l / t / e, a = a / t / e, { x: l, y: a };
+function At(r, e, t, s) {
+  const i = new me(s), n = i.nextInt(-1, 1), l = i.nextInt(-1, 1);
+  var o = e * t * Math.round((r.x + n) / (e * t)), a = e * t * Math.round((r.y + l) / (e * t));
+  return o = o / e / t, a = a / e / t, { x: o, y: a };
 }
-class H {
-  constructor(t, e, i) {
-    this.x = t, this.y = e, this.z = i;
+class j {
+  constructor(e, t, s) {
+    this.x = e, this.y = t, this.z = s;
   }
-  dot2(t, e) {
-    return this.x * t + this.y * e;
+  dot2(e, t) {
+    return this.x * e + this.y * t;
   }
-  dot3(t, e, i) {
-    return this.x * t + this.y * e + this.z * i;
+  dot3(e, t, s) {
+    return this.x * e + this.y * t + this.z * s;
   }
 }
-class Bt {
-  constructor(t = 0, e = []) {
-    p(this, "permutationTable", [
+class Tt {
+  constructor(e = 0, t = []) {
+    this.permutationTable = [
       151,
       160,
       137,
@@ -3177,101 +3175,92 @@ class Bt {
       61,
       156,
       180
-    ]);
-    p(this, "grad3", [
-      new H(1, 1, 0),
-      new H(-1, 1, 0),
-      new H(1, -1, 0),
-      new H(-1, -1, 0),
-      new H(1, 0, 1),
-      new H(-1, 0, 1),
-      new H(1, 0, -1),
-      new H(-1, 0, -1),
-      new H(0, 1, 1),
-      new H(0, -1, 1),
-      new H(0, 1, -1),
-      new H(0, -1, -1)
-    ]);
-    p(this, "perm", new Array(512));
-    p(this, "gradP", new Array(512));
-    p(this, "peakPoints", []);
-    p(this, "F2", 0.5 * (Math.sqrt(3) - 1));
-    p(this, "G2", (3 - Math.sqrt(3)) / 6);
-    p(this, "F3", 1 / 3);
-    p(this, "G3", 1 / 6);
-    t > 0 && t < 1 && (t *= 65536), t = Math.floor(t), t < 256 && (t |= t << 8);
-    for (let i = 0; i < 256; i++) {
-      let s;
-      i & 1 ? s = this.permutationTable[i] ^ t & 255 : s = this.permutationTable[i] ^ t >> 8 & 255, this.perm[i] = this.perm[i + 256] = s, this.gradP[i] = this.gradP[i + 256] = this.grad3[s % 12];
+    ], this.grad3 = [
+      new j(1, 1, 0),
+      new j(-1, 1, 0),
+      new j(1, -1, 0),
+      new j(-1, -1, 0),
+      new j(1, 0, 1),
+      new j(-1, 0, 1),
+      new j(1, 0, -1),
+      new j(-1, 0, -1),
+      new j(0, 1, 1),
+      new j(0, -1, 1),
+      new j(0, 1, -1),
+      new j(0, -1, -1)
+    ], this.perm = new Array(512), this.gradP = new Array(512), this.peakPoints = [], this.F2 = 0.5 * (Math.sqrt(3) - 1), this.G2 = (3 - Math.sqrt(3)) / 6, this.F3 = 1 / 3, this.G3 = 1 / 6, e > 0 && e < 1 && (e *= 65536), e = Math.floor(e), e < 256 && (e |= e << 8);
+    for (let s = 0; s < 256; s++) {
+      let i;
+      s & 1 ? i = this.permutationTable[s] ^ e & 255 : i = this.permutationTable[s] ^ e >> 8 & 255, this.perm[s] = this.perm[s + 256] = i, this.gradP[s] = this.gradP[s + 256] = this.grad3[i % 12];
     }
-    this.peakPoints = e;
+    this.peakPoints = t;
   }
-  simplex2(t, e) {
-    let i, s, n;
-    const o = (t + e) * this.F2;
-    let l = Math.floor(t + o), a = Math.floor(e + o);
-    const h = (l + a) * this.G2, u = t - l + h, c = e - a + h;
-    let d, m;
-    u > c ? (d = 1, m = 0) : (d = 0, m = 1);
-    const f = u - d + this.G2, y = c - m + this.G2, w = u - 1 + 2 * this.G2, g = c - 1 + 2 * this.G2;
-    l &= 255, a &= 255;
-    const x = this.gradP[l + this.perm[a]], C = this.gradP[l + d + this.perm[a + m]], _ = this.gradP[l + 1 + this.perm[a + 1]];
-    let F = 0.5 - u * u - c * c;
-    F < 0 ? i = 0 : (F *= F, i = F * F * x.dot2(u, c));
-    let I = 0.5 - f * f - y * y;
-    I < 0 ? s = 0 : (I *= I, s = I * I * C.dot2(f, y));
-    let E = 0.5 - w * w - g * g;
-    return E < 0 ? n = 0 : (E *= E, n = E * E * _.dot2(w, g)), 70 * (i + s + n);
+  simplex2(e, t) {
+    let s, i, n;
+    const l = (e + t) * this.F2;
+    let o = Math.floor(e + l), a = Math.floor(t + l);
+    const h = (o + a) * this.G2, d = e - o + h, c = t - a + h;
+    let u, m;
+    d > c ? (u = 1, m = 0) : (u = 0, m = 1);
+    const p = d - u + this.G2, f = c - m + this.G2, x = d - 1 + 2 * this.G2, y = c - 1 + 2 * this.G2;
+    o &= 255, a &= 255;
+    const b = this.gradP[o + this.perm[a]], C = this.gradP[o + u + this.perm[a + m]], S = this.gradP[o + 1 + this.perm[a + 1]];
+    let E = 0.5 - d * d - c * c;
+    E < 0 ? s = 0 : (E *= E, s = E * E * b.dot2(d, c));
+    let D = 0.5 - p * p - f * f;
+    D < 0 ? i = 0 : (D *= D, i = D * D * C.dot2(p, f));
+    let k = 0.5 - x * x - y * y;
+    return k < 0 ? n = 0 : (k *= k, n = k * k * S.dot2(x, y)), 70 * (s + i + n);
   }
-  simplex3(t, e, i) {
-    let s, n, o, l;
-    const a = (t + e + i) * this.F3;
-    let h = Math.floor(t + a), u = Math.floor(e + a), c = Math.floor(i + a);
-    const d = (h + u + c) * this.G3, m = t - h + d, f = e - u + d, y = i - c + d;
-    let w, g, x, C, _, F;
-    m >= f ? f >= y ? (w = 1, g = 0, x = 0, C = 1, _ = 1, F = 0) : m >= y ? (w = 1, g = 0, x = 0, C = 1, _ = 0, F = 1) : (w = 0, g = 0, x = 1, C = 1, _ = 0, F = 1) : f < y ? (w = 0, g = 0, x = 1, C = 0, _ = 1, F = 1) : m < y ? (w = 0, g = 1, x = 0, C = 0, _ = 1, F = 1) : (w = 0, g = 1, x = 0, C = 1, _ = 1, F = 0);
-    const I = m - w + this.G3, E = f - g + this.G3, P = y - x + this.G3, b = m - C + 2 * this.G3, S = f - _ + 2 * this.G3, v = y - F + 2 * this.G3, k = m - 1 + 3 * this.G3, O = f - 1 + 3 * this.G3, M = y - 1 + 3 * this.G3;
-    h &= 255, u &= 255, c &= 255;
-    const L = this.gradP[h + this.perm[u + this.perm[c]]], D = this.gradP[h + w + this.perm[u + g + this.perm[c + x]]], A = this.gradP[h + C + this.perm[u + _ + this.perm[c + F]]], z = this.gradP[h + 1 + this.perm[u + 1 + this.perm[c + 1]]];
-    let B = 0.6 - m * m - f * f - y * y;
-    B < 0 ? s = 0 : (B *= B, s = B * B * L.dot3(m, f, y));
-    let W = 0.6 - I * I - E * E - P * P;
-    W < 0 ? n = 0 : (W *= W, n = W * W * D.dot3(I, E, P));
-    let U = 0.6 - b * b - S * S - v * v;
-    U < 0 ? o = 0 : (U *= U, o = U * U * A.dot3(b, S, v));
-    let ee = 0.6 - k * k - O * O - M * M;
-    return ee < 0 ? l = 0 : (ee *= ee, l = ee * ee * z.dot3(k, O, M)), 32 * (s + n + o + l);
+  simplex3(e, t, s) {
+    let i, n, l, o;
+    const a = (e + t + s) * this.F3;
+    let h = Math.floor(e + a), d = Math.floor(t + a), c = Math.floor(s + a);
+    const u = (h + d + c) * this.G3, m = e - h + u, p = t - d + u, f = s - c + u;
+    let x, y, b, C, S, E;
+    m >= p ? p >= f ? (x = 1, y = 0, b = 0, C = 1, S = 1, E = 0) : m >= f ? (x = 1, y = 0, b = 0, C = 1, S = 0, E = 1) : (x = 0, y = 0, b = 1, C = 1, S = 0, E = 1) : p < f ? (x = 0, y = 0, b = 1, C = 0, S = 1, E = 1) : m < f ? (x = 0, y = 1, b = 0, C = 0, S = 1, E = 1) : (x = 0, y = 1, b = 0, C = 1, S = 1, E = 0);
+    const D = m - x + this.G3, k = p - y + this.G3, I = f - b + this.G3, g = m - C + 2 * this.G3, v = p - S + 2 * this.G3, w = f - E + 2 * this.G3, _ = m - 1 + 3 * this.G3, O = p - 1 + 3 * this.G3, A = f - 1 + 3 * this.G3;
+    h &= 255, d &= 255, c &= 255;
+    const B = this.gradP[h + this.perm[d + this.perm[c]]], F = this.gradP[h + x + this.perm[d + y + this.perm[c + b]]], T = this.gradP[h + C + this.perm[d + S + this.perm[c + E]]], N = this.gradP[h + 1 + this.perm[d + 1 + this.perm[c + 1]]];
+    let M = 0.6 - m * m - p * p - f * f;
+    M < 0 ? i = 0 : (M *= M, i = M * M * B.dot3(m, p, f));
+    let W = 0.6 - D * D - k * k - I * I;
+    W < 0 ? n = 0 : (W *= W, n = W * W * F.dot3(D, k, I));
+    let $ = 0.6 - g * g - v * v - w * w;
+    $ < 0 ? l = 0 : ($ *= $, l = $ * $ * T.dot3(g, v, w));
+    let te = 0.6 - _ * _ - O * O - A * A;
+    return te < 0 ? o = 0 : (te *= te, o = te * te * N.dot3(_, O, A)), 32 * (i + n + l + o);
   }
   // ##### Perlin noise stuff
-  fade(t) {
-    return t * t * t * (t * (t * 6 - 15) + 10);
+  fade(e) {
+    return e * e * e * (e * (e * 6 - 15) + 10);
   }
-  lerp(t, e, i) {
-    return (1 - i) * t + i * e;
+  lerp(e, t, s) {
+    return (1 - s) * e + s * t;
   }
-  calculatePeakInfluence(t, e, i) {
-    const s = t - i.x, n = e - i.y, o = Math.sqrt(s * s + n * n);
-    if (o >= i.falloffRadius)
+  calculatePeakInfluence(e, t, s) {
+    const i = e - s.x, n = t - s.y, l = Math.sqrt(i * i + n * n);
+    if (l >= s.falloffRadius)
       return 0;
-    const l = 0.5 * (1 + Math.cos(Math.PI * o / i.falloffRadius));
-    return i.intensity * l;
+    const o = 0.5 * (1 + Math.cos(Math.PI * l / s.falloffRadius));
+    return s.intensity * o;
   }
-  perlin2(t, e) {
-    let i = Math.floor(t), s = Math.floor(e);
-    t = t - i, e = e - s, i = i & 255, s = s & 255;
-    const n = this.gradP[i + this.perm[s]].dot2(t, e), o = this.gradP[i + this.perm[s + 1]].dot2(t, e - 1), l = this.gradP[i + 1 + this.perm[s]].dot2(t - 1, e), a = this.gradP[i + 1 + this.perm[s + 1]].dot2(t - 1, e - 1), h = this.fade(t), u = this.lerp(
-      this.lerp(n, l, h),
-      this.lerp(o, a, h),
-      this.fade(e)
+  perlin2(e, t) {
+    let s = Math.floor(e), i = Math.floor(t);
+    e = e - s, t = t - i, s = s & 255, i = i & 255;
+    const n = this.gradP[s + this.perm[i]].dot2(e, t), l = this.gradP[s + this.perm[i + 1]].dot2(e, t - 1), o = this.gradP[s + 1 + this.perm[i]].dot2(e - 1, t), a = this.gradP[s + 1 + this.perm[i + 1]].dot2(e - 1, t - 1), h = this.fade(e), d = this.lerp(
+      this.lerp(n, o, h),
+      this.lerp(l, a, h),
+      this.fade(t)
     );
     let c = 0;
-    for (const d of this.peakPoints)
-      c += this.calculatePeakInfluence(t + i, e + s, d);
-    return Math.min(1, Math.max(-1, u + c));
+    for (const u of this.peakPoints)
+      c += this.calculatePeakInfluence(e + s, t + i, u);
+    return Math.min(1, Math.max(-1, d + c));
   }
   // Add a new peak point
-  addPeakPoint(t, e, i, s) {
-    this.peakPoints.push({ x: t, y: e, intensity: i, falloffRadius: s }), console.log(this.peakPoints);
+  addPeakPoint(e, t, s, i) {
+    this.peakPoints.push({ x: e, y: t, intensity: s, falloffRadius: i }), console.log(this.peakPoints);
   }
   // Clear all peak points
   clearPeakPoints() {
@@ -3311,42 +3300,26 @@ class Bt {
   //   );
   // }
 }
-class Rt {
-  constructor(t, e) {
-    p(this, "debug", !1);
-    p(this, "baseVelocityX", 15);
-    p(this, "baseVelocityY", 15);
-    p(this, "currVelocityX", 0);
-    p(this, "currVelocityY", 0);
-    p(this, "limitX", 10);
-    p(this, "limitY", 10);
-    p(this, "x");
-    p(this, "y");
-    p(this, "angle", 0);
-    p(this, "parentScene");
-    p(this, "parentPlayer");
-    p(this, "followPlayer", !1);
-    p(this, "radius", 500);
-    p(this, "graphics");
-    p(this, "ghostCircle");
-    this.parentScene = t, this.parentPlayer = e, this.x = e.x, this.y = e.y, t.cameras.main.startFollow(this, !0, 0.1, 0.1, 1, 1), this.debug && (this.graphics = t.add.graphics(), this.ghostCircle = t.add.graphics());
+class Mt {
+  constructor(e, t) {
+    this.debug = !1, this.baseVelocityX = 15, this.baseVelocityY = 15, this.currVelocityX = 0, this.currVelocityY = 0, this.limitX = 10, this.limitY = 10, this.angle = 0, this.followPlayer = !1, this.radius = 500, this.graphics = void 0, this.ghostCircle = void 0, this.parentScene = e, this.parentPlayer = t, this.x = t.x, this.y = t.y, e.cameras.main.startFollow(this, !0, 0.1, 0.1, 1, 1), this.debug && (this.graphics = e.add.graphics(), this.ghostCircle = e.add.graphics());
   }
   getAngle() {
-    const t = this.parentPlayer.x - this.x, e = this.parentPlayer.y - this.y;
-    this.angle = Math.atan2(e, t);
+    const e = this.parentPlayer.x - this.x, t = this.parentPlayer.y - this.y;
+    this.angle = Math.atan2(t, e);
   }
   getDistance() {
-    const t = this.parentPlayer.x - this.x, e = this.parentPlayer.y - this.y;
-    return Math.sqrt(t * t + e * e);
+    const e = this.parentPlayer.x - this.x, t = this.parentPlayer.y - this.y;
+    return Math.sqrt(e * e + t * t);
   }
   update() {
-    const t = this.getDistance(), e = this.parentPlayer.x, i = this.parentPlayer.y, s = this.x - this.limitX, n = this.x + this.limitX, o = this.y - this.limitY, l = this.y + this.limitY;
-    if ((!this.followPlayer && (e < s || e > n || i < o || i > l) || this.parentPlayer.currSpeed === 0) && (this.followPlayer = !0), this.followPlayer && t <= 5 && (this.followPlayer = !1), this.followPlayer) {
+    const e = this.getDistance(), t = this.parentPlayer.x, s = this.parentPlayer.y, i = this.x - this.limitX, n = this.x + this.limitX, l = this.y - this.limitY, o = this.y + this.limitY;
+    if ((!this.followPlayer && (t < i || t > n || s < l || s > o) || this.parentPlayer.currSpeed === 0) && (this.followPlayer = !0), this.followPlayer && e <= 5 && (this.followPlayer = !1), this.followPlayer) {
       this.getAngle();
-      let a = t / this.radius * 1.2;
+      let a = e / this.radius * 1.2;
       this.currVelocityX = this.baseVelocityX * a, this.currVelocityY = this.baseVelocityY * a, this.parentScene.checkActive && (this.currVelocityX *= this.parentPlayer.cheatFactor, this.currVelocityY *= this.parentPlayer.cheatFactor), this.x += this.currVelocityX * Math.cos(this.angle), this.y += this.currVelocityY * Math.sin(this.angle);
     }
-    this.debug && this.graphics && this.ghostCircle && (this.graphics.clear(), this.graphics.lineStyle(2, 65280, 1), this.graphics.strokeRect(s, o, 2 * this.limitX, 2 * this.limitY), this.ghostCircle.clear(), this.ghostCircle.lineStyle(2, 16711680, 1), this.ghostCircle.strokeCircle(this.x, this.y, 50));
+    this.debug && this.graphics && this.ghostCircle && (this.graphics.clear(), this.graphics.lineStyle(2, 65280, 1), this.graphics.strokeRect(i, l, 2 * this.limitX, 2 * this.limitY), this.ghostCircle.clear(), this.ghostCircle.lineStyle(2, 16711680, 1), this.ghostCircle.strokeCircle(this.x, this.y, 50));
   }
 }
 const Pe = {
@@ -3371,24 +3344,11 @@ const Pe = {
     endFrame: 31
   }
 };
-class Lt extends He.Arcade.Sprite {
-  constructor(e, i, s, n, o, l) {
-    super(e, i, s, n, l);
-    p(this, "cursor");
-    p(this, "wKey");
-    p(this, "aKey");
-    p(this, "sKey");
-    p(this, "dKey");
-    p(this, "shiftKey");
-    p(this, "velocity", R.player.velocity);
-    p(this, "parentScene");
-    p(this, "ghostPlayer");
-    p(this, "currSpeed", 0);
-    p(this, "cheatFactor", 2);
-    p(this, "changeCharacter", (e) => {
-      this.setTexture(e), this.setupAnimations();
-    });
-    this.parentScene = e, this.scale = window.innerHeight / (R.player.frameWidth * 10), this.cursor = o, this.setUpKeys(), this.setOrigin(0.5, 0.5), e.physics.add.existing(this), this.body.setSize(this.body.width * 0.5, this.body.height, !0), this.body.setOffset(this.body.offset.x, this.body.offset.y + 26), this.setScale(0.2), e.add.existing(this).setDepth(5), this.ghostPlayer = new Rt(this.parentScene, this);
+class Rt extends We.Arcade.Sprite {
+  constructor(e, t, s, i, n, l) {
+    super(e, t, s, i, l), this.cursor = void 0, this.wKey = void 0, this.aKey = void 0, this.sKey = void 0, this.dKey = void 0, this.shiftKey = void 0, this.velocity = R.player.velocity, this.currSpeed = 0, this.cheatFactor = 2, this.changeCharacter = (o) => {
+      this.setTexture(o), this.setupAnimations();
+    }, this.parentScene = e, this.scale = window.innerHeight / (R.player.frameWidth * 10), this.cursor = n, this.setUpKeys(), this.setOrigin(0.5, 0.5), e.physics.add.existing(this), this.body.setSize(this.body.width * 0.5, this.body.height, !0), this.body.setOffset(this.body.offset.x, this.body.offset.y + 26), this.setScale(0.2), e.add.existing(this).setDepth(5), this.ghostPlayer = new Mt(this.parentScene, this);
   }
   setUpKeys() {
     this.wKey = this.parentScene.input.keyboard.addKey(
@@ -3405,14 +3365,14 @@ class Lt extends He.Arcade.Sprite {
   }
   setupAnimations() {
     Object.keys(Pe).forEach((e) => {
-      const i = Pe[e];
+      const t = Pe[e];
       this.anims.remove(e), this.anims.create({
         key: e,
         frames: this.anims.generateFrameNumbers(
           this.parentScene.characterURL,
           {
-            start: i.startFrame,
-            end: i.endFrame
+            start: t.startFrame,
+            end: t.endFrame
           }
         ),
         frameRate: R.player.frameRate,
@@ -3436,29 +3396,24 @@ class Lt extends He.Arcade.Sprite {
     this.currSpeed = this.velocity * -e, this.setVelocityX(-e * this.velocity), this.setVelocityY(0), this.anims.play("left", !0);
   }
   update() {
-    var e, i, s, n, o, l, a, h;
+    var e, t, s, i, n, l, o, a;
     if (this.cursor) {
-      if (this.cheatFactor = 2, this.cursor.up.isDown || (e = this.wKey) != null && e.isDown ? (i = this.shiftKey) != null && i.isDown && this.parentScene.checkActive ? this.moveUp(this.cheatFactor) : this.moveUp(1) : this.cursor.right.isDown || (s = this.dKey) != null && s.isDown ? (n = this.shiftKey) != null && n.isDown && this.parentScene.checkActive ? this.moveRight(this.cheatFactor) : this.moveRight(1) : this.cursor.down.isDown || (o = this.sKey) != null && o.isDown ? (l = this.shiftKey) != null && l.isDown && this.parentScene.checkActive ? this.moveDown(this.cheatFactor) : this.moveDown(1) : this.cursor.left.isDown || (a = this.aKey) != null && a.isDown ? (h = this.shiftKey) != null && h.isDown && this.parentScene.checkActive ? this.moveLeft(this.cheatFactor) : this.moveLeft(1) : this.idle(), this.parentScene.joystick) {
-        const u = this.parentScene.joystick.forceX, c = this.parentScene.joystick.forceY;
-        Math.abs(u) > 0.1 || Math.abs(c) > 0.1 ? Math.abs(u) > Math.abs(c) ? u > 0 ? this.moveRight(1) : this.moveLeft(1) : c > 0 ? this.moveDown(1) : this.moveUp(1) : this.idle();
+      if (this.cheatFactor = 2, this.cursor.up.isDown || (e = this.wKey) != null && e.isDown ? (t = this.shiftKey) != null && t.isDown && this.parentScene.checkActive ? this.moveUp(this.cheatFactor) : this.moveUp(1) : this.cursor.right.isDown || (s = this.dKey) != null && s.isDown ? (i = this.shiftKey) != null && i.isDown && this.parentScene.checkActive ? this.moveRight(this.cheatFactor) : this.moveRight(1) : this.cursor.down.isDown || (n = this.sKey) != null && n.isDown ? (l = this.shiftKey) != null && l.isDown && this.parentScene.checkActive ? this.moveDown(this.cheatFactor) : this.moveDown(1) : this.cursor.left.isDown || (o = this.aKey) != null && o.isDown ? (a = this.shiftKey) != null && a.isDown && this.parentScene.checkActive ? this.moveLeft(this.cheatFactor) : this.moveLeft(1) : this.idle(), this.parentScene.joystick) {
+        const h = this.parentScene.joystick.forceX, d = this.parentScene.joystick.forceY;
+        Math.abs(h) > 0.1 || Math.abs(d) > 0.1 ? Math.abs(h) > Math.abs(d) ? h > 0 ? this.moveRight(1) : this.moveLeft(1) : d > 0 ? this.moveDown(1) : this.moveUp(1) : this.idle();
       }
       this.ghostPlayer && this.ghostPlayer.update();
     }
   }
 }
-class Kt extends me.Image {
-  constructor(e, i, s, n, o = !1) {
+class Bt extends pe.Image {
+  constructor(e, t, s, i, n = !1) {
     super(
       e,
-      i + e.tileSize,
+      t + e.tileSize,
       s,
       R.openDungeon.key
-    );
-    p(this, "parentScene");
-    p(this, "canEnter");
-    p(this, "dungeonIndex");
-    p(this, "diasbled");
-    this.setVisible(!1), e.add.existing(this), this.parentScene = e, this.setDepth(10), this.setScale(0.4), this.canEnter = !1, this.dungeonIndex = n, this.diasbled = o;
+    ), this.setVisible(!1), e.add.existing(this), this.parentScene = e, this.setDepth(10), this.setScale(0.4), this.canEnter = !1, this.dungeonIndex = i, this.diasbled = n;
   }
   checkIfPlayerIsNear() {
     return !this.parentScene.player || this.diasbled ? !1 : Math.abs(this.parentScene.player.x - this.x) < 100 && Math.abs(this.parentScene.player.y - this.y) < 100;
@@ -3466,12 +3421,12 @@ class Kt extends me.Image {
   update() {
     if (!this.diasbled) {
       const e = this.checkIfPlayerIsNear();
-      e && !this.canEnter && (console.log("Player is near dungeon", this.dungeonIndex), this.setVisible(!0)), !e && this.canEnter && this.visible && this.setVisible(!1), this.canEnter = e, this.canEnter && this.parentScene.input.keyboard.checkDown(this.parentScene.ekey, 250) && console.log("Entering dungeon", this.dungeonIndex);
+      e && !this.canEnter && (console.log("Player is near dungeon", this.dungeonIndex), this.setVisible(!0)), !e && this.canEnter && this.visible && this.setVisible(!1), this.canEnter = e, this.canEnter && this.parentScene.input.keyboard.checkDown(this.parentScene.ekey, 250) && (console.log("Entering dungeon", this.dungeonIndex), G.emit(H.ENTER_DUNGEON, { RegionIndex: this.dungeonIndex }));
     }
   }
 }
-const T = {
-  name: Ce.CENTRAL,
+const P = {
+  name: ve.CENTRAL,
   asset: {
     tileset: {
       key: "CENTRAL_TILESET",
@@ -3527,7 +3482,7 @@ const T = {
         url: "/assets/phaser/objects/open-market.webp",
         key: "open-market"
       },
-      event: " ",
+      event: H.OPEN_MARKET,
       coordinates: {
         x: -19,
         y: -20
@@ -3539,7 +3494,7 @@ const T = {
         url: "/assets/phaser/objects/open-leaderboard.webp",
         key: "open-leader"
       },
-      event: " ",
+      event: H.OPEN_LEADERBOARD,
       coordinates: {
         x: 6,
         y: -26
@@ -3551,7 +3506,7 @@ const T = {
         url: "/assets/phaser/objects/start-match.webp",
         key: "start-match"
       },
-      event: " ",
+      event: H.START_MATCHMAKING,
       coordinates: {
         x: 18,
         y: 13
@@ -3559,40 +3514,40 @@ const T = {
     }
   ]
 };
-Ce.CENTRAL + "";
-const zt = Phaser.Input.Keyboard.Key, Oe = Phaser.Input.Keyboard.KeyCodes, Te = ["up", "down", "left", "right"];
+ve.CENTRAL + "";
+const Lt = Phaser.Input.Keyboard.Key, Ae = Phaser.Input.Keyboard.KeyCodes, Te = ["up", "down", "left", "right"];
 class Nt {
-  constructor(t) {
-    this.scene = t, this.keys = {}, this.cursorKeys = {}, this.noKeyDown = !0;
-    for (var e = 0, i = Te.length; e < i; e++) {
-      var s = Te[e];
-      this.addKey(s), this.cursorKeys[s] = this.keys[s];
+  constructor(e) {
+    this.scene = e, this.keys = {}, this.cursorKeys = {}, this.noKeyDown = !0;
+    for (var t = 0, s = Te.length; t < s; t++) {
+      var i = Te[t];
+      this.addKey(i), this.cursorKeys[i] = this.keys[i];
     }
   }
-  shutdown(t) {
+  shutdown(e) {
     this.scene = void 0;
-    for (var e in this.keys)
-      this.keys[e].destroy();
+    for (var t in this.keys)
+      this.keys[t].destroy();
     this.keys = void 0, this.cursorKeys = void 0;
   }
-  destroy(t) {
-    shutdown(t);
+  destroy(e) {
+    shutdown(e);
   }
   createCursorKeys() {
     return this.cursorKeys;
   }
-  setKeyState(t, e) {
-    var i = this.keys[t];
-    return i.enabled ? (e && (this.noKeyDown = !1), i.isDown !== e && (ce.timeStamp = Date.now(), ce.keyCode = i.keyCode, e ? i.onDown(ce) : i.onUp(ce)), this) : this;
+  setKeyState(e, t) {
+    var s = this.keys[e];
+    return s.enabled ? (t && (this.noKeyDown = !1), s.isDown !== t && (de.timeStamp = Date.now(), de.keyCode = s.keyCode, t ? s.onDown(de) : s.onUp(de)), this) : this;
   }
   clearAllKeysState() {
     this.noKeyDown = !0;
-    for (var t in this.keys)
-      this.setKeyState(t, !1);
+    for (var e in this.keys)
+      this.setKeyState(e, !1);
     return this;
   }
-  getKeyState(t) {
-    return this.keys[t];
+  getKeyState(e) {
+    return this.keys[e];
   }
   get upKeyDown() {
     return this.keys.up.isDown;
@@ -3609,16 +3564,16 @@ class Nt {
   get anyKeyDown() {
     return !this.noKeyDown;
   }
-  addKey(t, e) {
-    return e === void 0 && (e = t), typeof e == "string" && (e = e.toUpperCase(), Oe.hasOwnProperty(e) && (e = Oe[e])), this.keys[t] = new zt(this.scene, e), this;
+  addKey(e, t) {
+    return t === void 0 && (t = e), typeof t == "string" && (t = t.toUpperCase(), Ae.hasOwnProperty(t) && (t = Ae[t])), this.keys[e] = new Lt(this.scene, t), this;
   }
-  addKeys(t) {
-    for (var e = 0, i = t.length; e < i; e++)
-      this.addKey(t[e]);
+  addKeys(e) {
+    for (var t = 0, s = e.length; t < s; t++)
+      this.addKey(e[t]);
     return this;
   }
 }
-var ce = {
+var de = {
   timeStamp: 0,
   keyCode: 0,
   altKey: !1,
@@ -3632,41 +3587,41 @@ var ce = {
  * @copyright    2018 Photon Storm Ltd.
  * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
  */
-var Wt = 180 / Math.PI, jt = function(r) {
-  return r * Wt;
+var Kt = 180 / Math.PI, Ht = function(r) {
+  return r * Kt;
 };
-const Ht = {
+const Wt = {
   "up&down": 0,
   "left&right": 1,
   "4dir": 2,
   "8dir": 3
 };
-var Yt = function(r, t, e) {
-  switch (e === void 0 ? e = {} : e === !0 && (e = Vt), e.left = !1, e.right = !1, e.up = !1, e.down = !1, r = (r + 360) % 360, t) {
+var zt = function(r, e, t) {
+  switch (t === void 0 ? t = {} : t === !0 && (t = jt), t.left = !1, t.right = !1, t.up = !1, t.down = !1, r = (r + 360) % 360, e) {
     case 0:
-      r < 180 ? e.down = !0 : e.up = !0;
+      r < 180 ? t.down = !0 : t.up = !0;
       break;
     case 1:
-      r > 90 && r <= 270 ? e.left = !0 : e.right = !0;
+      r > 90 && r <= 270 ? t.left = !0 : t.right = !0;
       break;
     case 2:
-      r > 45 && r <= 135 ? e.down = !0 : r > 135 && r <= 225 ? e.left = !0 : r > 225 && r <= 315 ? e.up = !0 : e.right = !0;
+      r > 45 && r <= 135 ? t.down = !0 : r > 135 && r <= 225 ? t.left = !0 : r > 225 && r <= 315 ? t.up = !0 : t.right = !0;
       break;
     case 3:
-      r > 22.5 && r <= 67.5 ? (e.down = !0, e.right = !0) : r > 67.5 && r <= 112.5 ? e.down = !0 : r > 112.5 && r <= 157.5 ? (e.down = !0, e.left = !0) : r > 157.5 && r <= 202.5 ? e.left = !0 : r > 202.5 && r <= 247.5 ? (e.left = !0, e.up = !0) : r > 247.5 && r <= 292.5 ? e.up = !0 : (r > 292.5 && r <= 337.5 && (e.up = !0), e.right = !0);
+      r > 22.5 && r <= 67.5 ? (t.down = !0, t.right = !0) : r > 67.5 && r <= 112.5 ? t.down = !0 : r > 112.5 && r <= 157.5 ? (t.down = !0, t.left = !0) : r > 157.5 && r <= 202.5 ? t.left = !0 : r > 202.5 && r <= 247.5 ? (t.left = !0, t.up = !0) : r > 247.5 && r <= 292.5 ? t.up = !0 : (r > 292.5 && r <= 337.5 && (t.up = !0), t.right = !0);
       break;
   }
-  return e;
-}, Vt = {};
-const $ = Phaser.Utils.Objects.GetValue, Gt = Phaser.Math.Distance.Between, Xt = Phaser.Math.Angle.Between;
-class Ut extends Nt {
-  constructor(t, e) {
-    super(t), this.resetFromJSON(e);
+  return t;
+}, jt = {};
+const J = Phaser.Utils.Objects.GetValue, Gt = Phaser.Math.Distance.Between, Yt = Phaser.Math.Angle.Between;
+class Vt extends Nt {
+  constructor(e, t) {
+    super(e), this.resetFromJSON(t);
   }
-  resetFromJSON(t) {
-    this.start == null && (this.start = { x: 0, y: 0 }), this.end == null && (this.end = { x: 0, y: 0 }), this._enable = void 0, this.setEnable($(t, "enable", !0)), this.setMode($(t, "dir", "8dir")), this.setDistanceThreshold($(t, "forceMin", 16));
-    var e = $(t, "start.x", null), i = $(t, "start.y", null), s = $(t, "end.x", null), n = $(t, "end.y", null);
-    return this.setVector(e, i, s, n), this;
+  resetFromJSON(e) {
+    this.start == null && (this.start = { x: 0, y: 0 }), this.end == null && (this.end = { x: 0, y: 0 }), this._enable = void 0, this.setEnable(J(e, "enable", !0)), this.setMode(J(e, "dir", "8dir")), this.setDistanceThreshold(J(e, "forceMin", 16));
+    var t = J(e, "start.x", null), s = J(e, "start.y", null), i = J(e, "end.x", null), n = J(e, "end.y", null);
+    return this.setVector(t, s, i, n), this;
   }
   toJSON() {
     return {
@@ -3683,39 +3638,39 @@ class Ut extends Nt {
       }
     };
   }
-  setMode(t) {
-    return typeof t == "string" && (t = Ht[t]), this.dirMode = t, this;
+  setMode(e) {
+    return typeof e == "string" && (e = Wt[e]), this.dirMode = e, this;
   }
   get enable() {
     return this._enable;
   }
-  set enable(t) {
-    if (this._enable !== t)
-      return t || this.clearVector(), this._enable = t, this;
+  set enable(e) {
+    if (this._enable !== e)
+      return e || this.clearVector(), this._enable = e, this;
   }
-  setEnable(t) {
-    return t === void 0 && (t = !0), this.enable = t, this;
+  setEnable(e) {
+    return e === void 0 && (e = !0), this.enable = e, this;
   }
   toggleEnable() {
     return this.setEnable(!this.enable), this;
   }
-  setDistanceThreshold(t) {
-    return t < 0 && (t = 0), this.forceMin = t, this;
+  setDistanceThreshold(e) {
+    return e < 0 && (e = 0), this.forceMin = e, this;
   }
   clearVector() {
     return this.start.x = 0, this.start.y = 0, this.end.x = 0, this.end.y = 0, this.clearAllKeysState(), this;
   }
-  setVector(t, e, i, s) {
+  setVector(e, t, s, i) {
     if (!this.enable)
       return this;
-    if (t === null)
+    if (e === null)
       return this.clearVector(), this;
-    if (i === void 0 && (i = t, t = 0, s = e, e = 0), this.start.x = t, this.start.y = e, this.end.x = i, this.end.y = s, this.forceMin > 0 && this.force < this.forceMin)
+    if (s === void 0 && (s = e, e = 0, i = t, t = 0), this.start.x = e, this.start.y = t, this.end.x = s, this.end.y = i, this.forceMin > 0 && this.force < this.forceMin)
       return this.clearVector(), this;
     this.noKeyDown = !0;
-    var n = Yt(this.angle, this.dirMode, !0);
-    for (var o in n)
-      this.setKeyState(o, n[o]);
+    var n = zt(this.angle, this.dirMode, !0);
+    for (var l in n)
+      this.setKeyState(l, n[l]);
     return this;
   }
   get forceX() {
@@ -3728,19 +3683,19 @@ class Ut extends Nt {
     return Gt(this.start.x, this.start.y, this.end.x, this.end.y);
   }
   get rotation() {
-    return Xt(this.start.x, this.start.y, this.end.x, this.end.y);
+    return Yt(this.start.x, this.start.y, this.end.x, this.end.y);
   }
   get angle() {
-    return jt(this.rotation);
+    return Ht(this.rotation);
   }
   get octant() {
-    var t = 0;
-    return this.rightKeyDown ? t = this.downKeyDown ? 45 : 0 : this.downKeyDown ? t = this.leftKeyDown ? 135 : 90 : this.leftKeyDown ? t = this.upKeyDown ? 225 : 180 : this.upKeyDown && (t = this.rightKeyDown ? 315 : 270), t;
+    var e = 0;
+    return this.rightKeyDown ? e = this.downKeyDown ? 45 : 0 : this.downKeyDown ? e = this.leftKeyDown ? 135 : 90 : this.leftKeyDown ? e = this.upKeyDown ? 225 : 180 : this.upKeyDown && (e = this.rightKeyDown ? 315 : 270), e;
   }
 }
-const Ae = {
-  setEventEmitter(r, t) {
-    return t === void 0 && (t = Phaser.Events.EventEmitter), this._privateEE = r === !0 || r === void 0, this._eventEmitter = this._privateEE ? new t() : r, this;
+const Re = {
+  setEventEmitter(r, e) {
+    return e === void 0 && (e = Phaser.Events.EventEmitter), this._privateEE = r === !0 || r === void 0, this._eventEmitter = this._privateEE ? new e() : r, this;
   },
   destroyEventEmitter() {
     return this._eventEmitter && this._privateEE && this._eventEmitter.shutdown(), this;
@@ -3779,77 +3734,77 @@ const Ae = {
     return this._eventEmitter ? this._eventEmitter.eventNames.apply(this._eventEmitter, arguments) : [];
   }
 };
-var $t = function(r, t, e) {
-  var i = r.camera;
-  return i ? (e === void 0 ? e = {} : e === !0 && (e = Jt), i === t ? (e.x = r.worldX, e.y = r.worldY) : i.getWorldPoint(r.x, r.y, e), e) : null;
-}, Jt = {};
-const be = Phaser.Utils.Objects.GetValue, qt = Phaser.Geom.Circle, Zt = Phaser.Geom.Circle.Contains;
-class Be extends Ut {
-  constructor(t, e) {
-    var i = t.scene;
-    super(i, e);
-    var s = be(e, "eventEmitter", void 0), n = be(e, "EventEmitterClass", void 0);
-    this.setEventEmitter(s, n), this.scene = i, this.mainCamera = i.sys.cameras.main, this.pointer = void 0, this.gameObject = t, this.radius = be(e, "radius", 100), t.setInteractive(new qt(t.displayOriginX, t.displayOriginY, this.radius), Zt), this.boot();
+var Xt = function(r, e, t) {
+  var s = r.camera;
+  return s ? (t === void 0 ? t = {} : t === !0 && (t = Ut), s === e ? (t.x = r.worldX, t.y = r.worldY) : s.getWorldPoint(r.x, r.y, t), t) : null;
+}, Ut = {};
+const xe = Phaser.Utils.Objects.GetValue, $t = Phaser.Geom.Circle, Jt = Phaser.Geom.Circle.Contains;
+class Be extends Vt {
+  constructor(e, t) {
+    var s = e.scene;
+    super(s, t);
+    var i = xe(t, "eventEmitter", void 0), n = xe(t, "EventEmitterClass", void 0);
+    this.setEventEmitter(i, n), this.scene = s, this.mainCamera = s.sys.cameras.main, this.pointer = void 0, this.gameObject = e, this.radius = xe(t, "radius", 100), e.setInteractive(new $t(e.displayOriginX, e.displayOriginY, this.radius), Jt), this.boot();
   }
-  resetFromJSON(t) {
-    return super.resetFromJSON(t), this.pointer = void 0, this;
+  resetFromJSON(e) {
+    return super.resetFromJSON(e), this.pointer = void 0, this;
   }
   toJSON() {
-    var t = super.toJSON();
-    return t.radius = this.radius, t;
+    var e = super.toJSON();
+    return e.radius = this.radius, e;
   }
   boot() {
     this.gameObject.on("pointerdown", this.onKeyDownStart, this), this.gameObject.on("pointerover", this.onKeyDownStart, this), this.scene.input.on("pointermove", this.onKeyDown, this), this.scene.input.on("pointerup", this.onKeyUp, this), this.gameObject.once("destroy", this.onParentDestroy, this);
   }
-  shutdown(t) {
+  shutdown(e) {
     this.scene && (this.scene.input.off("pointermove", this.onKeyDown, this), this.scene.input.off("pointerup", this.onKeyUp, this), this.destroyEventEmitter(), this.scene = void 0, this.mainCamera = void 0, this.pointer = void 0, this.gameObject = void 0, super.shutdown());
   }
   get enable() {
     return this._enable;
   }
   // Override setter of enable
-  set enable(t) {
-    if (this._enable !== t)
-      return t || (this.pointer = void 0), super.enable = t, this;
+  set enable(e) {
+    if (this._enable !== e)
+      return e || (this.pointer = void 0), super.enable = e, this;
   }
-  destroy(t) {
-    this.shutdown(t);
+  destroy(e) {
+    this.shutdown(e);
   }
-  onParentDestroy(t, e) {
-    this.destroy(e);
+  onParentDestroy(e, t) {
+    this.destroy(t);
   }
-  onKeyDownStart(t) {
-    !t.isDown || this.pointer !== void 0 || (this.pointer = t, this.onKeyDown(t), this.emit("pointerdown", t));
+  onKeyDownStart(e) {
+    !e.isDown || this.pointer !== void 0 || (this.pointer = e, this.onKeyDown(e), this.emit("pointerdown", e));
   }
-  onKeyDown(t) {
-    if (this.pointer === t) {
-      var e = $t(t, this.mainCamera, !0);
-      if (e) {
-        var i = t.camera, s = this.gameObject, n = s.x - i.scrollX * (s.scrollFactorX - 1), o = s.y - i.scrollY * (s.scrollFactorY - 1);
-        this.setVector(n, o, e.x, e.y), this.end.x = e.x, this.end.y = e.y, this.emit("update");
+  onKeyDown(e) {
+    if (this.pointer === e) {
+      var t = Xt(e, this.mainCamera, !0);
+      if (t) {
+        var s = e.camera, i = this.gameObject, n = i.x - s.scrollX * (i.scrollFactorX - 1), l = i.y - s.scrollY * (i.scrollFactorY - 1);
+        this.setVector(n, l, t.x, t.y), this.end.x = t.x, this.end.y = t.y, this.emit("update");
       }
     }
   }
-  onKeyUp(t) {
-    this.pointer === t && (this.pointer = void 0, this.clearVector(), this.emit("update"), this.emit("pointerup", t));
+  onKeyUp(e) {
+    this.pointer === e && (this.pointer = void 0, this.clearVector(), this.emit("update"), this.emit("pointerup", e));
   }
   forceUpdate() {
-    var t = this.pointer;
-    return !t || !t.isDown ? this : (this.onKeyDown(t), this);
+    var e = this.pointer;
+    return !e || !e.isDown ? this : (this.onKeyDown(e), this);
   }
 }
 Object.assign(
   Be.prototype,
-  Ae
+  Re
 );
-const G = Phaser.Utils.Objects.GetValue;
-class Re {
-  constructor(t, e) {
-    e === void 0 && (e = {});
-    var i = G(e, "eventEmitter", void 0), s = G(e, "EventEmitterClass", void 0);
-    this.setEventEmitter(i, s), e.eventEmitter = this.getEventEmitter(), this.scene = t, this.base = void 0, this.thumb = void 0, this.touchCursor = void 0, this.setRadius(G(e, "radius", 100)), this.addBase(G(e, "base", void 0), e), this.addThumb(G(e, "thumb", void 0));
-    var n = G(e, "x", 0), o = G(e, "y", 0);
-    this.base.setPosition(n, o), this.thumb.setPosition(n, o), G(e, "fixed", !0) && this.setScrollFactor(0), this.boot();
+const X = Phaser.Utils.Objects.GetValue;
+class Le {
+  constructor(e, t) {
+    t === void 0 && (t = {});
+    var s = X(t, "eventEmitter", void 0), i = X(t, "EventEmitterClass", void 0);
+    this.setEventEmitter(s, i), t.eventEmitter = this.getEventEmitter(), this.scene = e, this.base = void 0, this.thumb = void 0, this.touchCursor = void 0, this.setRadius(X(t, "radius", 100)), this.addBase(X(t, "base", void 0), t), this.addThumb(X(t, "thumb", void 0));
+    var n = X(t, "x", 0), l = X(t, "y", 0);
+    this.base.setPosition(n, l), this.thumb.setPosition(n, l), X(t, "fixed", !0) && this.setScrollFactor(0), this.boot();
   }
   destroy() {
     this.destroyEventEmitter(), this.base.destroy(), this.thumb.destroy(), this.scene = void 0, this.base = void 0, this.thumb = void 0, this.touchCursor = void 0;
@@ -3896,14 +3851,14 @@ class Re {
   get pointer() {
     return this.touchCursor.pointer;
   }
-  setPosition(t, e) {
-    return this.x === t && this.y === e ? this : (this.x = t, this.y = e, this.forceUpdateThumb(), this);
+  setPosition(e, t) {
+    return this.x === e && this.y === t ? this : (this.x = e, this.y = t, this.forceUpdateThumb(), this);
   }
-  set x(t) {
-    this.x !== t && (this.base.x = t, this.thumb.x = t);
+  set x(e) {
+    this.x !== e && (this.base.x = e, this.thumb.x = e);
   }
-  set y(t) {
-    this.y !== t && (this.base.y = t, this.thumb.y = t);
+  set y(e) {
+    this.y !== e && (this.base.y = e, this.thumb.y = e);
   }
   get x() {
     return this.base.x;
@@ -3911,8 +3866,8 @@ class Re {
   get y() {
     return this.base.y;
   }
-  setVisible(t) {
-    return this.visible = t, this;
+  setVisible(e) {
+    return this.visible = e, this;
   }
   toggleVisible() {
     return this.visible = !this.visible, this;
@@ -3920,69 +3875,64 @@ class Re {
   get visible() {
     return this.base.visible;
   }
-  set visible(t) {
-    this.base.visible = t, this.thumb.visible = t, this.enable = t;
+  set visible(e) {
+    this.base.visible = e, this.thumb.visible = e, this.enable = e;
   }
   get enable() {
     return this.touchCursor.enable;
   }
-  set enable(t) {
-    this.touchCursor.setEnable(t);
+  set enable(e) {
+    this.touchCursor.setEnable(e);
   }
-  setEnable(t) {
-    return t === void 0 && (t = !0), this.enable = t, this;
+  setEnable(e) {
+    return e === void 0 && (e = !0), this.enable = e, this;
   }
   toggleEnable() {
     return this.setEnable(!this.enable), this;
   }
-  setRadius(t) {
-    return this.radius = t, this;
+  setRadius(e) {
+    return this.radius = e, this;
   }
-  addBase(t, e) {
-    return this.base && this.base.destroy(), t === void 0 && (t = this.scene.add.circle(0, 0, this.radius).setStrokeStyle(3, 255)), e === void 0 && (e = {}), e.eventEmitter = this.getEventEmitter(), this.touchCursor = new Be(t, e), this.base = t, this;
+  addBase(e, t) {
+    return this.base && this.base.destroy(), e === void 0 && (e = this.scene.add.circle(0, 0, this.radius).setStrokeStyle(3, 255)), t === void 0 && (t = {}), t.eventEmitter = this.getEventEmitter(), this.touchCursor = new Be(e, t), this.base = e, this;
   }
-  addThumb(t) {
-    return this.thumb && this.thumb.destroy(), t === void 0 && (t = this.scene.add.circle(0, 0, 40).setStrokeStyle(3, 65280)), this.thumb = t, this;
+  addThumb(e) {
+    return this.thumb && this.thumb.destroy(), e === void 0 && (e = this.scene.add.circle(0, 0, 40).setStrokeStyle(3, 65280)), this.thumb = e, this;
   }
-  setScrollFactor(t) {
-    return this.base.setScrollFactor(t), this.thumb.setScrollFactor(t), this;
+  setScrollFactor(e) {
+    return this.base.setScrollFactor(e), this.thumb.setScrollFactor(e), this;
   }
   boot() {
     this.on("update", this.update, this);
   }
   // Internal method
   update() {
-    var t = this.touchCursor, e, i, s = t.dirMode;
-    if (t.anyKeyDown)
-      if (t.force > this.radius) {
-        var n = t.rotation;
-        e = s !== 0 ? Math.cos(n) * this.radius : 0, i = s !== 1 ? Math.sin(n) * this.radius : 0;
+    var e = this.touchCursor, t, s, i = e.dirMode;
+    if (e.anyKeyDown)
+      if (e.force > this.radius) {
+        var n = e.rotation;
+        t = i !== 0 ? Math.cos(n) * this.radius : 0, s = i !== 1 ? Math.sin(n) * this.radius : 0;
       } else
-        e = s !== 0 ? t.forceX : 0, i = s !== 1 ? t.forceY : 0;
+        t = i !== 0 ? e.forceX : 0, s = i !== 1 ? e.forceY : 0;
     else
-      e = 0, i = 0;
-    return this.thumb.x = this.base.x + e, this.thumb.y = this.base.y + i, this;
+      t = 0, s = 0;
+    return this.thumb.x = this.base.x + t, this.thumb.y = this.base.y + s, this;
   }
   forceUpdateThumb() {
     return this.touchCursor.forceUpdate(), this;
   }
 }
 Object.assign(
-  Re.prototype,
-  Ae
+  Le.prototype,
+  Re
 );
-class Qt extends me.Rectangle {
-  constructor(e, i, s) {
+class qt extends pe.Rectangle {
+  constructor(e, t, s) {
     super(
       e,
-      i,
+      t,
       s
-    );
-    p(this, "parentScene");
-    p(this, "startMatchImage");
-    p(this, "matchmaking", !1);
-    p(this, "canMatchmake", !0);
-    this.parentScene = e, this.scale = 3, this.setDepth(4), e.add.existing(this);
+    ), this.startMatchImage = void 0, this.matchmaking = !1, this.canMatchmake = !0, this.parentScene = e, this.scale = 3, this.setDepth(4), e.add.existing(this);
   }
   checkIfPlayerIsNear() {
     return this.parentScene.player ? Math.abs(this.parentScene.player.x - this.x) < 100 && Math.abs(this.parentScene.player.y - this.y) < 100 : !1;
@@ -3995,93 +3945,47 @@ class Qt extends me.Rectangle {
     this.startMatchImage = this.parentScene.add.image(this.x, this.y, e).setDepth(10).setScale(0.3);
   }
   triggerMatchmake() {
-    this.matchmaking || (this.matchmaking = !0, this.parentScene.pauseGame(), this.startMatchImage && (this.startMatchImage.visible = !1));
+    this.matchmaking || (this.matchmaking = !0, this.parentScene.pauseGame(), G.emit(H.START_MATCHMAKING), this.startMatchImage && (this.startMatchImage.visible = !1));
   }
   update() {
     if (this.matchmaking)
       return;
     const e = this.checkIfPlayerIsNear();
     e && !this.canMatchmake && this.showPopup(), !e && this.canMatchmake && this.startMatchImage && (this.startMatchImage.visible = !1), this.canMatchmake = e;
-    const i = () => this.parentScene.sys.game.device.os.desktop && this.parentScene.enterKey ? this.parentScene.enterKey.isDown : !this.parentScene.sys.game.device.os.desktop && this.parentScene.ekey ? this.parentScene.input.keyboard.checkDown(this.parentScene.ekey, 250) : !1;
-    this.canMatchmake && i() && this.triggerMatchmake();
+    const t = () => this.parentScene.sys.game.device.os.desktop && this.parentScene.enterKey ? this.parentScene.enterKey.isDown : !this.parentScene.sys.game.device.os.desktop && this.parentScene.ekey ? this.parentScene.input.keyboard.checkDown(this.parentScene.ekey, 250) : !1;
+    this.canMatchmake && t() && this.triggerMatchmake();
   }
 }
-class ei extends me.Image {
-  constructor(e, i, s, n, o) {
+class Zt extends pe.Image {
+  constructor(e, t, s, i, n) {
     super(
       e,
-      i,
+      t,
       s,
-      o
-    );
-    p(this, "parentScene");
-    p(this, "canInteract");
-    p(this, "eventToEmit");
-    this.eventToEmit = n, this.setVisible(!1), e.add.existing(this), this.parentScene = e, this.setDepth(10), this.canInteract = !1, this.setScale(0.3);
+      n
+    ), this.eventToEmit = i, this.setVisible(!1), e.add.existing(this), this.parentScene = e, this.setDepth(10), this.canInteract = !1, this.setScale(0.3);
   }
   checkIfPlayerIsNear() {
     return this.parentScene.player ? Math.abs(this.parentScene.player.x - this.x) < 100 && Math.abs(this.parentScene.player.y - this.y) < 100 : !1;
   }
   update() {
     const e = this.checkIfPlayerIsNear();
-    e && !this.canInteract && this.setVisible(!0), !e && this.canInteract && this.visible && this.setVisible(!1), this.canInteract = e, this.canInteract && this.parentScene.input.keyboard.checkDown(this.parentScene.ekey, 250);
+    e && !this.canInteract && this.setVisible(!0), !e && this.canInteract && this.visible && this.setVisible(!1), this.canInteract = e, this.canInteract && this.parentScene.input.keyboard.checkDown(this.parentScene.ekey, 250) && G.emit(this.eventToEmit);
   }
 }
-class ti extends Me {
-  constructor(e, i) {
-    super({ key: "SceneMain", physics: { arcade: {} }, active: !0 });
-    //overall map size
-    p(this, "resolution", 3e3);
-    p(this, "collidableObjects");
-    p(this, "chunkSize", 16);
-    p(this, "tileSize", 16);
-    p(this, "characterURL", "adventurer");
-    p(this, "loader", null);
-    p(this, "checkActive", !1);
-    p(this, "cheatCode", null);
-    p(this, "cheatTimeout", null);
-    p(this, "polygonData", []);
-    p(this, "lootboxes", []);
-    p(this, "lootboxDetails", []);
-    p(this, "cursor");
-    p(this, "ekey");
-    p(this, "enterKey");
-    p(this, "dungeonVertices", []);
-    p(this, "chunks", []);
-    p(this, "followPoint");
-    p(this, "joystick");
-    p(this, "EbuttonMobile");
-    p(this, "eButtonImage");
-    p(this, "homeButtonImage");
-    p(this, "player", null);
-    p(this, "spawnPoint");
-    p(this, "keyW");
-    p(this, "keyS");
-    p(this, "keyA");
-    p(this, "keyD");
-    // indices of the polygons which are biomes
-    p(this, "indices", []);
-    p(this, "debugGraphics");
-    p(this, "perlin");
-    p(this, "dungeons", []);
-    p(this, "dungeonObjects", []);
-    p(this, "arena");
-    p(this, "interactives", []);
-    p(this, "seed");
-    p(this, "polygons");
-    p(this, "pauseGame", () => {
+class Qt extends Me {
+  constructor(e, t) {
+    super({ key: "SceneMain", physics: { arcade: {} }, active: !0 }), this.resolution = 3e3, this.collidableObjects = void 0, this.chunkSize = 16, this.tileSize = 16, this.characterURL = "adventurer", this.loader = null, this.checkActive = !1, this.cheatCode = null, this.cheatTimeout = null, this.polygonData = [], this.lootboxes = [], this.lootboxDetails = [], this.ekey = void 0, this.enterKey = void 0, this.dungeonVertices = [], this.chunks = [], this.followPoint = void 0, this.joystick = void 0, this.EbuttonMobile = void 0, this.eButtonImage = void 0, this.homeButtonImage = void 0, this.player = null, this.spawnPoint = void 0, this.keyW = void 0, this.keyS = void 0, this.keyA = void 0, this.keyD = void 0, this.indices = [], this.debugGraphics = void 0, this.dungeons = [], this.dungeonObjects = [], this.arena = void 0, this.interactives = [], this.pauseGame = () => {
       this.scene.manager ? this.scene.pause() : this.scene && this.scene.systems && this.scene.systems.game && this.scene.systems.game.scene && (this.scene.manager = this.scene.systems.game.scene, this.scene.pause());
-    });
-    p(this, "resumeGame", () => {
+    }, this.resumeGame = () => {
       this.scene.manager ? this.scene.resume() : this.scene && this.scene.systems && this.scene.systems.game && this.scene.systems.game.scene && (this.scene.manager = this.scene.systems.game.scene, this.scene.resume());
-    });
-    this.perlin = new Bt(), this.lootboxDetails = e, this.seed = "erg", this.polygons = new yt(this.seed);
+    }, this.perlin = new Tt(), this.lootboxDetails = e, this.seed = "erg", this.polygons = new pt(this.seed);
   }
   preload() {
-    const { lootboxOpen: e, lootboxClosed: i, openLootbox: s, openDungeon: n } = R;
-    this.load.image(e.key, e.url), this.load.image(i.key, i.url), this.load.image(s.key, s.url), this.load.image(n.key, n.url), this.checkForCheat(), this.load.image(R.arena.startMatchImage.key, R.arena.startMatchImage.url), this.load.image(R.arena.startMatchImageMobile.key, R.arena.startMatchImageMobile.url);
-    for (let o = 0; o < 2; o++)
-      this.load.image(T.Interactives[o].image.key, T.Interactives[o].image.url);
+    const { lootboxOpen: e, lootboxClosed: t, openLootbox: s, openDungeon: i } = R;
+    this.load.image(e.key, e.url), this.load.image(t.key, t.url), this.load.image(s.key, s.url), this.load.image(i.key, i.url), this.checkForCheat(), this.load.image(R.arena.startMatchImage.key, R.arena.startMatchImage.url), this.load.image(R.arena.startMatchImageMobile.key, R.arena.startMatchImageMobile.url);
+    for (let n = 0; n < 2; n++)
+      this.load.image(P.Interactives[n].image.key, P.Interactives[n].image.url);
     this.load.spritesheet("adventurer", Ie("adventurer.webp"), {
       frameWidth: 256,
       frameHeight: 256
@@ -4119,33 +4023,33 @@ class ti extends Me {
       }
     ), this.load.spritesheet(
       "groundNonCollidable",
-      j("ground-biome-assets-noCollide.png"),
+      z("ground-biome-assets-noCollide.png"),
       {
         frameWidth: 16,
         frameHeight: 16
       }
     ), this.load.spritesheet(
       "flyingNonCollidable",
-      j("flying-biome-assets-noCollide.png"),
+      z("flying-biome-assets-noCollide.png"),
       {
         frameWidth: 16,
         frameHeight: 16
       }
     ), this.load.spritesheet(
       "steelNonCollidable",
-      j("steel-biome-assets-noCollide.png"),
+      z("steel-biome-assets-noCollide.png"),
       {
         frameWidth: 16,
         frameHeight: 16
       }
     ), this.load.spritesheet(
       "psychicNonCollidable",
-      j("psychic-biome-assets-noCollide.png"),
+      z("psychic-biome-assets-noCollide.png"),
       {
         frameWidth: 16,
         frameHeight: 16
       }
-    ), this.load.atlas("ground-atlas", j("ground-biome-assets-collide-atlas.png"), j("ground-biome-assets-collide-atlas.json")), this.load.atlas("flying-atlas", j("flying-biome-assets-collide-atlas.png"), j("flying-biome-assets-collide-atlas.json")), this.load.atlas("steel-atlas", j("steel-biome-assets-collide-atlas.png"), j("steel-biome-assets-collide-atlas.json")), this.load.atlas("psychic-atlas", j("psychic-biome-assets-collide-atlas.png"), j("psychic-biome-assets-collide-atlas.json")), this.load.spritesheet(
+    ), this.load.atlas("ground-atlas", z("ground-biome-assets-collide-atlas.png"), z("ground-biome-assets-collide-atlas.json")), this.load.atlas("flying-atlas", z("flying-biome-assets-collide-atlas.png"), z("flying-biome-assets-collide-atlas.json")), this.load.atlas("steel-atlas", z("steel-biome-assets-collide-atlas.png"), z("steel-biome-assets-collide-atlas.json")), this.load.atlas("psychic-atlas", z("psychic-biome-assets-collide-atlas.png"), z("psychic-biome-assets-collide-atlas.json")), this.load.spritesheet(
       "ground-biome-dungeon",
       V("ground-biome-dungeon.png"),
       {
@@ -4175,37 +4079,37 @@ class ti extends Me {
       }
     ), this.load.image(
       "joystick-inner",
-      he("joystick-inner.webp")
+      ce("joystick-inner.webp")
     ), this.load.image(
       "joystick-outer",
-      he("joystick-outer.webp")
+      ce("joystick-outer.webp")
     ), this.load.image(
       "home-button",
-      he("homeButton.webp")
+      ce("homeButton.webp")
     ), this.load.image(
       "e-button",
-      he("eButton.webp")
+      ce("eButton.webp")
     ), this.load.image(
-      T.asset.tileset.key,
-      T.asset.tileset.url
+      P.asset.tileset.key,
+      P.asset.tileset.url
     ), this.load.tilemapTiledJSON(
-      T.asset.map.key,
-      T.asset.map.url
+      P.asset.map.key,
+      P.asset.map.url
     ), this.load.image(
-      T.asset.overlay.key,
-      T.asset.overlay.url
+      P.asset.overlay.key,
+      P.asset.overlay.url
     ), this.load.image(
-      T.asset.glitchTiles.key,
-      T.asset.glitchTiles.url
+      P.asset.glitchTiles.key,
+      P.asset.glitchTiles.url
     ), this.load.tilemapTiledJSON(
-      T.asset.glitchMap.key,
-      T.asset.glitchMap.url
+      P.asset.glitchMap.key,
+      P.asset.glitchMap.url
     );
   }
   create() {
     this.cursor = this.input.keyboard.createCursorKeys(), this.ekey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E), this.enterKey = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.ENTER
-    ), this.setPolygonData(), this.spawnPoint = { x: this.polygonData[0].centroid.x, y: this.polygonData[0].centroid.y }, this.player && this.player.destroy(), this.player = new Lt(
+    ), this.setPolygonData(), this.spawnPoint = { x: this.polygonData[0].centroid.x, y: this.polygonData[0].centroid.y }, this.player && this.player.destroy(), this.player = new Rt(
       this,
       this.spawnPoint.x,
       this.spawnPoint.y,
@@ -4214,13 +4118,29 @@ class ti extends Me {
     ), this.player.changeCharacter(this.characterURL), this.sys.game.device.os.desktop ? this.cameras.main.setZoom(2.4) : this.cameras.main.setZoom(1.7), this.followPoint = new Phaser.Math.Vector2(
       this.spawnPoint.x,
       this.spawnPoint.y
-    ), this.chunks = [], this.debugGraphics = this.add.graphics(), this.debugGraphics.lineStyle(2, 16711680, 1), this.physics.world.debugGraphic = this.debugGraphics, this.physics.world.drawDebug = !1, this.physics.world.debugGraphic.setAlpha(0), this.physics.world.debugGraphic.setDepth(5), this.collidableObjects = this.physics.add.group(), this.physics.add.collider(this.player, this.collidableObjects), this.loader = new Phaser.Loader.LoaderPlugin(this), this.addLootBoxes(), this.placeDungeonForEachPolygon(), this.spawnPoint.x == this.polygonData[0].centroid.x && this.spawnPoint.y == this.polygonData[0].centroid.y && this.setupCentralMap(this.spawnPoint.x, this.spawnPoint.y), this.sys.game.device.os.desktop || (this.setUpJoystick(), this.setupEButton()), this.setupHomeButton(), this.setupArena(), this.setupInteractives(), this.polygons.getWorldBounds();
+    ), this.chunks = [], this.debugGraphics = this.add.graphics(), this.debugGraphics.lineStyle(2, 16711680, 1), this.physics.world.debugGraphic = this.debugGraphics, this.physics.world.drawDebug = !1, this.physics.world.debugGraphic.setAlpha(0), this.physics.world.debugGraphic.setDepth(5), this.collidableObjects = this.physics.add.group(), this.physics.add.collider(this.player, this.collidableObjects), this.loader = new Phaser.Loader.LoaderPlugin(this), this.addLootBoxes(), this.placeDungeonForEachPolygon(), G.on(H.LOOTBOX_OPEN, () => {
+      this.pauseGame();
+    }), G.on(H.LOOTBOX_OPENED, (e) => {
+      this.resumeGame(), this.handleOpenLootbox(e);
+    }), G.on(H.RESUME_GAME, () => {
+      this.resumeGame();
+    }), G.on(H.PAUSE_GAME, () => {
+      this.pauseGame();
+    }), G.on(H.CHANGE_CHARACTER, (e) => {
+      this.handleCharacterChange(e);
+    }), G.on(H.OPEN_DASHBOARD, () => {
+      this.pauseGame(), this.disableKeys();
+    }), G.on(H.CLOSE_DASHBOARD, () => {
+      this.resumeGame(), this.enableKeys();
+    }), G.on(H.MATCH_ENDED, () => {
+      this.resumeGame(), this.arena.endMatchMaking();
+    }), this.spawnPoint.x == this.polygonData[0].centroid.x && this.spawnPoint.y == this.polygonData[0].centroid.y && this.setupCentralMap(this.spawnPoint.x, this.spawnPoint.y), this.sys.game.device.os.desktop || (this.setUpJoystick(), this.setupEButton()), this.setupHomeButton(), this.setupArena(), this.setupInteractives(), this.polygons.getWorldBounds();
   }
   checkForCheat() {
     this.input.keyboard.on("keydown", (e) => {
       if (e.key === "d" || e.key === "e" || e.key === "l" || e.key === "t" || e.key === "a" || e.key === "f" || e.key === "o" || e.key === "r" || e.key === "c" || e.key === "e") {
-        const i = "deltaforce";
-        this.checkActive || (this.cheatCode && !i.startsWith(this.cheatCode) && (this.cheatCode = null), this.cheatCode = (this.cheatCode || "") + e.key, this.cheatCode === "deltaforce" && (console.log("Cheat entered"), this.checkActive = !0), this.cheatTimeout && clearTimeout(this.cheatTimeout), this.cheatTimeout = setTimeout(() => {
+        const t = "deltaforce";
+        this.checkActive || (this.cheatCode && !t.startsWith(this.cheatCode) && (this.cheatCode = null), this.cheatCode = (this.cheatCode || "") + e.key, this.cheatCode === "deltaforce" && (console.log("Cheat entered"), this.checkActive = !0), this.cheatTimeout && clearTimeout(this.cheatTimeout), this.cheatTimeout = setTimeout(() => {
           this.cheatCode = null;
         }, 2e3));
       } else
@@ -4235,16 +4155,16 @@ class ti extends Me {
     });
   }
   setupHomeButton() {
-    const e = this.sys.game.device.os.desktop ? this.cameras.main.width * 0.69 : this.cameras.main.width * 0.7, i = this.sys.game.device.os.desktop ? this.cameras.main.height * 0.69 : this.cameras.main.height * 0.7;
-    this.homeButtonImage = this.add.image(e, i, "home-button").setScale(0.15), this.homeButtonImage.setInteractive({ useHandCursor: !0 }), this.homeButtonImage.setDepth(20), this.homeButtonImage.setScrollFactor(0), console.log("Circle Position:", this.homeButtonImage.x, this.homeButtonImage.y), this.homeButtonImage.on("pointerdown", () => {
+    const e = this.sys.game.device.os.desktop ? this.cameras.main.width * 0.69 : this.cameras.main.width * 0.7, t = this.sys.game.device.os.desktop ? this.cameras.main.height * 0.69 : this.cameras.main.height * 0.7;
+    this.homeButtonImage = this.add.image(e, t, "home-button").setScale(0.15), this.homeButtonImage.setInteractive({ useHandCursor: !0 }), this.homeButtonImage.setDepth(20), this.homeButtonImage.setScrollFactor(0), console.log("Circle Position:", this.homeButtonImage.x, this.homeButtonImage.y), this.homeButtonImage.on("pointerdown", () => {
       this.player.x = this.polygonData[0].centroid.x, this.player.y = this.polygonData[0].centroid.y;
     });
   }
   setUpJoystick() {
     const e = this.cameras.main.height;
     this.cameras.main.width;
-    const i = 50, s = e / 1.5;
-    console.log("window height" + this.cameras.main.height), console.log("x: " + i + " y: " + s), this.joystick = new Re(this, {
+    const t = 50, s = e / 1.5;
+    console.log("window height" + this.cameras.main.height), console.log("x: " + t + " y: " + s), this.joystick = new Le(this, {
       x: 280,
       y: s,
       base: this.add.image(0, 0, "joystick-outer").setAlpha(0.8).setDepth(20).setScale(0.2),
@@ -4253,50 +4173,50 @@ class ti extends Me {
       dir: "4dir"
     });
   }
-  setupCentralMap(e, i) {
-    const s = this.make.tilemap({ key: T.asset.map.key }), n = s.addTilesetImage(
-      T.asset.tileset.key,
-      T.asset.tileset.key,
+  setupCentralMap(e, t) {
+    const s = this.make.tilemap({ key: P.asset.map.key }), i = s.addTilesetImage(
+      P.asset.tileset.key,
+      P.asset.tileset.key,
       16,
       16,
       1,
       2
-    ), o = s.addTilesetImage(
-      T.asset.overlay.key,
-      T.asset.overlay.key,
+    ), n = s.addTilesetImage(
+      P.asset.overlay.key,
+      P.asset.overlay.key,
       16,
       16,
       1,
       2
-    ), l = this.make.tilemap({ key: T.asset.glitchMap.key }), a = l.addTilesetImage(
-      T.asset.glitchTiles.key,
-      T.asset.glitchTiles.key,
+    ), l = this.make.tilemap({ key: P.asset.glitchMap.key }), o = l.addTilesetImage(
+      P.asset.glitchTiles.key,
+      P.asset.glitchTiles.key,
       16,
       16
     );
-    if (!n || !l || !o || !a)
+    if (!i || !l || !n || !o)
       return;
-    const h = s.widthInPixels, u = s.heightInPixels, c = e - h / 2, d = i - u / 2 - this.tileSize * 3, m = e - l.widthInPixels / 2, f = i - l.heightInPixels / 2 - this.tileSize * 3;
-    s.createLayer(se.BELOW_PLAYER, n, c, d).setDepth(1), l.createLayer(se.GLTICH_LAYER, a, m, f).setDepth(2);
-    const y = s.createLayer(se.OBJECTS, n, c, d).setDepth(5).setCollisionByProperty({ collides: !0 });
-    s.createLayer(se.ABOVE_PLAYER, [n, o], c, d).setDepth(6), this.physics.add.collider(this.player, y);
+    const a = s.widthInPixels, h = s.heightInPixels, d = e - a / 2, c = t - h / 2 - this.tileSize * 3, u = e - l.widthInPixels / 2, m = t - l.heightInPixels / 2 - this.tileSize * 3;
+    s.createLayer(ne.BELOW_PLAYER, i, d, c).setDepth(1), l.createLayer(ne.GLTICH_LAYER, o, u, m).setDepth(2);
+    const p = s.createLayer(ne.OBJECTS, i, d, c).setDepth(5).setCollisionByProperty({ collides: !0 });
+    s.createLayer(ne.ABOVE_PLAYER, [i, n], d, c).setDepth(6), this.physics.add.collider(this.player, p);
   }
   setPolygonData() {
     this.polygons.voronoi.cellPolygons(), this.polygons.calculatePolygonData(), this.polygonData = this.polygons.polygonData, this.polygonData.forEach((e) => {
-      e.vertices = e.vertices.map((i) => ({ x: i.x * this.resolution, y: i.y * this.resolution })), e.reducedVertices = e.reducedVertices.map((i) => ({ x: i.x * this.resolution, y: i.y * this.resolution })), e.lootBoxesCoordinates = e.lootBoxesCoordinates.map((i) => ({ x: i.x * this.resolution, y: i.y * this.resolution })), e.gradientAreaCoordinates = e.gradientAreaCoordinates.map((i) => ({ x: i.x * this.resolution, y: i.y * this.resolution })), e.outerBorderCoordinates = e.outerBorderCoordinates.map((i) => ({ x: i.x * this.resolution, y: i.y * this.resolution })), e.centroid = { x: e.centroid.x * this.resolution, y: e.centroid.y * this.resolution };
+      e.vertices = e.vertices.map((t) => ({ x: t.x * this.resolution, y: t.y * this.resolution })), e.reducedVertices = e.reducedVertices.map((t) => ({ x: t.x * this.resolution, y: t.y * this.resolution })), e.lootBoxesCoordinates = e.lootBoxesCoordinates.map((t) => ({ x: t.x * this.resolution, y: t.y * this.resolution })), e.gradientAreaCoordinates = e.gradientAreaCoordinates.map((t) => ({ x: t.x * this.resolution, y: t.y * this.resolution })), e.outerBorderCoordinates = e.outerBorderCoordinates.map((t) => ({ x: t.x * this.resolution, y: t.y * this.resolution })), e.centroid = { x: e.centroid.x * this.resolution, y: e.centroid.y * this.resolution };
     }), console.log(this.polygons.polygonData);
   }
   setupInteractives() {
-    if (T.Interactives) {
+    if (P.Interactives) {
       if (this.interactives)
         for (let e = 0; e < this.interactives.length; e++)
           this.interactives[e].destroy();
       this.interactives = [];
-      for (const e of T.Interactives)
+      for (const e of P.Interactives)
         if (e.name !== "ARENA") {
           if (!this.spawnPoint)
             return;
-          this.interactives.push(new ei(
+          this.interactives.push(new Zt(
             this,
             e.coordinates.x * this.tileSize + this.spawnPoint.x,
             e.coordinates.y * this.tileSize + this.spawnPoint.y,
@@ -4307,10 +4227,10 @@ class ti extends Me {
     }
   }
   setupArena() {
-    !this.spawnPoint || !T.Interactives || (this.arena = new Qt(
+    !this.spawnPoint || !P.Interactives || (this.arena = new qt(
       this,
-      T.Interactives[2].coordinates.x * this.tileSize + this.spawnPoint.x,
-      T.Interactives[2].coordinates.y * this.tileSize + this.spawnPoint.y
+      P.Interactives[2].coordinates.x * this.tileSize + this.spawnPoint.x,
+      P.Interactives[2].coordinates.y * this.tileSize + this.spawnPoint.y
     ), console.log("Arena setup", this.arena.x, this.arena.y));
   }
   disableKeys() {
@@ -4320,20 +4240,20 @@ class ti extends Me {
     this.input.keyboard && (this.input.keyboard.enabled = !0);
   }
   addLootBoxes() {
-    let i = 0;
+    let t = 0;
     for (let s of this.polygonData) {
-      const n = [];
-      for (let o of s.lootBoxesCoordinates) {
+      const i = [];
+      for (let n of s.lootBoxesCoordinates) {
         let l = !0;
-        for (let a of n)
-          if (Phaser.Math.Distance.Between(o.x, o.y, a.x, a.y) < 500) {
+        for (let o of i)
+          if (Phaser.Math.Distance.Between(n.x, n.y, o.x, o.y) < 500) {
             l = !1;
             break;
           }
-        if (l && i < 65 && s.index !== 0) {
-          console.log("lootbox", i);
-          const a = new Mt(this, o.x, o.y, !1, i);
-          a.loadState(), this.lootboxes.push(a), n.push(o), i++;
+        if (l && t < 65 && s.index !== 0) {
+          console.log("lootbox", t);
+          const o = new Pt(this, n.x, n.y, !1, t);
+          o.loadState(), this.lootboxes.push(o), i.push(n), t++;
         }
       }
     }
@@ -4345,11 +4265,11 @@ class ti extends Me {
         this.lootboxes[s].Open();
         break;
       }
-    const i = this.lootboxDetails;
-    if (i !== void 0) {
-      for (let s = 0; s < i.length; s++)
-        if (i[s].ID === e) {
-          i[s].isOpen = !0;
+    const t = this.lootboxDetails;
+    if (t !== void 0) {
+      for (let s = 0; s < t.length; s++)
+        if (t[s].ID === e) {
+          t[s].isOpen = !0;
           break;
         }
     }
@@ -4363,152 +4283,149 @@ class ti extends Me {
         frameHeight: R.player.frameHeight
       }
     ), this.loader.once("complete", () => {
-      var i;
-      (i = this.player) == null || i.changeCharacter(this.characterURL);
+      var t;
+      (t = this.player) == null || t.changeCharacter(this.characterURL);
     }), this.sys.events && this.loader.start());
   }
   getCenterVertices() {
-    return this.polygonData.map((i, s) => ({
-      x: i.centroid.x,
-      y: i.centroid.y,
-      polygonIndex: i.polygonIndex
+    return this.polygonData.map((t, s) => ({
+      x: t.centroid.x,
+      y: t.centroid.y,
+      polygonIndex: t.polygonIndex
     }));
   }
   getDungeonVertices(e = 12345) {
-    const i = this.getCenterVertices(), s = 500, n = (o) => {
-      const l = Math.sin(e + o) * 2 * Math.PI % (2 * Math.PI);
+    const t = this.getCenterVertices(), s = 500, i = (n) => {
+      const l = Math.sin(e + n) * 2 * Math.PI % (2 * Math.PI);
       return { x: Math.cos(l) * s, y: Math.sin(l) * s };
     };
-    return i.map((o, l) => {
-      const a = n(l);
-      return { x: o.x + a.x, y: o.y + a.y, index: o.polygonIndex };
+    return t.map((n, l) => {
+      const o = i(l);
+      return { x: n.x + o.x, y: n.y + o.y, index: n.polygonIndex };
     });
   }
   placeDungeonForEachPolygon() {
     console.log(this.polygonData);
     for (let e of this.polygonData) {
-      let i = !1;
-      e.index === 0 && (i = !0);
-      const s = e.centroid, { x: n, y: o } = At(s, this.chunkSize, this.tileSize, this.seed);
-      this.dungeons[e.index] = { x: n, y: o };
-      const l = n * (this.chunkSize * this.tileSize) + this.chunkSize * this.tileSize / 2, a = o * (this.chunkSize * this.tileSize) + this.chunkSize * this.tileSize / 2;
-      console.log("Peak:", e.index, l, a), this.dungeonObjects.push(new Kt(this, l, a, e.index, i)), this.perlin.addPeakPoint(l / 500, a / 500, 1, 20 * this.tileSize / 500), console.log("Dungeon:", this.dungeons[e.index]);
+      let t = !1;
+      e.index === 0 && (t = !0);
+      const s = e.centroid, { x: i, y: n } = At(s, this.chunkSize, this.tileSize, this.seed);
+      this.dungeons[e.index] = { x: i, y: n };
+      const l = i * (this.chunkSize * this.tileSize) + this.chunkSize * this.tileSize / 2, o = n * (this.chunkSize * this.tileSize) + this.chunkSize * this.tileSize / 2;
+      console.log("Peak:", e.index, l, o), this.dungeonObjects.push(new Bt(this, l, o, e.index, t)), this.perlin.addPeakPoint(l / 500, o / 500, 1, 20 * this.tileSize / 500), console.log("Dungeon:", this.dungeons[e.index]);
     }
   }
-  isWithinBounds(e, i) {
-    const s = this.chunkSize * this.tileSize, n = [
-      { x: e * s, y: i * s },
-      { x: (e + 1) * s, y: i * s },
-      { x: e * s, y: (i + 1) * s },
-      { x: (e + 1) * s, y: (i + 1) * s }
+  isWithinBounds(e, t) {
+    const s = this.chunkSize * this.tileSize, i = [
+      { x: e * s, y: t * s },
+      { x: (e + 1) * s, y: t * s },
+      { x: e * s, y: (t + 1) * s },
+      { x: (e + 1) * s, y: (t + 1) * s }
     ];
     for (let l of this.polygonData)
-      for (let a of n)
-        if (this.point_in_polygon(a, l.outerBorderCoordinates)) {
-          var o;
-          return l.index == 0 ? o = "home" : l.index >= 0 && l.index < 5 ? o = "flying" : l.index >= 5 && l.index < 10 ? o = "ground" : l.index >= 10 && l.index < 15 ? o = "steel" : o = "psychic", { withinBounds: !0, biomeType: o, index: l.index };
+      for (let o of i)
+        if (this.point_in_polygon(o, l.outerBorderCoordinates)) {
+          var n;
+          return l.index == 0 ? n = "home" : l.index >= 0 && l.index < 5 ? n = "flying" : l.index >= 5 && l.index < 10 ? n = "ground" : l.index >= 10 && l.index < 15 ? n = "steel" : n = "psychic", { withinBounds: !0, biomeType: n, index: l.index };
         }
     return { withinBounds: !1 };
   }
-  point_in_polygon(e, i) {
-    const s = i.length;
-    var n = e.x, o = e.y;
-    let l = !1, a = i[0], h;
-    for (let u = 1; u <= s; u++) {
-      if (h = i[u % s], o > Math.min(a.y, h.y) && o <= Math.max(a.y, h.y) && n <= Math.max(a.x, h.x)) {
-        const c = (o - a.y) * (h.x - a.x) / (h.y - a.y) + a.x;
-        (a.x === h.x || n <= c) && (l = !l);
+  point_in_polygon(e, t) {
+    const s = t.length;
+    var i = e.x, n = e.y;
+    let l = !1, o = t[0], a;
+    for (let h = 1; h <= s; h++) {
+      if (a = t[h % s], n > Math.min(o.y, a.y) && n <= Math.max(o.y, a.y) && i <= Math.max(o.x, a.x)) {
+        const d = (n - o.y) * (a.x - o.x) / (a.y - o.y) + o.x;
+        (o.x === a.x || i <= d) && (l = !l);
       }
-      a = h;
+      o = a;
     }
     return l;
   }
-  getChunk(e, i) {
-    for (var s = null, n = 0; n < this.chunks.length; n++)
-      this.chunks[n].x == e && this.chunks[n].y == i && (s = this.chunks[n]);
+  getChunk(e, t) {
+    for (var s = null, i = 0; i < this.chunks.length; i++)
+      this.chunks[i].x == e && this.chunks[i].y == t && (s = this.chunks[i]);
     return s;
   }
-  checkIfDungeon(e, i) {
+  checkIfDungeon(e, t) {
     for (let s of this.dungeons)
-      if (s.x == e && s.y == i)
+      if (s.x == e && s.y == t)
         return !0;
     return !1;
   }
   update() {
-    var u;
-    this.debugGraphics && this.debugGraphics.clear(), this.physics.world.drawDebug = !0, this.lootboxes.forEach((c) => c.update()), this.dungeonObjects.forEach((c) => c.update()), (u = this.arena) == null || u.update(), this.interactives.forEach((c) => c.update()), this.player && this.spawnPoint && (this.player.update(), this.events.emit("player-moved", Math.round(this.player.x - this.spawnPoint.x), Math.round(this.player.y - this.spawnPoint.y)));
+    var h;
+    this.debugGraphics && this.debugGraphics.clear(), this.physics.world.drawDebug = !0, this.lootboxes.forEach((d) => d.update()), this.dungeonObjects.forEach((d) => d.update()), (h = this.arena) == null || h.update(), this.interactives.forEach((d) => d.update()), this.player && this.spawnPoint && (this.player.update(), this.events.emit("player-moved", Math.round(this.player.x - this.spawnPoint.x), Math.round(this.player.y - this.spawnPoint.y)));
     const e = this.chunkSize * this.tileSize;
     if (!this.player)
       return;
-    const i = Math.round(this.player.x / e), s = Math.round(this.player.y / e);
-    for (var n = i - 2; n < i + 2; n++)
-      for (var o = s - 2; o < s + 2; o++) {
-        const c = this.isWithinBounds(n, o), d = this.checkIfDungeon(n, o);
-        if (c.withinBounds) {
-          var l = this.getChunk(n, o);
+    const t = Math.round(this.player.x / e), s = Math.round(this.player.y / e);
+    for (var i = t - 2; i < t + 2; i++)
+      for (var n = s - 2; n < s + 2; n++) {
+        const d = this.isWithinBounds(i, n), c = this.checkIfDungeon(i, n);
+        if (d.withinBounds) {
+          var l = this.getChunk(i, n);
           if (l == null) {
-            let m;
-            switch (c.biomeType) {
+            let u;
+            switch (d.biomeType) {
               case "home":
-                if (typeof c.index == "number")
-                  m = new Ee(this, n, o, this.chunkSize, this.tileSize, c.index, this.perlin);
+                if (typeof d.index == "number")
+                  u = new Oe(this, i, n, this.chunkSize, this.tileSize, d.index, this.perlin);
                 else
                   throw new Error("Expected result.index to be a number");
                 break;
               case "steel":
-                if (typeof c.index == "number")
-                  n == 45 && o == 58 && console.log("isDungeon: ", d), m = new It(this, n, o, this.chunkSize, this.tileSize, c.index, d, this.perlin);
+                if (typeof d.index == "number")
+                  i == 45 && n == 58 && console.log("isDungeon: ", c), u = new Ft(this, i, n, this.chunkSize, this.tileSize, d.index, c, this.perlin);
                 else
                   throw new Error("Expected result.index to be a number");
                 break;
               case "ground":
-                if (typeof c.index == "number")
-                  m = new wt(this, n, o, this.chunkSize, this.tileSize, c.index, d, this.perlin);
+                if (typeof d.index == "number")
+                  u = new bt(this, i, n, this.chunkSize, this.tileSize, d.index, c, this.perlin);
                 else
                   throw new Error("Expected result.index to be a number");
                 break;
               case "flying":
-                if (typeof c.index == "number")
-                  m = new Ft(this, n, o, this.chunkSize, this.tileSize, c.index, d, this.perlin);
+                if (typeof d.index == "number")
+                  u = new vt(this, i, n, this.chunkSize, this.tileSize, d.index, c, this.perlin);
                 else
                   throw new Error("Expected result.index to be a number");
                 break;
               case "psychic":
-                if (typeof c.index == "number")
-                  m = new Tt(this, n, o, this.chunkSize, this.tileSize, c.index, d, this.perlin);
+                if (typeof d.index == "number")
+                  u = new Ot(this, i, n, this.chunkSize, this.tileSize, d.index, c, this.perlin);
                 else
                   throw new Error("Expected result.index to be a number");
                 break;
               default:
-                throw new Error(`Unknown biome type: ${c.biomeType}`);
+                throw new Error(`Unknown biome type: ${d.biomeType}`);
             }
-            this.chunks.push(m);
+            this.chunks.push(u);
           }
         } else {
-          var l = this.getChunk(n, o);
+          var l = this.getChunk(i, n);
           if (l === null) {
-            const f = new Ee(this, n, o, this.chunkSize, this.tileSize, -1, this.perlin);
-            this.chunks.push(f);
+            const m = new Oe(this, i, n, this.chunkSize, this.tileSize, -1, this.perlin);
+            this.chunks.push(m);
           }
         }
       }
-    for (var a = 0; a < this.chunks.length; a++) {
-      var h = this.chunks[a];
+    for (var o = 0; o < this.chunks.length; o++) {
+      var a = this.chunks[o];
       Phaser.Math.Distance.Between(
-        i,
+        t,
         s,
-        h.x,
-        h.y
-      ) < 3 || i - h.x > 0 && i - h.x < 4 ? h !== null && h.load() : h !== null && h.unload();
+        a.x,
+        a.y
+      ) < 3 || t - a.x > 0 && t - a.x < 4 ? a !== null && a.load() : a !== null && a.unload();
     }
   }
 }
-class ii extends Me {
+class ei extends Me {
   constructor() {
-    super({ key: "coordinatesOverlay", active: !0 });
-    p(this, "xText");
-    p(this, "yText");
-    p(this, "gameScene");
+    super({ key: "coordinatesOverlay", active: !0 }), this.xText = void 0, this.yText = void 0, this.gameScene = void 0;
   }
   create() {
     this.xText = this.add.text(10, 0, "X: 0", { font: "20px Courier" }).setScrollFactor(0).setDepth(20), this.yText = this.add.text(10, 0, "Y: 0", { font: "20px Courier" }).setScrollFactor(0).setDepth(20), this.gameScene || (this.gameScene = this.scene.get("SceneMain")), this.updateTextPosition(), this.scale.on("resize", () => {
@@ -4516,49 +4433,44 @@ class ii extends Me {
     }), this.gameScene.events.on("player-moved", this.handlePlayerMove, this);
   }
   updateTextPosition() {
-    const { height: e } = this.cameras.main, i = { x: 10, y: 30 };
-    this.xText && this.yText && (this.xText.setPosition(i.x, e - i.y - 20), this.yText.setPosition(i.x, e - i.y));
+    const { height: e } = this.cameras.main, t = { x: 10, y: 30 };
+    this.xText && this.yText && (this.xText.setPosition(t.x, e - t.y - 20), this.yText.setPosition(t.x, e - t.y));
   }
-  handlePlayerMove(e, i) {
-    this.xText && this.yText && (this.xText.setText(`X: ${e}`), this.yText.setText(`Y: ${i}`));
+  handlePlayerMove(e, t) {
+    this.xText && this.yText && (this.xText.setText(`X: ${e}`), this.yText.setText(`Y: ${t}`));
   }
   update() {
   }
 }
-var Le = Object.defineProperty, si = Object.getOwnPropertyDescriptor, ni = (r, t, e) => t in r ? Le(r, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : r[t] = e, le = (r, t, e, i) => {
-  for (var s = i > 1 ? void 0 : i ? si(t, e) : t, n = r.length - 1, o; n >= 0; n--)
-    (o = r[n]) && (s = (i ? o(t, e, s) : o(s)) || s);
-  return i && s && Le(t, e, s), s;
-}, oi = (r, t, e) => (ni(r, typeof t != "symbol" ? t + "" : t, e), e);
-let X = class extends We {
+var ti = Object.defineProperty, ii = Object.getOwnPropertyDescriptor, ae = (r, e, t, s) => {
+  for (var i = s > 1 ? void 0 : s ? ii(e, t) : e, n = r.length - 1, l; n >= 0; n--)
+    (l = r[n]) && (i = (s ? l(e, t, i) : l(i)) || i);
+  return s && i && ti(e, t, i), i;
+};
+let U = class extends Ke {
   constructor() {
-    super(...arguments);
-    p(this, "freeRoamGame");
-    p(this, "lootboxDetails", []);
-    p(this, "characterURL", "");
-    p(this, "clanFlagUrl", "");
-    p(this, "seedString", "");
+    super(...arguments), this.lootboxDetails = [], this.characterURL = "", this.clanFlagUrl = "", this.seedString = "";
   }
   firstUpdated() {
-    var t;
+    var r;
     this.lootboxDetails.forEach((e) => {
-    }), this.freeRoamGame = new ie.Game({
-      type: ie.AUTO,
+    }), this.freeRoamGame = new se.Game({
+      type: se.AUTO,
       pixelArt: !0,
-      parent: ((t = this.shadowRoot) == null ? void 0 : t.querySelector("#free-roam")) ?? void 0,
+      parent: ((r = this.shadowRoot) == null ? void 0 : r.querySelector("#free-roam")) ?? void 0,
       scene: [
-        new ti(
+        new Qt(
           this.lootboxDetails,
           this.seedString
         ),
-        new ii()
+        new ei()
       ],
       dom: {
         createContainer: !1
       },
       scale: {
-        mode: ie.Scale.RESIZE,
-        autoCenter: ie.Scale.CENTER_BOTH
+        mode: se.Scale.RESIZE,
+        autoCenter: se.Scale.CENTER_BOTH
       },
       fps: R.fps,
       backgroundColor: "#292634",
@@ -4577,39 +4489,41 @@ let X = class extends We {
     this.freeRoamGame.destroy(!0, !1);
   }
   render() {
-    const t = window.screen.width * window.devicePixelRatio, e = window.screen.height * window.devicePixelRatio;
-    return window.innerHeight = e, window.innerWidth = t, je`<div id="free-roam"></div>`;
+    const r = window.screen.width * window.devicePixelRatio, e = window.screen.height * window.devicePixelRatio;
+    return window.innerHeight = e, window.innerWidth = r, He`<div id="free-roam"></div>`;
   }
 };
-oi(X, "styles", Ne`
+U.styles = Ne`
 		:host {
 			display: block;
 			width: 100%;
 			height: 100%;
 		}
-	`);
-le([
-  pe({ type: Array })
-], X.prototype, "lootboxDetails", 2);
-le([
-  pe({ type: String })
-], X.prototype, "characterURL", 2);
-le([
-  pe({ type: String })
-], X.prototype, "clanFlagUrl", 2);
-le([
-  pe({ type: String })
-], X.prototype, "seedString", 2);
-X = le([
-  Ve("free-roam")
-], X);
-const mi = $e({
+	`;
+ae([
+  fe({ type: Array })
+], U.prototype, "lootboxDetails", 2);
+ae([
+  fe({ type: String })
+], U.prototype, "characterURL", 2);
+ae([
+  fe({ type: String })
+], U.prototype, "clanFlagUrl", 2);
+ae([
+  fe({ type: String })
+], U.prototype, "seedString", 2);
+U = ae([
+  je("free-roam")
+], U);
+const hi = Xe({
   tagName: "free-roam",
-  elementClass: X,
-  react: Ye
+  elementClass: U,
+  react: ze
 });
 export {
-  X as FreeRoam,
-  mi as FreeRoamLayer
+  H as Events,
+  U as FreeRoam,
+  hi as FreeRoamLayer,
+  G as eventEmitter
 };
 //# sourceMappingURL=freeroam-arcadia-23.mjs.map

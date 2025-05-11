@@ -125,7 +125,7 @@ export declare class ProceduralFreeRoam extends Scene {
         x: number;
         y: number;
     }[]): boolean;
-    getChunk(x: number, y: number): BaseBiome | null;
+    getChunk(x: number, y: number): any;
     checkIfDungeon(x: number, y: number): boolean;
     update(): void;
 }

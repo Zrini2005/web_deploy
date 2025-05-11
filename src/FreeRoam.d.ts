@@ -1,4 +1,5 @@
 import { LitElement, TemplateResult } from "lit";
+import { eventEmitter, Events } from "./events/EventEmitters";
 declare class FreeRoam extends LitElement {
     static styles: import("lit").CSSResult;
     private freeRoamGame;
@@ -13,5 +14,5 @@ declare class FreeRoam extends LitElement {
     disconnectedCallback(): void;
     render(): TemplateResult;
 }
-declare const FreeRoamLayer: import("@lit-labs/react").ReactWebComponent<FreeRoam, {}>;
-export { FreeRoamLayer, FreeRoam };
+declare const FreeRoamLayer: React.ForwardRefExoticComponent<any>;
+export { FreeRoamLayer, FreeRoam, eventEmitter, Events };

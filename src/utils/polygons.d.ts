@@ -27,11 +27,11 @@ export declare class Polygons {
     randomWalkGen(): number[];
     calculatePolygonData(): void;
     getWorldBounds(): {
-        x: number;
-        y: number;
+        x: any;
+        y: any;
         width: number;
         height: number;
-    } | null;
+    };
     private calculateCentroid;
     private addPolygonIndices;
     private calculateReducedVertices;
