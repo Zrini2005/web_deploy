@@ -2,6 +2,30 @@ import { css as Ne, LitElement as Ke, html as He } from "lit";
 import se, { GameObjects as pe, Physics as We, Scene as Me } from "phaser";
 import "buffer";
 import ze from "react";
+(function() {
+  const e = document.createElement("link").relList;
+  if (e && e.supports && e.supports("modulepreload"))
+    return;
+  for (const i of document.querySelectorAll('link[rel="modulepreload"]'))
+    s(i);
+  new MutationObserver((i) => {
+    for (const n of i)
+      if (n.type === "childList")
+        for (const o of n.addedNodes)
+          o.tagName === "LINK" && o.rel === "modulepreload" && s(o);
+  }).observe(document, { childList: !0, subtree: !0 });
+  function t(i) {
+    const n = {};
+    return i.integrity && (n.integrity = i.integrity), i.referrerPolicy && (n.referrerPolicy = i.referrerPolicy), i.crossOrigin === "use-credentials" ? n.credentials = "include" : i.crossOrigin === "anonymous" ? n.credentials = "omit" : n.credentials = "same-origin", n;
+  }
+  function s(i) {
+    if (i.ep)
+      return;
+    i.ep = !0;
+    const n = t(i);
+    fetch(i.href, n);
+  }
+})();
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -9,8 +33,8 @@ import ze from "react";
  */
 const je = (r) => (e) => typeof e == "function" ? ((t, s) => (customElements.define(t, s), s))(r, e) : ((t, s) => {
   const { kind: i, elements: n } = s;
-  return { kind: i, elements: n, finisher(l) {
-    customElements.define(t, l);
+  return { kind: i, elements: n, finisher(o) {
+    customElements.define(t, o);
   } };
 })(r, e);
 /**
@@ -37,7 +61,7 @@ function fe(r) {
  */
 var ye;
 ((ye = window.HTMLSlotElement) === null || ye === void 0 ? void 0 : ye.prototype.assignedElements) != null;
-const R = {
+const B = {
   fps: {
     min: 10,
     target: 75,
@@ -106,20 +130,20 @@ const R = {
  */
 const Ye = /* @__PURE__ */ new Set(["children", "localName", "ref", "style", "className"]), Ee = /* @__PURE__ */ new WeakMap(), Ve = (r, e, t, s, i) => {
   const n = i == null ? void 0 : i[e];
-  n === void 0 || t === s ? t == null && e in HTMLElement.prototype ? r.removeAttribute(e) : r[e] = t : ((l, o, a) => {
-    let h = Ee.get(l);
-    h === void 0 && Ee.set(l, h = /* @__PURE__ */ new Map());
-    let d = h.get(o);
-    a !== void 0 ? d === void 0 ? (h.set(o, d = { handleEvent: a }), l.addEventListener(o, d)) : d.handleEvent = a : d !== void 0 && (h.delete(o), l.removeEventListener(o, d));
+  n === void 0 || t === s ? t == null && e in HTMLElement.prototype ? r.removeAttribute(e) : r[e] = t : ((o, l, a) => {
+    let h = Ee.get(o);
+    h === void 0 && Ee.set(o, h = /* @__PURE__ */ new Map());
+    let d = h.get(l);
+    a !== void 0 ? d === void 0 ? (h.set(l, d = { handleEvent: a }), o.addEventListener(l, d)) : d.handleEvent = a : d !== void 0 && (h.delete(l), o.removeEventListener(l, d));
   })(r, n, t);
 };
 function Xe(r = window.React, e, t, s, i) {
-  let n, l, o;
+  let n, o, l;
   if (e === void 0) {
     const m = r;
-    ({ tagName: l, elementClass: o, events: s, displayName: i } = m), n = m.react;
+    ({ tagName: o, elementClass: l, events: s, displayName: i } = m), n = m.react;
   } else
-    n = r, o = t, l = e;
+    n = r, l = t, o = e;
   const a = n.Component, h = n.createElement, d = new Set(Object.keys(s ?? {}));
   class c extends a {
     constructor() {
@@ -145,11 +169,11 @@ function Xe(r = window.React, e, t, s, i) {
       }), this.i = {};
       const x = { ref: this.u };
       for (const [y, b] of Object.entries(f))
-        Ye.has(y) ? x[y === "className" ? "class" : y] = b : d.has(y) || y in o.prototype ? this.i[y] = b : x[y] = b;
-      return h(l, x);
+        Ye.has(y) ? x[y === "className" ? "class" : y] = b : d.has(y) || y in l.prototype ? this.i[y] = b : x[y] = b;
+      return h(o, x);
     }
   }
-  c.displayName = i ?? o.name;
+  c.displayName = i ?? l.name;
   const u = n.forwardRef((m, p) => h(c, { ...m, _$Gl: p }, m == null ? void 0 : m.children));
   return u.displayName = c.displayName, u;
 }
@@ -188,16 +212,16 @@ const H = {
   // event sent by phaser to open daily leaderboard
 }, G = new Phaser.Events.EventEmitter(), Y = 11102230246251565e-32, L = 134217729, Ue = (3 + 8 * Y) * Y;
 function ge(r, e, t, s, i) {
-  let n, l, o, a, h = e[0], d = s[0], c = 0, u = 0;
+  let n, o, l, a, h = e[0], d = s[0], c = 0, u = 0;
   d > h == d > -h ? (n = h, h = e[++c]) : (n = d, d = s[++u]);
   let m = 0;
   if (c < r && u < t)
-    for (d > h == d > -h ? (l = h + n, o = n - (l - h), h = e[++c]) : (l = d + n, o = n - (l - d), d = s[++u]), n = l, o !== 0 && (i[m++] = o); c < r && u < t; )
-      d > h == d > -h ? (l = n + h, a = l - n, o = n - (l - a) + (h - a), h = e[++c]) : (l = n + d, a = l - n, o = n - (l - a) + (d - a), d = s[++u]), n = l, o !== 0 && (i[m++] = o);
+    for (d > h == d > -h ? (o = h + n, l = n - (o - h), h = e[++c]) : (o = d + n, l = n - (o - d), d = s[++u]), n = o, l !== 0 && (i[m++] = l); c < r && u < t; )
+      d > h == d > -h ? (o = n + h, a = o - n, l = n - (o - a) + (h - a), h = e[++c]) : (o = n + d, a = o - n, l = n - (o - a) + (d - a), d = s[++u]), n = o, l !== 0 && (i[m++] = l);
   for (; c < r; )
-    l = n + h, a = l - n, o = n - (l - a) + (h - a), h = e[++c], n = l, o !== 0 && (i[m++] = o);
+    o = n + h, a = o - n, l = n - (o - a) + (h - a), h = e[++c], n = o, l !== 0 && (i[m++] = l);
   for (; u < t; )
-    l = n + d, a = l - n, o = n - (l - a) + (d - a), d = s[++u], n = l, o !== 0 && (i[m++] = o);
+    o = n + d, a = o - n, l = n - (o - a) + (d - a), d = s[++u], n = o, l !== 0 && (i[m++] = l);
   return (n !== 0 || m === 0) && (i[m++] = n), m;
 }
 function $e(r, e) {
@@ -210,32 +234,32 @@ function oe(r) {
   return new Float64Array(r);
 }
 const Je = (3 + 16 * Y) * Y, qe = (2 + 12 * Y) * Y, Ze = (9 + 64 * Y) * Y * Y, Z = oe(4), Se = oe(8), _e = oe(12), Fe = oe(16), K = oe(4);
-function Qe(r, e, t, s, i, n, l) {
-  let o, a, h, d, c, u, m, p, f, x, y, b, C, S, E, D, k, I;
+function Qe(r, e, t, s, i, n, o) {
+  let l, a, h, d, c, u, m, p, f, x, y, b, C, S, E, D, k, I;
   const g = r - i, v = t - i, w = e - n, _ = s - n;
   S = g * _, u = L * g, m = u - (u - g), p = g - m, u = L * _, f = u - (u - _), x = _ - f, E = p * x - (S - m * f - p * f - m * x), D = w * v, u = L * w, m = u - (u - w), p = w - m, u = L * v, f = u - (u - v), x = v - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, Z[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, Z[1] = C - (y + c) + (c - D), I = b + y, c = I - b, Z[2] = b - (I - c) + (y - c), Z[3] = I;
-  let O = $e(4, Z), A = qe * l;
-  if (O >= A || -O >= A || (c = r - g, o = r - (g + c) + (c - i), c = t - v, h = t - (v + c) + (c - i), c = e - w, a = e - (w + c) + (c - n), c = s - _, d = s - (_ + c) + (c - n), o === 0 && a === 0 && h === 0 && d === 0) || (A = Ze * l + Ue * Math.abs(O), O += g * d + _ * o - (w * h + v * a), O >= A || -O >= A))
+  let O = $e(4, Z), A = qe * o;
+  if (O >= A || -O >= A || (c = r - g, l = r - (g + c) + (c - i), c = t - v, h = t - (v + c) + (c - i), c = e - w, a = e - (w + c) + (c - n), c = s - _, d = s - (_ + c) + (c - n), l === 0 && a === 0 && h === 0 && d === 0) || (A = Ze * o + Ue * Math.abs(O), O += g * d + _ * l - (w * h + v * a), O >= A || -O >= A))
     return O;
-  S = o * _, u = L * o, m = u - (u - o), p = o - m, u = L * _, f = u - (u - _), x = _ - f, E = p * x - (S - m * f - p * f - m * x), D = a * v, u = L * a, m = u - (u - a), p = a - m, u = L * v, f = u - (u - v), x = v - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, K[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, K[1] = C - (y + c) + (c - D), I = b + y, c = I - b, K[2] = b - (I - c) + (y - c), K[3] = I;
-  const B = ge(4, Z, 4, K, Se);
+  S = l * _, u = L * l, m = u - (u - l), p = l - m, u = L * _, f = u - (u - _), x = _ - f, E = p * x - (S - m * f - p * f - m * x), D = a * v, u = L * a, m = u - (u - a), p = a - m, u = L * v, f = u - (u - v), x = v - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, K[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, K[1] = C - (y + c) + (c - D), I = b + y, c = I - b, K[2] = b - (I - c) + (y - c), K[3] = I;
+  const R = ge(4, Z, 4, K, Se);
   S = g * d, u = L * g, m = u - (u - g), p = g - m, u = L * d, f = u - (u - d), x = d - f, E = p * x - (S - m * f - p * f - m * x), D = w * h, u = L * w, m = u - (u - w), p = w - m, u = L * h, f = u - (u - h), x = h - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, K[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, K[1] = C - (y + c) + (c - D), I = b + y, c = I - b, K[2] = b - (I - c) + (y - c), K[3] = I;
-  const F = ge(B, Se, 4, K, _e);
-  S = o * d, u = L * o, m = u - (u - o), p = o - m, u = L * d, f = u - (u - d), x = d - f, E = p * x - (S - m * f - p * f - m * x), D = a * h, u = L * a, m = u - (u - a), p = a - m, u = L * h, f = u - (u - h), x = h - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, K[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, K[1] = C - (y + c) + (c - D), I = b + y, c = I - b, K[2] = b - (I - c) + (y - c), K[3] = I;
+  const F = ge(R, Se, 4, K, _e);
+  S = l * d, u = L * l, m = u - (u - l), p = l - m, u = L * d, f = u - (u - d), x = d - f, E = p * x - (S - m * f - p * f - m * x), D = a * h, u = L * a, m = u - (u - a), p = a - m, u = L * h, f = u - (u - h), x = h - f, k = p * x - (D - m * f - p * f - m * x), y = E - k, c = E - y, K[0] = E - (y + c) + (c - k), b = S + y, c = b - S, C = S - (b - c) + (y - c), y = C - D, c = C - y, K[1] = C - (y + c) + (c - D), I = b + y, c = I - b, K[2] = b - (I - c) + (y - c), K[3] = I;
   const T = ge(F, _e, 4, K, Fe);
   return Fe[T - 1];
 }
 function re(r, e, t, s, i, n) {
-  const l = (e - n) * (t - i), o = (r - i) * (s - n), a = l - o, h = Math.abs(l + o);
+  const o = (e - n) * (t - i), l = (r - i) * (s - n), a = o - l, h = Math.abs(o + l);
   return Math.abs(a) >= Je * h ? a : -Qe(r, e, t, s, i, n, h);
 }
 const De = Math.pow(2, -52), he = new Uint32Array(512);
 class ue {
   static from(e, t = nt, s = ot) {
     const i = e.length, n = new Float64Array(i * 2);
-    for (let l = 0; l < i; l++) {
-      const o = e[l];
-      n[2 * l] = t(o), n[2 * l + 1] = s(o);
+    for (let o = 0; o < i; o++) {
+      const l = e[o];
+      n[2 * o] = t(l), n[2 * o + 1] = s(l);
     }
     return new ue(n);
   }
@@ -248,27 +272,27 @@ class ue {
     this._triangles = new Uint32Array(s * 3), this._halfedges = new Int32Array(s * 3), this._hashSize = Math.ceil(Math.sqrt(t)), this._hullPrev = new Uint32Array(t), this._hullNext = new Uint32Array(t), this._hullTri = new Uint32Array(t), this._hullHash = new Int32Array(this._hashSize), this._ids = new Uint32Array(t), this._dists = new Float64Array(t), this.update();
   }
   update() {
-    const { coords: e, _hullPrev: t, _hullNext: s, _hullTri: i, _hullHash: n } = this, l = e.length >> 1;
-    let o = 1 / 0, a = 1 / 0, h = -1 / 0, d = -1 / 0;
-    for (let g = 0; g < l; g++) {
+    const { coords: e, _hullPrev: t, _hullNext: s, _hullTri: i, _hullHash: n } = this, o = e.length >> 1;
+    let l = 1 / 0, a = 1 / 0, h = -1 / 0, d = -1 / 0;
+    for (let g = 0; g < o; g++) {
       const v = e[2 * g], w = e[2 * g + 1];
-      v < o && (o = v), w < a && (a = w), v > h && (h = v), w > d && (d = w), this._ids[g] = g;
+      v < l && (l = v), w < a && (a = w), v > h && (h = v), w > d && (d = w), this._ids[g] = g;
     }
-    const c = (o + h) / 2, u = (a + d) / 2;
+    const c = (l + h) / 2, u = (a + d) / 2;
     let m, p, f;
-    for (let g = 0, v = 1 / 0; g < l; g++) {
+    for (let g = 0, v = 1 / 0; g < o; g++) {
       const w = be(c, u, e[2 * g], e[2 * g + 1]);
       w < v && (m = g, v = w);
     }
     const x = e[2 * m], y = e[2 * m + 1];
-    for (let g = 0, v = 1 / 0; g < l; g++) {
+    for (let g = 0, v = 1 / 0; g < o; g++) {
       if (g === m)
         continue;
       const w = be(x, y, e[2 * g], e[2 * g + 1]);
       w < v && w > 0 && (p = g, v = w);
     }
     let b = e[2 * p], C = e[2 * p + 1], S = 1 / 0;
-    for (let g = 0; g < l; g++) {
+    for (let g = 0; g < o; g++) {
       if (g === m || g === p)
         continue;
       const v = it(x, y, b, C, e[2 * g], e[2 * g + 1]);
@@ -276,12 +300,12 @@ class ue {
     }
     let E = e[2 * f], D = e[2 * f + 1];
     if (S === 1 / 0) {
-      for (let w = 0; w < l; w++)
+      for (let w = 0; w < o; w++)
         this._dists[w] = e[2 * w] - e[0] || e[2 * w + 1] - e[1];
-      ee(this._ids, this._dists, 0, l - 1);
-      const g = new Uint32Array(l);
+      ee(this._ids, this._dists, 0, o - 1);
+      const g = new Uint32Array(o);
       let v = 0;
-      for (let w = 0, _ = -1 / 0; w < l; w++) {
+      for (let w = 0, _ = -1 / 0; w < o; w++) {
         const O = this._ids[w], A = this._dists[O];
         A > _ && (g[v++] = O, _ = A);
       }
@@ -294,22 +318,22 @@ class ue {
     }
     const k = st(x, y, b, C, E, D);
     this._cx = k.x, this._cy = k.y;
-    for (let g = 0; g < l; g++)
+    for (let g = 0; g < o; g++)
       this._dists[g] = be(e[2 * g], e[2 * g + 1], k.x, k.y);
-    ee(this._ids, this._dists, 0, l - 1), this._hullStart = m;
+    ee(this._ids, this._dists, 0, o - 1), this._hullStart = m;
     let I = 3;
     s[m] = t[f] = p, s[p] = t[m] = f, s[f] = t[p] = m, i[m] = 0, i[p] = 1, i[f] = 2, n.fill(-1), n[this._hashKey(x, y)] = m, n[this._hashKey(b, C)] = p, n[this._hashKey(E, D)] = f, this.trianglesLen = 0, this._addTriangle(m, p, f, -1, -1, -1);
     for (let g = 0, v, w; g < this._ids.length; g++) {
       const _ = this._ids[g], O = e[2 * _], A = e[2 * _ + 1];
       if (g > 0 && Math.abs(O - v) <= De && Math.abs(A - w) <= De || (v = O, w = A, _ === m || _ === p || _ === f))
         continue;
-      let B = 0;
-      for (let W = 0, $ = this._hashKey(O, A); W < this._hashSize && (B = n[($ + W) % this._hashSize], !(B !== -1 && B !== s[B])); W++)
+      let R = 0;
+      for (let W = 0, $ = this._hashKey(O, A); W < this._hashSize && (R = n[($ + W) % this._hashSize], !(R !== -1 && R !== s[R])); W++)
         ;
-      B = t[B];
-      let F = B, T;
+      R = t[R];
+      let F = R, T;
       for (; T = s[F], re(O, A, e[2 * F], e[2 * F + 1], e[2 * T], e[2 * T + 1]) >= 0; )
-        if (F = T, F === B) {
+        if (F = T, F === R) {
           F = -1;
           break;
         }
@@ -320,7 +344,7 @@ class ue {
       let M = s[F];
       for (; T = s[M], re(O, A, e[2 * M], e[2 * M + 1], e[2 * T], e[2 * T + 1]) < 0; )
         N = this._addTriangle(M, _, T, i[_], -1, i[M]), i[_] = this._legalize(N + 2), s[M] = M, I--, M = T;
-      if (F === B)
+      if (F === R)
         for (; T = t[F], re(O, A, e[2 * T], e[2 * T + 1], e[2 * F], e[2 * F + 1]) < 0; )
           N = this._addTriangle(T, _, F, -1, i[F], i[T]), this._legalize(N + 2), i[T] = N, s[F] = F, I--, F = T;
       this._hullStart = t[_] = F, s[F] = t[M] = _, s[_] = M, n[this._hashKey(O, A)] = _, n[this._hashKey(e[2 * F], e[2 * F + 1])] = F;
@@ -335,16 +359,16 @@ class ue {
   }
   _legalize(e) {
     const { _triangles: t, _halfedges: s, coords: i } = this;
-    let n = 0, l = 0;
+    let n = 0, o = 0;
     for (; ; ) {
-      const o = s[e], a = e - e % 3;
-      if (l = a + (e + 2) % 3, o === -1) {
+      const l = s[e], a = e - e % 3;
+      if (o = a + (e + 2) % 3, l === -1) {
         if (n === 0)
           break;
         e = he[--n];
         continue;
       }
-      const h = o - o % 3, d = a + (e + 1) % 3, c = h + (o + 2) % 3, u = t[l], m = t[e], p = t[d], f = t[c];
+      const h = l - l % 3, d = a + (e + 1) % 3, c = h + (l + 2) % 3, u = t[o], m = t[e], p = t[d], f = t[c];
       if (tt(
         i[2 * u],
         i[2 * u + 1],
@@ -355,7 +379,7 @@ class ue {
         i[2 * f],
         i[2 * f + 1]
       )) {
-        t[e] = f, t[o] = u;
+        t[e] = f, t[l] = u;
         const y = s[c];
         if (y === -1) {
           let C = this._hullStart;
@@ -367,8 +391,8 @@ class ue {
             C = this._hullPrev[C];
           } while (C !== this._hullStart);
         }
-        this._link(e, y), this._link(o, s[l]), this._link(l, c);
-        const b = h + (o + 1) % 3;
+        this._link(e, y), this._link(l, s[o]), this._link(o, c);
+        const b = h + (l + 1) % 3;
         n < he.length && (he[n++] = b);
       } else {
         if (n === 0)
@@ -376,15 +400,15 @@ class ue {
         e = he[--n];
       }
     }
-    return l;
+    return o;
   }
   _link(e, t) {
     this._halfedges[e] = t, t !== -1 && (this._halfedges[t] = e);
   }
   // add a new triangle given vertex indices and adjacent half-edge ids
-  _addTriangle(e, t, s, i, n, l) {
-    const o = this.trianglesLen;
-    return this._triangles[o] = e, this._triangles[o + 1] = t, this._triangles[o + 2] = s, this._link(o, i), this._link(o + 1, n), this._link(o + 2, l), this.trianglesLen += 3, o;
+  _addTriangle(e, t, s, i, n, o) {
+    const l = this.trianglesLen;
+    return this._triangles[l] = e, this._triangles[l + 1] = t, this._triangles[l + 2] = s, this._link(l, i), this._link(l + 1, n), this._link(l + 2, o), this.trianglesLen += 3, l;
   }
 }
 function et(r, e) {
@@ -395,44 +419,44 @@ function be(r, e, t, s) {
   const i = r - t, n = e - s;
   return i * i + n * n;
 }
-function tt(r, e, t, s, i, n, l, o) {
-  const a = r - l, h = e - o, d = t - l, c = s - o, u = i - l, m = n - o, p = a * a + h * h, f = d * d + c * c, x = u * u + m * m;
+function tt(r, e, t, s, i, n, o, l) {
+  const a = r - o, h = e - l, d = t - o, c = s - l, u = i - o, m = n - l, p = a * a + h * h, f = d * d + c * c, x = u * u + m * m;
   return a * (c * x - f * m) - h * (d * x - f * u) + p * (d * m - c * u) < 0;
 }
 function it(r, e, t, s, i, n) {
-  const l = t - r, o = s - e, a = i - r, h = n - e, d = l * l + o * o, c = a * a + h * h, u = 0.5 / (l * h - o * a), m = (h * d - o * c) * u, p = (l * c - a * d) * u;
+  const o = t - r, l = s - e, a = i - r, h = n - e, d = o * o + l * l, c = a * a + h * h, u = 0.5 / (o * h - l * a), m = (h * d - l * c) * u, p = (o * c - a * d) * u;
   return m * m + p * p;
 }
 function st(r, e, t, s, i, n) {
-  const l = t - r, o = s - e, a = i - r, h = n - e, d = l * l + o * o, c = a * a + h * h, u = 0.5 / (l * h - o * a), m = r + (h * d - o * c) * u, p = e + (l * c - a * d) * u;
+  const o = t - r, l = s - e, a = i - r, h = n - e, d = o * o + l * l, c = a * a + h * h, u = 0.5 / (o * h - l * a), m = r + (h * d - l * c) * u, p = e + (o * c - a * d) * u;
   return { x: m, y: p };
 }
 function ee(r, e, t, s) {
   if (s - t <= 20)
     for (let i = t + 1; i <= s; i++) {
-      const n = r[i], l = e[n];
-      let o = i - 1;
-      for (; o >= t && e[r[o]] > l; )
-        r[o + 1] = r[o--];
-      r[o + 1] = n;
+      const n = r[i], o = e[n];
+      let l = i - 1;
+      for (; l >= t && e[r[l]] > o; )
+        r[l + 1] = r[l--];
+      r[l + 1] = n;
     }
   else {
     const i = t + s >> 1;
-    let n = t + 1, l = s;
+    let n = t + 1, o = s;
     ie(r, i, n), e[r[t]] > e[r[s]] && ie(r, t, s), e[r[n]] > e[r[s]] && ie(r, n, s), e[r[t]] > e[r[n]] && ie(r, t, n);
-    const o = r[n], a = e[o];
+    const l = r[n], a = e[l];
     for (; ; ) {
       do
         n++;
       while (e[r[n]] < a);
       do
-        l--;
-      while (e[r[l]] > a);
-      if (l < n)
+        o--;
+      while (e[r[o]] > a);
+      if (o < n)
         break;
-      ie(r, n, l);
+      ie(r, n, o);
     }
-    r[t + 1] = r[l], r[l] = o, s - n + 1 >= l - t ? (ee(r, e, n, s), ee(r, e, t, l - 1)) : (ee(r, e, t, l - 1), ee(r, e, n, s));
+    r[t + 1] = r[o], r[o] = l, s - n + 1 >= o - t ? (ee(r, e, n, s), ee(r, e, t, o - 1)) : (ee(r, e, t, o - 1), ee(r, e, n, s));
   }
 }
 function ie(r, e, t) {
@@ -502,24 +526,24 @@ class lt {
   }
   _init() {
     const { delaunay: { points: e, hull: t, triangles: s }, vectors: i } = this;
-    let n, l;
-    const o = this.circumcenters = this._circumcenters.subarray(0, s.length / 3 * 2);
+    let n, o;
+    const l = this.circumcenters = this._circumcenters.subarray(0, s.length / 3 * 2);
     for (let f = 0, x = 0, y = s.length, b, C; f < y; f += 3, x += 2) {
-      const S = s[f] * 2, E = s[f + 1] * 2, D = s[f + 2] * 2, k = e[S], I = e[S + 1], g = e[E], v = e[E + 1], w = e[D], _ = e[D + 1], O = g - k, A = v - I, B = w - k, F = _ - I, T = (O * F - A * B) * 2;
+      const S = s[f] * 2, E = s[f + 1] * 2, D = s[f + 2] * 2, k = e[S], I = e[S + 1], g = e[E], v = e[E + 1], w = e[D], _ = e[D + 1], O = g - k, A = v - I, R = w - k, F = _ - I, T = (O * F - A * R) * 2;
       if (Math.abs(T) < 1e-9) {
         if (n === void 0) {
-          n = l = 0;
+          n = o = 0;
           for (const M of t)
-            n += e[M * 2], l += e[M * 2 + 1];
-          n /= t.length, l /= t.length;
+            n += e[M * 2], o += e[M * 2 + 1];
+          n /= t.length, o /= t.length;
         }
-        const N = 1e9 * Math.sign((n - k) * F - (l - I) * B);
-        b = (k + w) / 2 - N * F, C = (I + _) / 2 + N * B;
+        const N = 1e9 * Math.sign((n - k) * F - (o - I) * R);
+        b = (k + w) / 2 - N * F, C = (I + _) / 2 + N * R;
       } else {
-        const N = 1 / T, M = O * O + A * A, W = B * B + F * F;
-        b = k + (F * M - A * W) * N, C = I + (O * W - B * M) * N;
+        const N = 1 / T, M = O * O + A * A, W = R * R + F * F;
+        b = k + (F * M - A * W) * N, C = I + (O * W - R * M) * N;
       }
-      o[x] = b, o[x + 1] = C;
+      l[x] = b, l[x + 1] = C;
     }
     let a = t[t.length - 1], h, d = a * 4, c, u = e[2 * a], m, p = e[2 * a + 1];
     i.fill(0);
@@ -527,20 +551,20 @@ class lt {
       a = t[f], h = d, c = u, m = p, d = a * 4, u = e[2 * a], p = e[2 * a + 1], i[h + 2] = i[d] = m - p, i[h + 3] = i[d + 1] = u - c;
   }
   render(e) {
-    const t = e == null ? e = new q() : void 0, { delaunay: { halfedges: s, inedges: i, hull: n }, circumcenters: l, vectors: o } = this;
+    const t = e == null ? e = new q() : void 0, { delaunay: { halfedges: s, inedges: i, hull: n }, circumcenters: o, vectors: l } = this;
     if (n.length <= 1)
       return null;
     for (let d = 0, c = s.length; d < c; ++d) {
       const u = s[d];
       if (u < d)
         continue;
-      const m = Math.floor(d / 3) * 2, p = Math.floor(u / 3) * 2, f = l[m], x = l[m + 1], y = l[p], b = l[p + 1];
+      const m = Math.floor(d / 3) * 2, p = Math.floor(u / 3) * 2, f = o[m], x = o[m + 1], y = o[p], b = o[p + 1];
       this._renderSegment(f, x, y, b, e);
     }
     let a, h = n[n.length - 1];
     for (let d = 0; d < n.length; ++d) {
       a = h, h = n[d];
-      const c = Math.floor(i[h] / 3) * 2, u = l[c], m = l[c + 1], p = a * 4, f = this._project(u, m, o[p + 2], o[p + 3]);
+      const c = Math.floor(i[h] / 3) * 2, u = o[c], m = o[c + 1], p = a * 4, f = this._project(u, m, l[p + 2], l[p + 3]);
       f && this._renderSegment(u, m, f[0], f[1], e);
     }
     return t && t.value();
@@ -557,8 +581,8 @@ class lt {
     let n = i.length;
     for (; i[0] === i[n - 2] && i[1] === i[n - 1] && n > 1; )
       n -= 2;
-    for (let l = 2; l < n; l += 2)
-      (i[l] !== i[l - 2] || i[l + 1] !== i[l - 1]) && t.lineTo(i[l], i[l + 1]);
+    for (let o = 2; o < n; o += 2)
+      (i[o] !== i[o - 2] || i[o + 1] !== i[o - 1]) && t.lineTo(i[o], i[o + 1]);
     return t.closePath(), s && s.value();
   }
   *cellPolygons() {
@@ -573,9 +597,9 @@ class lt {
     return this.renderCell(e, t), t.value();
   }
   _renderSegment(e, t, s, i, n) {
-    let l;
-    const o = this._regioncode(e, t), a = this._regioncode(s, i);
-    o === 0 && a === 0 ? (n.moveTo(e, t), n.lineTo(s, i)) : (l = this._clipSegment(e, t, s, i, o, a)) && (n.moveTo(l[0], l[1]), n.lineTo(l[2], l[3]));
+    let o;
+    const l = this._regioncode(e, t), a = this._regioncode(s, i);
+    l === 0 && a === 0 ? (n.moveTo(e, t), n.lineTo(s, i)) : (o = this._clipSegment(e, t, s, i, l, a)) && (n.moveTo(o[0], o[1]), n.lineTo(o[2], o[3]));
   }
   contains(e, t, s) {
     return t = +t, t !== t || (s = +s, s !== s) ? !1 : this.delaunay._step(e, t, s) === e;
@@ -587,9 +611,9 @@ class lt {
         const i = this._clip(s);
         if (i) {
           e:
-            for (let n = 0, l = t.length; n < l; n += 2)
-              for (let o = 0, a = i.length; o < a; o += 2)
-                if (t[n] === i[o] && t[n + 1] === i[o + 1] && t[(n + 2) % l] === i[(o + a - 2) % a] && t[(n + 3) % l] === i[(o + a - 1) % a]) {
+            for (let n = 0, o = t.length; n < o; n += 2)
+              for (let l = 0, a = i.length; l < a; l += 2)
+                if (t[n] === i[l] && t[n + 1] === i[l + 1] && t[(n + 2) % o] === i[(l + a - 2) % a] && t[(n + 3) % o] === i[(l + a - 1) % a]) {
                   yield s;
                   break e;
                 }
@@ -597,18 +621,18 @@ class lt {
       }
   }
   _cell(e) {
-    const { circumcenters: t, delaunay: { inedges: s, halfedges: i, triangles: n } } = this, l = s[e];
-    if (l === -1)
+    const { circumcenters: t, delaunay: { inedges: s, halfedges: i, triangles: n } } = this, o = s[e];
+    if (o === -1)
       return null;
-    const o = [];
-    let a = l;
+    const l = [];
+    let a = o;
     do {
       const h = Math.floor(a / 3);
-      if (o.push(t[h * 2], t[h * 2 + 1]), a = a % 3 === 2 ? a - 2 : a + 1, n[a] !== e)
+      if (l.push(t[h * 2], t[h * 2 + 1]), a = a % 3 === 2 ? a - 2 : a + 1, n[a] !== e)
         break;
       a = i[a];
-    } while (a !== l && a !== -1);
-    return o;
+    } while (a !== o && a !== -1);
+    return l;
   }
   _clip(e) {
     if (e === 0 && this.delaunay.hull.length === 1)
@@ -621,18 +645,18 @@ class lt {
   }
   _clipFinite(e, t) {
     const s = t.length;
-    let i = null, n, l, o = t[s - 2], a = t[s - 1], h, d = this._regioncode(o, a), c, u = 0;
+    let i = null, n, o, l = t[s - 2], a = t[s - 1], h, d = this._regioncode(l, a), c, u = 0;
     for (let m = 0; m < s; m += 2)
-      if (n = o, l = a, o = t[m], a = t[m + 1], h = d, d = this._regioncode(o, a), h === 0 && d === 0)
-        c = u, u = 0, i ? i.push(o, a) : i = [o, a];
+      if (n = l, o = a, l = t[m], a = t[m + 1], h = d, d = this._regioncode(l, a), h === 0 && d === 0)
+        c = u, u = 0, i ? i.push(l, a) : i = [l, a];
       else {
         let p, f, x, y, b;
         if (h === 0) {
-          if ((p = this._clipSegment(n, l, o, a, h, d)) === null)
+          if ((p = this._clipSegment(n, o, l, a, h, d)) === null)
             continue;
           [f, x, y, b] = p;
         } else {
-          if ((p = this._clipSegment(o, a, n, l, d, h)) === null)
+          if ((p = this._clipSegment(l, a, n, o, d, h)) === null)
             continue;
           [y, b, f, x] = p, c = u, u = this._edgecode(f, x), c && u && this._edge(e, c, u, i, i.length), i ? i.push(f, x) : i = [f, x];
         }
@@ -644,80 +668,80 @@ class lt {
       return [this.xmax, this.ymin, this.xmax, this.ymax, this.xmin, this.ymax, this.xmin, this.ymin];
     return i;
   }
-  _clipSegment(e, t, s, i, n, l) {
-    const o = n < l;
-    for (o && ([e, t, s, i, n, l] = [s, i, e, t, l, n]); ; ) {
-      if (n === 0 && l === 0)
-        return o ? [s, i, e, t] : [e, t, s, i];
-      if (n & l)
+  _clipSegment(e, t, s, i, n, o) {
+    const l = n < o;
+    for (l && ([e, t, s, i, n, o] = [s, i, e, t, o, n]); ; ) {
+      if (n === 0 && o === 0)
+        return l ? [s, i, e, t] : [e, t, s, i];
+      if (n & o)
         return null;
-      let a, h, d = n || l;
-      d & 8 ? (a = e + (s - e) * (this.ymax - t) / (i - t), h = this.ymax) : d & 4 ? (a = e + (s - e) * (this.ymin - t) / (i - t), h = this.ymin) : d & 2 ? (h = t + (i - t) * (this.xmax - e) / (s - e), a = this.xmax) : (h = t + (i - t) * (this.xmin - e) / (s - e), a = this.xmin), n ? (e = a, t = h, n = this._regioncode(e, t)) : (s = a, i = h, l = this._regioncode(s, i));
+      let a, h, d = n || o;
+      d & 8 ? (a = e + (s - e) * (this.ymax - t) / (i - t), h = this.ymax) : d & 4 ? (a = e + (s - e) * (this.ymin - t) / (i - t), h = this.ymin) : d & 2 ? (h = t + (i - t) * (this.xmax - e) / (s - e), a = this.xmax) : (h = t + (i - t) * (this.xmin - e) / (s - e), a = this.xmin), n ? (e = a, t = h, n = this._regioncode(e, t)) : (s = a, i = h, o = this._regioncode(s, i));
     }
   }
-  _clipInfinite(e, t, s, i, n, l) {
-    let o = Array.from(t), a;
-    if ((a = this._project(o[0], o[1], s, i)) && o.unshift(a[0], a[1]), (a = this._project(o[o.length - 2], o[o.length - 1], n, l)) && o.push(a[0], a[1]), o = this._clipFinite(e, o))
-      for (let h = 0, d = o.length, c, u = this._edgecode(o[d - 2], o[d - 1]); h < d; h += 2)
-        c = u, u = this._edgecode(o[h], o[h + 1]), c && u && (h = this._edge(e, c, u, o, h), d = o.length);
+  _clipInfinite(e, t, s, i, n, o) {
+    let l = Array.from(t), a;
+    if ((a = this._project(l[0], l[1], s, i)) && l.unshift(a[0], a[1]), (a = this._project(l[l.length - 2], l[l.length - 1], n, o)) && l.push(a[0], a[1]), l = this._clipFinite(e, l))
+      for (let h = 0, d = l.length, c, u = this._edgecode(l[d - 2], l[d - 1]); h < d; h += 2)
+        c = u, u = this._edgecode(l[h], l[h + 1]), c && u && (h = this._edge(e, c, u, l, h), d = l.length);
     else
-      this.contains(e, (this.xmin + this.xmax) / 2, (this.ymin + this.ymax) / 2) && (o = [this.xmin, this.ymin, this.xmax, this.ymin, this.xmax, this.ymax, this.xmin, this.ymax]);
-    return o;
+      this.contains(e, (this.xmin + this.xmax) / 2, (this.ymin + this.ymax) / 2) && (l = [this.xmin, this.ymin, this.xmax, this.ymin, this.xmax, this.ymax, this.xmin, this.ymax]);
+    return l;
   }
   _edge(e, t, s, i, n) {
     for (; t !== s; ) {
-      let l, o;
+      let o, l;
       switch (t) {
         case 5:
           t = 4;
           continue;
         case 4:
-          t = 6, l = this.xmax, o = this.ymin;
+          t = 6, o = this.xmax, l = this.ymin;
           break;
         case 6:
           t = 2;
           continue;
         case 2:
-          t = 10, l = this.xmax, o = this.ymax;
+          t = 10, o = this.xmax, l = this.ymax;
           break;
         case 10:
           t = 8;
           continue;
         case 8:
-          t = 9, l = this.xmin, o = this.ymax;
+          t = 9, o = this.xmin, l = this.ymax;
           break;
         case 9:
           t = 1;
           continue;
         case 1:
-          t = 5, l = this.xmin, o = this.ymin;
+          t = 5, o = this.xmin, l = this.ymin;
           break;
       }
-      (i[n] !== l || i[n + 1] !== o) && this.contains(e, l, o) && (i.splice(n, 0, l, o), n += 2);
+      (i[n] !== o || i[n + 1] !== l) && this.contains(e, o, l) && (i.splice(n, 0, o, l), n += 2);
     }
     return n;
   }
   _project(e, t, s, i) {
-    let n = 1 / 0, l, o, a;
+    let n = 1 / 0, o, l, a;
     if (i < 0) {
       if (t <= this.ymin)
         return null;
-      (l = (this.ymin - t) / i) < n && (a = this.ymin, o = e + (n = l) * s);
+      (o = (this.ymin - t) / i) < n && (a = this.ymin, l = e + (n = o) * s);
     } else if (i > 0) {
       if (t >= this.ymax)
         return null;
-      (l = (this.ymax - t) / i) < n && (a = this.ymax, o = e + (n = l) * s);
+      (o = (this.ymax - t) / i) < n && (a = this.ymax, l = e + (n = o) * s);
     }
     if (s > 0) {
       if (e >= this.xmax)
         return null;
-      (l = (this.xmax - e) / s) < n && (o = this.xmax, a = t + (n = l) * i);
+      (o = (this.xmax - e) / s) < n && (l = this.xmax, a = t + (n = o) * i);
     } else if (s < 0) {
       if (e <= this.xmin)
         return null;
-      (l = (this.xmin - e) / s) < n && (o = this.xmin, a = t + (n = l) * i);
+      (o = (this.xmin - e) / s) < n && (l = this.xmin, a = t + (n = o) * i);
     }
-    return [o, a];
+    return [l, a];
   }
   _edgecode(e, t) {
     return (e === this.xmin ? 1 : e === this.xmax ? 2 : 0) | (t === this.ymin ? 4 : t === this.ymax ? 8 : 0);
@@ -746,8 +770,8 @@ function ht(r) {
 function ct(r) {
   const { triangles: e, coords: t } = r;
   for (let s = 0; s < e.length; s += 3) {
-    const i = 2 * e[s], n = 2 * e[s + 1], l = 2 * e[s + 2];
-    if ((t[l] - t[i]) * (t[n + 1] - t[i + 1]) - (t[n] - t[i]) * (t[l + 1] - t[i + 1]) > 1e-10)
+    const i = 2 * e[s], n = 2 * e[s + 1], o = 2 * e[s + 2];
+    if ((t[o] - t[i]) * (t[n + 1] - t[i + 1]) - (t[n] - t[i]) * (t[o + 1] - t[i + 1]) > 1e-10)
       return !1;
   }
   return !0;
@@ -777,23 +801,23 @@ class we {
       this._delaunator = new ue(t);
     } else
       delete this.collinear;
-    const s = this.halfedges = this._delaunator.halfedges, i = this.hull = this._delaunator.hull, n = this.triangles = this._delaunator.triangles, l = this.inedges.fill(-1), o = this._hullIndex.fill(-1);
+    const s = this.halfedges = this._delaunator.halfedges, i = this.hull = this._delaunator.hull, n = this.triangles = this._delaunator.triangles, o = this.inedges.fill(-1), l = this._hullIndex.fill(-1);
     for (let a = 0, h = s.length; a < h; ++a) {
       const d = n[a % 3 === 2 ? a - 2 : a + 1];
-      (s[a] === -1 || l[d] === -1) && (l[d] = a);
+      (s[a] === -1 || o[d] === -1) && (o[d] = a);
     }
     for (let a = 0, h = i.length; a < h; ++a)
-      o[i[a]] = a;
-    i.length <= 2 && i.length > 0 && (this.triangles = new Int32Array(3).fill(-1), this.halfedges = new Int32Array(3).fill(-1), this.triangles[0] = i[0], l[i[0]] = 1, i.length === 2 && (l[i[1]] = 0, this.triangles[1] = i[1], this.triangles[2] = i[1]));
+      l[i[a]] = a;
+    i.length <= 2 && i.length > 0 && (this.triangles = new Int32Array(3).fill(-1), this.halfedges = new Int32Array(3).fill(-1), this.triangles[0] = i[0], o[i[0]] = 1, i.length === 2 && (o[i[1]] = 0, this.triangles[1] = i[1], this.triangles[2] = i[1]));
   }
   voronoi(e) {
     return new lt(this, e);
   }
   *neighbors(e) {
-    const { inedges: t, hull: s, _hullIndex: i, halfedges: n, triangles: l, collinear: o } = this;
-    if (o) {
-      const c = o.indexOf(e);
-      c > 0 && (yield o[c - 1]), c < o.length - 1 && (yield o[c + 1]);
+    const { inedges: t, hull: s, _hullIndex: i, halfedges: n, triangles: o, collinear: l } = this;
+    if (l) {
+      const c = l.indexOf(e);
+      c > 0 && (yield l[c - 1]), c < l.length - 1 && (yield l[c + 1]);
       return;
     }
     const a = t[e];
@@ -801,7 +825,7 @@ class we {
       return;
     let h = a, d = -1;
     do {
-      if (yield d = l[h], h = h % 3 === 2 ? h - 2 : h + 1, l[h] !== e)
+      if (yield d = o[h], h = h % 3 === 2 ? h - 2 : h + 1, o[h] !== e)
         return;
       if (h = n[h], h === -1) {
         const c = s[(i[e] + 1) % s.length];
@@ -820,7 +844,7 @@ class we {
     return n;
   }
   _step(e, t, s) {
-    const { inedges: i, hull: n, _hullIndex: l, halfedges: o, triangles: a, points: h } = this;
+    const { inedges: i, hull: n, _hullIndex: o, halfedges: l, triangles: a, points: h } = this;
     if (i[e] === -1 || !h.length)
       return (e + 1) % (h.length >> 1);
     let d = e, c = Q(t - h[e * 2], 2) + Q(s - h[e * 2 + 1], 2);
@@ -831,8 +855,8 @@ class we {
       const f = Q(t - h[p * 2], 2) + Q(s - h[p * 2 + 1], 2);
       if (f < c && (c = f, d = p), m = m % 3 === 2 ? m - 2 : m + 1, a[m] !== e)
         break;
-      if (m = o[m], m === -1) {
-        if (m = n[(l[e] + 1) % n.length], m !== p && Q(t - h[m * 2], 2) + Q(s - h[m * 2 + 1], 2) < c)
+      if (m = l[m], m === -1) {
+        if (m = n[(o[e] + 1) % n.length], m !== p && Q(t - h[m * 2], 2) + Q(s - h[m * 2 + 1], 2) < c)
           return m;
         break;
       }
@@ -841,11 +865,11 @@ class we {
   }
   render(e) {
     const t = e == null ? e = new q() : void 0, { points: s, halfedges: i, triangles: n } = this;
-    for (let l = 0, o = i.length; l < o; ++l) {
-      const a = i[l];
-      if (a < l)
+    for (let o = 0, l = i.length; o < l; ++o) {
+      const a = i[o];
+      if (a < o)
         continue;
-      const h = n[l] * 2, d = n[a] * 2;
+      const h = n[o] * 2, d = n[a] * 2;
       e.moveTo(s[h], s[h + 1]), e.lineTo(s[d], s[d + 1]);
     }
     return this.renderHull(e), t && t.value();
@@ -853,17 +877,17 @@ class we {
   renderPoints(e, t) {
     t === void 0 && (!e || typeof e.moveTo != "function") && (t = e, e = null), t = t == null ? 2 : +t;
     const s = e == null ? e = new q() : void 0, { points: i } = this;
-    for (let n = 0, l = i.length; n < l; n += 2) {
-      const o = i[n], a = i[n + 1];
-      e.moveTo(o + t, a), e.arc(o, a, t, 0, at);
+    for (let n = 0, o = i.length; n < o; n += 2) {
+      const l = i[n], a = i[n + 1];
+      e.moveTo(l + t, a), e.arc(l, a, t, 0, at);
     }
     return s && s.value();
   }
   renderHull(e) {
-    const t = e == null ? e = new q() : void 0, { hull: s, points: i } = this, n = s[0] * 2, l = s.length;
+    const t = e == null ? e = new q() : void 0, { hull: s, points: i } = this, n = s[0] * 2, o = s.length;
     e.moveTo(i[n], i[n + 1]);
-    for (let o = 1; o < l; ++o) {
-      const a = 2 * s[o];
+    for (let l = 1; l < o; ++l) {
+      const a = 2 * s[l];
       e.lineTo(i[a], i[a + 1]);
     }
     return e.closePath(), t && t.value();
@@ -873,8 +897,8 @@ class we {
     return this.renderHull(e), e.value();
   }
   renderTriangle(e, t) {
-    const s = t == null ? t = new q() : void 0, { points: i, triangles: n } = this, l = n[e *= 3] * 2, o = n[e + 1] * 2, a = n[e + 2] * 2;
-    return t.moveTo(i[l], i[l + 1]), t.lineTo(i[o], i[o + 1]), t.lineTo(i[a], i[a + 1]), t.closePath(), s && s.value();
+    const s = t == null ? t = new q() : void 0, { points: i, triangles: n } = this, o = n[e *= 3] * 2, l = n[e + 1] * 2, a = n[e + 2] * 2;
+    return t.moveTo(i[o], i[o + 1]), t.lineTo(i[l], i[l + 1]), t.lineTo(i[a], i[a + 1]), t.closePath(), s && s.value();
   }
   *trianglePolygons() {
     const { triangles: e } = this;
@@ -888,9 +912,9 @@ class we {
 }
 function ut(r, e, t, s) {
   const i = r.length, n = new Float64Array(i * 2);
-  for (let l = 0; l < i; ++l) {
-    const o = r[l];
-    n[l * 2] = e.call(s, o, l, r), n[l * 2 + 1] = t.call(s, o, l, r);
+  for (let o = 0; o < i; ++o) {
+    const l = r[o];
+    n[o * 2] = e.call(s, l, o, r), n[o * 2 + 1] = t.call(s, l, o, r);
   }
   return n;
 }
@@ -961,19 +985,19 @@ class pt {
   randomWalkGen() {
     let e = new me(this.SEED), t = [24];
     const s = /* @__PURE__ */ new Set([24]), i = [-1, 1, -7, 7], n = (a) => a % 7 !== 0 && a % 7 !== 6 && a > 6 && a < 42;
-    let l = 0, o = 0;
+    let o = 0, l = 0;
     for (; t.length < 20; ) {
-      const a = t[o];
+      const a = t[l];
       let h = i.filter((d) => {
         const c = a + d;
         return n(c) && !s.has(c);
       });
       if (h.length > 0) {
         const d = h[e.nextInt(0, h.length - 1)], c = a + d;
-        t.push(c), s.add(c), o = t.length - 1;
+        t.push(c), s.add(c), l = t.length - 1;
       } else
-        o === 1 && (o = e.nextInt(0, t.length - 1)), o--;
-      if (l++, l > 200)
+        l === 1 && (l = e.nextInt(0, t.length - 1)), l--;
+      if (o++, o > 200)
         throw new Error("Random walker error: Infinite loop");
     }
     return t;
@@ -983,12 +1007,12 @@ class pt {
     for (let s in t) {
       const i = t[s];
       let n = [];
-      for (let o = 0; o < e[i].length; o++)
+      for (let l = 0; l < e[i].length; l++)
         n.push({
-          x: Number(e[i][o][0]),
-          y: Number(e[i][o][1])
+          x: Number(e[i][l][0]),
+          y: Number(e[i][l][1])
         });
-      const l = this.calculateCentroid(n);
+      const o = this.calculateCentroid(n);
       this.polygonData.push({
         index: Number(s),
         polygonIndex: 0,
@@ -997,7 +1021,7 @@ class pt {
         lootBoxesCoordinates: [],
         gradientAreaCoordinates: [],
         outerBorderCoordinates: [],
-        centroid: l
+        centroid: o
       });
     }
     this.addPolygonIndices(t), this.calculateReducedVertices(), this.calculateLootboxCoordinates(), this.calculateGradientAreaCoordinates(), this.calculateOuterBorder();
@@ -1005,13 +1029,13 @@ class pt {
   getWorldBounds() {
     const e = this.walkerIndices ?? this.randomWalkGen();
     let t, s, i, n;
-    const l = this.polygonData.find((o) => e.includes(o.index));
-    if (!l)
+    const o = this.polygonData.find((l) => e.includes(l.index));
+    if (!o)
       return null;
-    t = s = i = n = l.vertices[0];
-    for (let o of this.polygonData)
-      if (e.includes(o.index))
-        for (const a of o.vertices)
+    t = s = i = n = o.vertices[0];
+    for (let l of this.polygonData)
+      if (e.includes(l.index))
+        for (const a of l.vertices)
           a.y < t.y && (t = a), a.y > s.y && (s = a), a.x < i.x && (i = a), a.x > n.x && (n = a);
     return {
       x: i.x,
@@ -1063,8 +1087,8 @@ class pt {
   }
 }
 class le {
-  constructor(e, t, s, i, n, l, o, a) {
-    this.tileXYs = [], this.deterministicRng = void 0, this.collidableOverlapThreshold = 30, this.elevationThreshold = 0.06, this.scene = e, this.x = t, this.y = s, this.chunkSize = i, this.tileSize = n, this.tiles = this.scene.add.group(), this.isLoaded = !1, this.occupiedCollidables = [], this.occupiedNonCollidables = [], this.perlin = a, this.polygonIdx = l, this.isDungeon = o, this.deterministicRng = new me(this.scene.seed);
+  constructor(e, t, s, i, n, o, l, a) {
+    this.tileXYs = [], this.deterministicRng = void 0, this.collidableOverlapThreshold = 30, this.elevationThreshold = 0.06, this.scene = e, this.x = t, this.y = s, this.chunkSize = i, this.tileSize = n, this.tiles = this.scene.add.group(), this.isLoaded = !1, this.occupiedCollidables = [], this.occupiedNonCollidables = [], this.perlin = a, this.polygonIdx = o, this.isDungeon = l, this.deterministicRng = new me(this.scene.seed);
   }
   unload() {
     this.isLoaded && (this.tiles.clear(!0, !0), this.isLoaded = !1, this.occupiedCollidables = [], this.occupiedNonCollidables = [], this.tileXYs = []);
@@ -1074,8 +1098,8 @@ class le {
       let s = [], i = [];
       for (var e = 0; e < this.chunkSize; e++)
         for (var t = 0; t < this.chunkSize; t++) {
-          const { lowElevationTiles: n, highElevationTiles: l } = this.generateDualGridTile(e, t, s, i);
-          i = n, s = l;
+          const { lowElevationTiles: n, highElevationTiles: o } = this.generateDualGridTile(e, t, s, i);
+          i = n, s = o;
         }
       this.isDungeon || (this.placeAssets(i, "lowElevation"), this.placeAssets(s, "highElevation")), this.isLoaded = !0;
     }
@@ -1083,30 +1107,30 @@ class le {
   placeAssets(e, t) {
   }
   generateDualGridTile(e, t, s, i) {
-    var n = this.x * (this.chunkSize * this.tileSize) + e * this.tileSize, l = this.y * (this.chunkSize * this.tileSize) + t * this.tileSize;
+    var n = this.x * (this.chunkSize * this.tileSize) + e * this.tileSize, o = this.y * (this.chunkSize * this.tileSize) + t * this.tileSize;
     this.tileXYs = [0, 1].flatMap(
       (a) => [0, 1].map((h) => ({
         x: this.x * this.chunkSize * this.tileSize + (e + a) * this.tileSize,
         y: this.y * this.chunkSize * this.tileSize + (t + h) * this.tileSize
       }))
-    ), this.isDungeon && this.isWithinBounds(n, l) && this.placeDungeonTiles(e, t);
-    const o = this.placeTerrainTiles();
-    return o[0] < this.elevationThreshold - 0.1 ? i.push({ x: n, y: l }) : o[0] > this.elevationThreshold + 0.05 && s.push({ x: n, y: l }), { lowElevationTiles: i, highElevationTiles: s };
+    ), this.isDungeon && this.isWithinBounds(n, o) && this.placeDungeonTiles(e, t);
+    const l = this.placeTerrainTiles();
+    return l[0] < this.elevationThreshold - 0.1 ? i.push({ x: n, y: o }) : l[0] > this.elevationThreshold + 0.05 && s.push({ x: n, y: o }), { lowElevationTiles: i, highElevationTiles: s };
   }
   placeTerrainTiles() {
-    let e = 0, t = this.tileXYs.map(({ x: o, y: a }) => !this.isWithinBounds(o, a) && this.isWithinBorderBounds(o, a) ? 1 : this.isWithinBorderBounds(o, a) ? this.perlin.perlin2(o / 500, a / 500) : (e |= 16, 0));
-    const s = (o) => o < this.elevationThreshold ? 0 : 1;
-    for (const o in t)
-      e |= s(t[o]) << Number(o);
-    const i = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, n = (this.tileXYs[0].y + this.tileXYs[1].y) / 2, l = this.scene.add.image(i, n, this.biomeConfig.terrainSprite, e).setDepth(1);
-    return this.tiles.add(l), t;
+    let e = 0, t = this.tileXYs.map(({ x: l, y: a }) => !this.isWithinBounds(l, a) && this.isWithinBorderBounds(l, a) ? 1 : this.isWithinBorderBounds(l, a) ? this.perlin.perlin2(l / 500, a / 500) : (e |= 16, 0));
+    const s = (l) => l < this.elevationThreshold ? 0 : 1;
+    for (const l in t)
+      e |= s(t[l]) << Number(l);
+    const i = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, n = (this.tileXYs[0].y + this.tileXYs[1].y) / 2, o = this.scene.add.image(i, n, this.biomeConfig.terrainSprite, e).setDepth(1);
+    return this.tiles.add(o), t;
   }
   placeDungeonTiles(e, t, s = 10, i = 3) {
     if (e <= s + i && t <= s + i) {
-      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, l = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
+      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, o = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
       if (e > i && t > i) {
-        const o = this.scene.add.image(n, l, this.biomeConfig.dungeonAsset, e - (i + 1) + (t - (i + 1)) * 10).setDepth(4);
-        this.tiles.add(o);
+        const l = this.scene.add.image(n, o, this.biomeConfig.dungeonAsset, e - (i + 1) + (t - (i + 1)) * 10).setDepth(4);
+        this.tiles.add(l);
       }
     }
   }
@@ -1120,47 +1144,47 @@ class le {
   isSpriteWithinBounds(e, t, s, i, n = 5) {
     if (this.polygonIdx === -1)
       return !1;
-    const l = this.scene.polygonData[this.polygonIdx].reducedVertices, o = s / 2, a = { x: e - o - n, y: t + n }, h = { x: e + o + n, y: t + n }, d = { x: e - o - n, y: t - i - n }, c = { x: e + o + n, y: t - i - n };
-    return this.point_in_polygon(a, l) && this.point_in_polygon(h, l) && this.point_in_polygon(d, l) && this.point_in_polygon(c, l);
+    const o = this.scene.polygonData[this.polygonIdx].reducedVertices, l = s / 2, a = { x: e - l - n, y: t + n }, h = { x: e + l + n, y: t + n }, d = { x: e - l - n, y: t - i - n }, c = { x: e + l + n, y: t - i - n };
+    return this.point_in_polygon(a, o) && this.point_in_polygon(h, o) && this.point_in_polygon(d, o) && this.point_in_polygon(c, o);
   }
   point_in_polygon(e, t) {
     const s = t.length;
     var i = e.x, n = e.y;
-    let l = !1, o = t[0], a;
+    let o = !1, l = t[0], a;
     for (let h = 1; h <= s; h++) {
-      if (a = t[h % s], n > Math.min(o.y, a.y) && n <= Math.max(o.y, a.y) && i <= Math.max(o.x, a.x)) {
-        const d = (n - o.y) * (a.x - o.x) / (a.y - o.y) + o.x;
-        (o.x === a.x || i <= d) && (l = !l);
+      if (a = t[h % s], n > Math.min(l.y, a.y) && n <= Math.max(l.y, a.y) && i <= Math.max(l.x, a.x)) {
+        const d = (n - l.y) * (a.x - l.x) / (a.y - l.y) + l.x;
+        (l.x === a.x || i <= d) && (o = !o);
       }
-      o = a;
+      l = a;
     }
-    return l;
+    return o;
   }
   isOverlapping(e, t, s, i, n) {
-    const l = n.isCollidable ? this.occupiedCollidables : this.occupiedNonCollidables, o = n.isCollidable ? this.collidableOverlapThreshold : 0, a = e - s / 2, h = t - i;
-    return l.some((d) => {
-      const c = d.x - d.width / 2, u = d.y - d.height, m = a < c + d.width + o && a + s > c - o && h < u + d.height + o && h + i > u - o, p = a >= c && a + s <= c + d.width && h >= u && h + i <= u + d.height;
+    const o = n.isCollidable ? this.occupiedCollidables : this.occupiedNonCollidables, l = n.isCollidable ? this.collidableOverlapThreshold : 0, a = e - s / 2, h = t - i;
+    return o.some((d) => {
+      const c = d.x - d.width / 2, u = d.y - d.height, m = a < c + d.width + l && a + s > c - l && h < u + d.height + l && h + i > u - l, p = a >= c && a + s <= c + d.width && h >= u && h + i <= u + d.height;
       return m || p;
     });
   }
   isOutsideChunkBounds(e, t, s, i) {
-    const n = this.tileSize / 2, l = e - s / 2, o = t - i, a = this.x * this.chunkSize * this.tileSize, h = this.y * this.chunkSize * this.tileSize, d = a + this.chunkSize * this.tileSize, c = h + this.chunkSize * this.tileSize;
-    return l < a + n || // Left boundary
-    l + s > d - n || // Right boundary
-    o < h + n || // Top boundary
-    o + i > c - n;
+    const n = this.tileSize / 2, o = e - s / 2, l = t - i, a = this.x * this.chunkSize * this.tileSize, h = this.y * this.chunkSize * this.tileSize, d = a + this.chunkSize * this.tileSize, c = h + this.chunkSize * this.tileSize;
+    return o < a + n || // Left boundary
+    o + s > d - n || // Right boundary
+    l < h + n || // Top boundary
+    l + i > c - n;
   }
   // Helpers for child classes
   placeCollidableSprite(e, t, s, i) {
     if (!this.isOverlapping(e, t, i.width, i.height, { isCollidable: !0 }) && !this.isOutsideChunkBounds(e, t, i.width, i.height) && this.isSpriteWithinBounds(e, t, i.width, i.height)) {
-      const n = this.scene.physics.add.sprite(e, t, s, i.name).setOrigin(0.5, 1).setDepth(i.depth), l = n.body;
-      l.setSize(i.collisionBounds.x, i.collisionBounds.y), l.offset.set(i.collisionOffset.x, i.collisionOffset.y), n.setPushable(!1), this.scene.collidableObjects.add(n), this.tiles.add(n), this.occupiedCollidables.push({ x: e, y: t, width: i.width, height: i.height });
+      const n = this.scene.physics.add.sprite(e, t, s, i.name).setOrigin(0.5, 1).setDepth(i.depth), o = n.body;
+      o.setSize(i.collisionBounds.x, i.collisionBounds.y), o.offset.set(i.collisionOffset.x, i.collisionOffset.y), n.setPushable(!1), this.scene.collidableObjects.add(n), this.tiles.add(n), this.occupiedCollidables.push({ x: e, y: t, width: i.width, height: i.height });
     }
   }
   placeNormalSprite(e, t, s, i, n = 9.6) {
     if (!this.isOverlapping(e, t, this.tileSize, this.tileSize, { isCollidable: !1 }) && !this.isOutsideChunkBounds(e, t, this.tileSize, this.tileSize) && this.isSpriteWithinBounds(e, t, this.tileSize, this.tileSize)) {
-      const l = this.scene.add.image(e, t, s, String(i)).setDepth(n);
-      return this.tiles.add(l), this.occupiedNonCollidables.push({ x: e, y: t, width: this.tileSize, height: this.tileSize }), !0;
+      const o = this.scene.add.image(e, t, s, String(i)).setDepth(n);
+      return this.tiles.add(o), this.occupiedNonCollidables.push({ x: e, y: t, width: this.tileSize, height: this.tileSize }), !0;
     }
     return !1;
   }
@@ -1541,8 +1565,8 @@ const ft = [
   lowElevation: yt
 };
 class bt extends le {
-  constructor(e, t, s, i, n, l, o, a) {
-    super(e, t, s, i, n, l, o, a), this.biomeConfig = {
+  constructor(e, t, s, i, n, o, l, a) {
+    super(e, t, s, i, n, o, l, a), this.biomeConfig = {
       dungeonAsset: "ground-biome-dungeon",
       terrainSprite: "ground-biome",
       collidableObjectSprite: "ground-atlas",
@@ -1552,16 +1576,16 @@ class bt extends le {
   placeAssets(e, t) {
     e.forEach(({ x: s, y: i }) => {
       const n = this.perlin.perlin2(s / 500, i / 500) - this.perlin.perlin2(s / 300, i / 300) * 0.5;
-      var l = (n + 1) / 2, o = Phaser.Display.Color.Interpolate.ColorWithColor(
+      var o = (n + 1) / 2, l = Phaser.Display.Color.Interpolate.ColorWithColor(
         new Phaser.Display.Color(0, 255, 0),
         // Blue for low values
         new Phaser.Display.Color(255, 0, 0),
         // // Red for high values
         100,
-        Math.floor(l * 100)
+        Math.floor(o * 100)
         // Convert normalized value to range 0-100
       );
-      Phaser.Display.Color.GetColor(o.r, o.g, o.b), this.isWithinBounds(s, i);
+      Phaser.Display.Color.GetColor(l.r, l.g, l.b), this.isWithinBounds(s, i);
       const a = gt[t];
       for (const h of a) {
         const [d, c] = h.range;
@@ -1590,10 +1614,10 @@ class bt extends le {
   }
   placeDungeonTiles(e, t, s = 10, i = 3) {
     if (e <= s + i && t <= s + i) {
-      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, l = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
+      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, o = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
       if (e > i && t > i) {
-        const o = this.scene.physics.add.image(n, l, this.biomeConfig.dungeonAsset, e - (i + 1) + (t - (i + 1)) * 10).setDepth(4);
-        t > 2 + i && t < 9 + i && (o.setPushable(!1), this.scene.collidableObjects.add(o)), this.tiles.add(o);
+        const l = this.scene.physics.add.image(n, o, this.biomeConfig.dungeonAsset, e - (i + 1) + (t - (i + 1)) * 10).setDepth(4);
+        t > 2 + i && t < 9 + i && (l.setPushable(!1), this.scene.collidableObjects.add(l)), this.tiles.add(l);
       }
     }
   }
@@ -1973,8 +1997,8 @@ const xt = [
   lowElevation: Ct
 };
 let vt = class extends le {
-  constructor(e, t, s, i, n, l, o, a) {
-    super(e, t, s, i, n, l, o, a), this.biomeConfig = {
+  constructor(e, t, s, i, n, o, l, a) {
+    super(e, t, s, i, n, o, l, a), this.biomeConfig = {
       dungeonAsset: "flying-biome-dungeon",
       terrainSprite: "flying-biome",
       collidableObjectSprite: "flying-atlas",
@@ -1985,16 +2009,16 @@ let vt = class extends le {
     e.forEach(
       ({ x: s, y: i }) => {
         const n = this.perlin.perlin2(s / 500, i / 500) - this.perlin.perlin2(s / 300, i / 300) * 0.5;
-        var l = (n + 1) / 2, o = Phaser.Display.Color.Interpolate.ColorWithColor(
+        var o = (n + 1) / 2, l = Phaser.Display.Color.Interpolate.ColorWithColor(
           new Phaser.Display.Color(0, 255, 0),
           // Blue for low values
           new Phaser.Display.Color(255, 0, 0),
           // // Red for high values
           100,
-          Math.floor(l * 100)
+          Math.floor(o * 100)
           // Convert normalized value to range 0-100
         );
-        Phaser.Display.Color.GetColor(o.r, o.g, o.b), this.isWithinBounds(s, i);
+        Phaser.Display.Color.GetColor(l.r, l.g, l.b), this.isWithinBounds(s, i);
         const a = wt[t];
         for (const h of a) {
           const [d, c] = h.range;
@@ -2370,8 +2394,8 @@ const Et = [
   lowElevation: St
 };
 class Ft extends le {
-  constructor(e, t, s, i, n, l, o = !1, a) {
-    super(e, t, s, i, n, l, o, a), this.biomeConfig = {
+  constructor(e, t, s, i, n, o, l = !1, a) {
+    super(e, t, s, i, n, o, l, a), this.biomeConfig = {
       dungeonAsset: "steel-biome-dungeon",
       terrainSprite: "steel-biome",
       collidableObjectSprite: "steel-atlas",
@@ -2382,17 +2406,17 @@ class Ft extends le {
     e.forEach(
       ({ x: s, y: i }) => {
         const n = this.perlin.perlin2(s / 500, i / 500) - this.perlin.perlin2(s / 300, i / 300) * 0.5;
-        var l = (n + 1) / 2, o = Phaser.Display.Color.Interpolate.ColorWithColor(
+        var o = (n + 1) / 2, l = Phaser.Display.Color.Interpolate.ColorWithColor(
           new Phaser.Display.Color(0, 255, 0),
           // Blue for low values
           new Phaser.Display.Color(255, 0, 0),
           // // Red for high values
           100,
           // Steps in gradient (arbitrary, can be tuned)
-          Math.floor(l * 100)
+          Math.floor(o * 100)
           // Convert normalized value to range 0-100
         );
-        Phaser.Display.Color.GetColor(o.r, o.g, o.b), this.isWithinBounds(s, i);
+        Phaser.Display.Color.GetColor(l.r, l.g, l.b), this.isWithinBounds(s, i);
         const a = _t[t];
         for (const h of a) {
           const [d, c] = h.range;
@@ -2740,8 +2764,8 @@ const Dt = [
   lowElevation: kt
 };
 class Ot extends le {
-  constructor(e, t, s, i, n, l, o, a) {
-    super(e, t, s, i, n, l, o, a), this.biomeConfig = {
+  constructor(e, t, s, i, n, o, l, a) {
+    super(e, t, s, i, n, o, l, a), this.biomeConfig = {
       dungeonAsset: "psychic-biome-dungeon",
       terrainSprite: "psychic-biome",
       collidableObjectSprite: "psychic-atlas",
@@ -2751,17 +2775,17 @@ class Ot extends le {
   placeAssets(e, t) {
     e.forEach(({ x: s, y: i }) => {
       const n = this.perlin.perlin2(s / 300, i / 300);
-      var l = (n + 1) / 2, o = Phaser.Display.Color.Interpolate.ColorWithColor(
+      var o = (n + 1) / 2, l = Phaser.Display.Color.Interpolate.ColorWithColor(
         new Phaser.Display.Color(0, 255, 0),
         // Blue for low values
         new Phaser.Display.Color(255, 0, 0),
         // // Red for high values
         100,
         // Steps in gradient (arbitrary, can be tuned)
-        Math.floor(l * 100)
+        Math.floor(o * 100)
         // Convert normalized value to range 0-100
       );
-      Phaser.Display.Color.GetColor(o.r, o.g, o.b), this.isWithinBounds(s, i);
+      Phaser.Display.Color.GetColor(l.r, l.g, l.b), this.isWithinBounds(s, i);
       const a = It[t];
       for (const h of a) {
         const [d, c] = h.range;
@@ -2810,8 +2834,8 @@ class Ot extends le {
       [e, t + this.tileSize, s, i + 2],
       [e + this.tileSize, t + this.tileSize, s, i + 3]
     ];
-    for (const l of n)
-      if (!this.placeNormalSprite(...l))
+    for (const o of n)
+      if (!this.placeNormalSprite(...o))
         break;
   }
   placeVerticalSprite(e, t, s, i) {
@@ -2819,16 +2843,16 @@ class Ot extends le {
       [e, t, s, i],
       [e, t + this.tileSize, s, i + 1]
     ];
-    for (const l of n)
-      if (!this.placeNormalSprite(...l))
+    for (const o of n)
+      if (!this.placeNormalSprite(...o))
         break;
   }
   placeDungeonTiles(e, t, s = 10, i = 3) {
     if (e <= s + i && t <= s + i) {
-      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, l = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
+      const n = (this.tileXYs[0].x + this.tileXYs[2].x) / 2, o = (this.tileXYs[0].y + this.tileXYs[1].y) / 2;
       if (e > i && t > i) {
-        const o = this.scene.physics.add.image(n, l, this.biomeConfig.dungeonAsset, e - (i + 1) + (t - (i + 1)) * 10).setDepth(4);
-        t > 2 + i && t < 7 + i && (o.setPushable(!1), this.scene.collidableObjects.add(o)), this.tiles.add(o);
+        const l = this.scene.physics.add.image(n, o, this.biomeConfig.dungeonAsset, e - (i + 1) + (t - (i + 1)) * 10).setDepth(4);
+        t > 2 + i && t < 7 + i && (l.setPushable(!1), this.scene.collidableObjects.add(l)), this.tiles.add(l);
       }
     }
   }
@@ -2836,8 +2860,8 @@ class Ot extends le {
 var ve = /* @__PURE__ */ ((r) => (r.CENTRAL = "CENTRAL", r))(ve || {}), ne = /* @__PURE__ */ ((r) => (r.BELOW_PLAYER = "BELOW_PLAYER_LAYER", r.ABOVE_PLAYER = "ABOVE_PLAYER_LAYER", r.OBJECTS = "OBJECTS_LAYER", r.PORTAL_LAYER = "PORTAL_LAYER", r.PORTAL_LAYER_ABOVE = "PORTAL_LAYER_ABOVE", r.EFFECT_LAYER = "EFFECT_LAYER", r.GLTICH_LAYER = "GLITCH_OVERLAY", r))(ne || {});
 const V = (r) => `/assets/phaser/tilesets/${r}`, Ie = (r) => `/assets/phaser/characters/${r}`, z = (r) => `/assets/phaser/assetSprites/${r}`, ce = (r) => `/assets/phaser/joystickAssets/${r}`;
 class Oe extends le {
-  constructor(e, t, s, i, n, l, o) {
-    super(e, t, s, i, n, l, !1, o), this.biomeConfig = {
+  constructor(e, t, s, i, n, o, l) {
+    super(e, t, s, i, n, o, !1, l), this.biomeConfig = {
       dungeonAsset: "ground-biome-dungeon",
       terrainSprite: "ground-biome",
       collidableObjectSprite: "ground-biome-collidable",
@@ -2853,10 +2877,10 @@ class Oe extends le {
         for (var t = 0; t < this.chunkSize; t++) {
           var s = this.x * (this.chunkSize * this.tileSize) + e * this.tileSize + this.tileSize / 2, i = this.y * (this.chunkSize * this.tileSize) + t * this.tileSize + this.tileSize / 2;
           const n = this.perlin.perlin2(s / 100, i / 100);
-          let l = 16;
-          n > 0.2 && (l = 32);
-          const o = this.scene.add.image(s, i, this.biomeConfig.terrainSprite, l);
-          this.tiles.add(o);
+          let o = 16;
+          n > 0.2 && (o = 32);
+          const l = this.scene.add.image(s, i, this.biomeConfig.terrainSprite, o);
+          this.tiles.add(l);
         }
       this.isLoaded = !0;
     }
@@ -2864,7 +2888,7 @@ class Oe extends le {
 }
 class Pt extends pe.Image {
   constructor(e, t, s, i, n) {
-    super(e, t + e.tileSize, s, i ? R.lootboxOpen.key : R.lootboxClosed.key), this.canOpenLootbox = !1, this.openImage = void 0, this.openInProgess = !1, this.setDepth(4), this.isOpened = i, this.parentScene = e, this.ID = n, this.scale = 0.8, e.add.existing(this);
+    super(e, t + e.tileSize, s, i ? B.lootboxOpen.key : B.lootboxClosed.key), this.canOpenLootbox = !1, this.openImage = void 0, this.openInProgess = !1, this.setDepth(4), this.isOpened = i, this.parentScene = e, this.ID = n, this.scale = 0.8, e.add.existing(this);
   }
   checkIfPlayerIsNear() {
     return this.parentScene.player ? Phaser.Math.Distance.Between(
@@ -2875,7 +2899,7 @@ class Pt extends pe.Image {
     ) < 50 : !1;
   }
   showPopup() {
-    this.openImage || (this.openImage = this.parentScene.add.image(this.x, this.y - 40, R.openLootbox.key).setDepth(10).setScale(0.4));
+    this.openImage || (this.openImage = this.parentScene.add.image(this.x, this.y - 40, B.openLootbox.key).setDepth(10).setScale(0.4));
   }
   triggerOpen() {
     this.openInProgess || (this.openInProgess = !0, this.openImage && (console.log("Destroying openImage:", this.openImage), this.openImage.destroy(), this.openImage = void 0), G.emit(H.LOOTBOX_OPEN, {
@@ -2883,7 +2907,7 @@ class Pt extends pe.Image {
     }), this.Open());
   }
   Open() {
-    this.openInProgess = !1, this.isOpened = !0, this.setTexture(R.lootboxOpen.key), this.openImage && (console.log("Destroying openImage in Open method:", this.openImage), this.openImage.destroy(), this.openImage = void 0);
+    this.openInProgess = !1, this.isOpened = !0, this.setTexture(B.lootboxOpen.key), this.openImage && (console.log("Destroying openImage in Open method:", this.openImage), this.openImage.destroy(), this.openImage = void 0);
   }
   saveState() {
     const e = JSON.parse(localStorage.getItem("lootboxState") || "{}");
@@ -2891,7 +2915,7 @@ class Pt extends pe.Image {
   }
   loadState() {
     const e = JSON.parse(localStorage.getItem("lootboxState") || "{}");
-    this.isOpened = e[this.ID] || !1, this.setTexture(this.isOpened ? R.lootboxOpen.key : R.lootboxClosed.key);
+    this.isOpened = e[this.ID] || !1, this.setTexture(this.isOpened ? B.lootboxOpen.key : B.lootboxClosed.key);
   }
   update() {
     if (this.isOpened)
@@ -2901,9 +2925,9 @@ class Pt extends pe.Image {
   }
 }
 function At(r, e, t, s) {
-  const i = new me(s), n = i.nextInt(-1, 1), l = i.nextInt(-1, 1);
-  var o = e * t * Math.round((r.x + n) / (e * t)), a = e * t * Math.round((r.y + l) / (e * t));
-  return o = o / e / t, a = a / e / t, { x: o, y: a };
+  const i = new me(s), n = i.nextInt(-1, 1), o = i.nextInt(-1, 1);
+  var l = e * t * Math.round((r.x + n) / (e * t)), a = e * t * Math.round((r.y + o) / (e * t));
+  return l = l / e / t, a = a / e / t, { x: l, y: a };
 }
 class j {
   constructor(e, t, s) {
@@ -3197,14 +3221,14 @@ class Tt {
   }
   simplex2(e, t) {
     let s, i, n;
-    const l = (e + t) * this.F2;
-    let o = Math.floor(e + l), a = Math.floor(t + l);
-    const h = (o + a) * this.G2, d = e - o + h, c = t - a + h;
+    const o = (e + t) * this.F2;
+    let l = Math.floor(e + o), a = Math.floor(t + o);
+    const h = (l + a) * this.G2, d = e - l + h, c = t - a + h;
     let u, m;
     d > c ? (u = 1, m = 0) : (u = 0, m = 1);
     const p = d - u + this.G2, f = c - m + this.G2, x = d - 1 + 2 * this.G2, y = c - 1 + 2 * this.G2;
-    o &= 255, a &= 255;
-    const b = this.gradP[o + this.perm[a]], C = this.gradP[o + u + this.perm[a + m]], S = this.gradP[o + 1 + this.perm[a + 1]];
+    l &= 255, a &= 255;
+    const b = this.gradP[l + this.perm[a]], C = this.gradP[l + u + this.perm[a + m]], S = this.gradP[l + 1 + this.perm[a + 1]];
     let E = 0.5 - d * d - c * c;
     E < 0 ? s = 0 : (E *= E, s = E * E * b.dot2(d, c));
     let D = 0.5 - p * p - f * f;
@@ -3213,7 +3237,7 @@ class Tt {
     return k < 0 ? n = 0 : (k *= k, n = k * k * S.dot2(x, y)), 70 * (s + i + n);
   }
   simplex3(e, t, s) {
-    let i, n, l, o;
+    let i, n, o, l;
     const a = (e + t + s) * this.F3;
     let h = Math.floor(e + a), d = Math.floor(t + a), c = Math.floor(s + a);
     const u = (h + d + c) * this.G3, m = e - h + u, p = t - d + u, f = s - c + u;
@@ -3221,15 +3245,15 @@ class Tt {
     m >= p ? p >= f ? (x = 1, y = 0, b = 0, C = 1, S = 1, E = 0) : m >= f ? (x = 1, y = 0, b = 0, C = 1, S = 0, E = 1) : (x = 0, y = 0, b = 1, C = 1, S = 0, E = 1) : p < f ? (x = 0, y = 0, b = 1, C = 0, S = 1, E = 1) : m < f ? (x = 0, y = 1, b = 0, C = 0, S = 1, E = 1) : (x = 0, y = 1, b = 0, C = 1, S = 1, E = 0);
     const D = m - x + this.G3, k = p - y + this.G3, I = f - b + this.G3, g = m - C + 2 * this.G3, v = p - S + 2 * this.G3, w = f - E + 2 * this.G3, _ = m - 1 + 3 * this.G3, O = p - 1 + 3 * this.G3, A = f - 1 + 3 * this.G3;
     h &= 255, d &= 255, c &= 255;
-    const B = this.gradP[h + this.perm[d + this.perm[c]]], F = this.gradP[h + x + this.perm[d + y + this.perm[c + b]]], T = this.gradP[h + C + this.perm[d + S + this.perm[c + E]]], N = this.gradP[h + 1 + this.perm[d + 1 + this.perm[c + 1]]];
+    const R = this.gradP[h + this.perm[d + this.perm[c]]], F = this.gradP[h + x + this.perm[d + y + this.perm[c + b]]], T = this.gradP[h + C + this.perm[d + S + this.perm[c + E]]], N = this.gradP[h + 1 + this.perm[d + 1 + this.perm[c + 1]]];
     let M = 0.6 - m * m - p * p - f * f;
-    M < 0 ? i = 0 : (M *= M, i = M * M * B.dot3(m, p, f));
+    M < 0 ? i = 0 : (M *= M, i = M * M * R.dot3(m, p, f));
     let W = 0.6 - D * D - k * k - I * I;
     W < 0 ? n = 0 : (W *= W, n = W * W * F.dot3(D, k, I));
     let $ = 0.6 - g * g - v * v - w * w;
-    $ < 0 ? l = 0 : ($ *= $, l = $ * $ * T.dot3(g, v, w));
+    $ < 0 ? o = 0 : ($ *= $, o = $ * $ * T.dot3(g, v, w));
     let te = 0.6 - _ * _ - O * O - A * A;
-    return te < 0 ? o = 0 : (te *= te, o = te * te * N.dot3(_, O, A)), 32 * (i + n + l + o);
+    return te < 0 ? l = 0 : (te *= te, l = te * te * N.dot3(_, O, A)), 32 * (i + n + o + l);
   }
   // ##### Perlin noise stuff
   fade(e) {
@@ -3239,18 +3263,18 @@ class Tt {
     return (1 - s) * e + s * t;
   }
   calculatePeakInfluence(e, t, s) {
-    const i = e - s.x, n = t - s.y, l = Math.sqrt(i * i + n * n);
-    if (l >= s.falloffRadius)
+    const i = e - s.x, n = t - s.y, o = Math.sqrt(i * i + n * n);
+    if (o >= s.falloffRadius)
       return 0;
-    const o = 0.5 * (1 + Math.cos(Math.PI * l / s.falloffRadius));
-    return s.intensity * o;
+    const l = 0.5 * (1 + Math.cos(Math.PI * o / s.falloffRadius));
+    return s.intensity * l;
   }
   perlin2(e, t) {
     let s = Math.floor(e), i = Math.floor(t);
     e = e - s, t = t - i, s = s & 255, i = i & 255;
-    const n = this.gradP[s + this.perm[i]].dot2(e, t), l = this.gradP[s + this.perm[i + 1]].dot2(e, t - 1), o = this.gradP[s + 1 + this.perm[i]].dot2(e - 1, t), a = this.gradP[s + 1 + this.perm[i + 1]].dot2(e - 1, t - 1), h = this.fade(e), d = this.lerp(
-      this.lerp(n, o, h),
-      this.lerp(l, a, h),
+    const n = this.gradP[s + this.perm[i]].dot2(e, t), o = this.gradP[s + this.perm[i + 1]].dot2(e, t - 1), l = this.gradP[s + 1 + this.perm[i]].dot2(e - 1, t), a = this.gradP[s + 1 + this.perm[i + 1]].dot2(e - 1, t - 1), h = this.fade(e), d = this.lerp(
+      this.lerp(n, l, h),
+      this.lerp(o, a, h),
       this.fade(t)
     );
     let c = 0;
@@ -3313,13 +3337,13 @@ class Mt {
     return Math.sqrt(e * e + t * t);
   }
   update() {
-    const e = this.getDistance(), t = this.parentPlayer.x, s = this.parentPlayer.y, i = this.x - this.limitX, n = this.x + this.limitX, l = this.y - this.limitY, o = this.y + this.limitY;
-    if ((!this.followPlayer && (t < i || t > n || s < l || s > o) || this.parentPlayer.currSpeed === 0) && (this.followPlayer = !0), this.followPlayer && e <= 5 && (this.followPlayer = !1), this.followPlayer) {
+    const e = this.getDistance(), t = this.parentPlayer.x, s = this.parentPlayer.y, i = this.x - this.limitX, n = this.x + this.limitX, o = this.y - this.limitY, l = this.y + this.limitY;
+    if ((!this.followPlayer && (t < i || t > n || s < o || s > l) || this.parentPlayer.currSpeed === 0) && (this.followPlayer = !0), this.followPlayer && e <= 5 && (this.followPlayer = !1), this.followPlayer) {
       this.getAngle();
       let a = e / this.radius * 1.2;
       this.currVelocityX = this.baseVelocityX * a, this.currVelocityY = this.baseVelocityY * a, this.parentScene.checkActive && (this.currVelocityX *= this.parentPlayer.cheatFactor, this.currVelocityY *= this.parentPlayer.cheatFactor), this.x += this.currVelocityX * Math.cos(this.angle), this.y += this.currVelocityY * Math.sin(this.angle);
     }
-    this.debug && this.graphics && this.ghostCircle && (this.graphics.clear(), this.graphics.lineStyle(2, 65280, 1), this.graphics.strokeRect(i, l, 2 * this.limitX, 2 * this.limitY), this.ghostCircle.clear(), this.ghostCircle.lineStyle(2, 16711680, 1), this.ghostCircle.strokeCircle(this.x, this.y, 50));
+    this.debug && this.graphics && this.ghostCircle && (this.graphics.clear(), this.graphics.lineStyle(2, 65280, 1), this.graphics.strokeRect(i, o, 2 * this.limitX, 2 * this.limitY), this.ghostCircle.clear(), this.ghostCircle.lineStyle(2, 16711680, 1), this.ghostCircle.strokeCircle(this.x, this.y, 50));
   }
 }
 const Pe = {
@@ -3344,11 +3368,11 @@ const Pe = {
     endFrame: 31
   }
 };
-class Rt extends We.Arcade.Sprite {
-  constructor(e, t, s, i, n, l) {
-    super(e, t, s, i, l), this.cursor = void 0, this.wKey = void 0, this.aKey = void 0, this.sKey = void 0, this.dKey = void 0, this.shiftKey = void 0, this.velocity = R.player.velocity, this.currSpeed = 0, this.cheatFactor = 2, this.changeCharacter = (o) => {
-      this.setTexture(o), this.setupAnimations();
-    }, this.parentScene = e, this.scale = window.innerHeight / (R.player.frameWidth * 10), this.cursor = n, this.setUpKeys(), this.setOrigin(0.5, 0.5), e.physics.add.existing(this), this.body.setSize(this.body.width * 0.5, this.body.height, !0), this.body.setOffset(this.body.offset.x, this.body.offset.y + 26), this.setScale(0.2), e.add.existing(this).setDepth(5), this.ghostPlayer = new Mt(this.parentScene, this);
+class Bt extends We.Arcade.Sprite {
+  constructor(e, t, s, i, n, o) {
+    super(e, t, s, i, o), this.cursor = void 0, this.wKey = void 0, this.aKey = void 0, this.sKey = void 0, this.dKey = void 0, this.shiftKey = void 0, this.velocity = B.player.velocity, this.currSpeed = 0, this.cheatFactor = 2, this.changeCharacter = (l) => {
+      this.setTexture(l), this.setupAnimations();
+    }, this.parentScene = e, this.scale = window.innerHeight / (B.player.frameWidth * 10), this.cursor = n, this.setUpKeys(), this.setOrigin(0.5, 0.5), e.physics.add.existing(this), this.body.setSize(this.body.width * 0.5, this.body.height, !0), this.body.setOffset(this.body.offset.x, this.body.offset.y + 26), this.setScale(0.2), e.add.existing(this).setDepth(5), this.ghostPlayer = new Mt(this.parentScene, this);
   }
   setUpKeys() {
     this.wKey = this.parentScene.input.keyboard.addKey(
@@ -3375,7 +3399,7 @@ class Rt extends We.Arcade.Sprite {
             end: t.endFrame
           }
         ),
-        frameRate: R.player.frameRate,
+        frameRate: B.player.frameRate,
         repeat: -1
       });
     });
@@ -3396,9 +3420,9 @@ class Rt extends We.Arcade.Sprite {
     this.currSpeed = this.velocity * -e, this.setVelocityX(-e * this.velocity), this.setVelocityY(0), this.anims.play("left", !0);
   }
   update() {
-    var e, t, s, i, n, l, o, a;
+    var e, t, s, i, n, o, l, a;
     if (this.cursor) {
-      if (this.cheatFactor = 2, this.cursor.up.isDown || (e = this.wKey) != null && e.isDown ? (t = this.shiftKey) != null && t.isDown && this.parentScene.checkActive ? this.moveUp(this.cheatFactor) : this.moveUp(1) : this.cursor.right.isDown || (s = this.dKey) != null && s.isDown ? (i = this.shiftKey) != null && i.isDown && this.parentScene.checkActive ? this.moveRight(this.cheatFactor) : this.moveRight(1) : this.cursor.down.isDown || (n = this.sKey) != null && n.isDown ? (l = this.shiftKey) != null && l.isDown && this.parentScene.checkActive ? this.moveDown(this.cheatFactor) : this.moveDown(1) : this.cursor.left.isDown || (o = this.aKey) != null && o.isDown ? (a = this.shiftKey) != null && a.isDown && this.parentScene.checkActive ? this.moveLeft(this.cheatFactor) : this.moveLeft(1) : this.idle(), this.parentScene.joystick) {
+      if (this.cheatFactor = 2, this.cursor.up.isDown || (e = this.wKey) != null && e.isDown ? (t = this.shiftKey) != null && t.isDown && this.parentScene.checkActive ? this.moveUp(this.cheatFactor) : this.moveUp(1) : this.cursor.right.isDown || (s = this.dKey) != null && s.isDown ? (i = this.shiftKey) != null && i.isDown && this.parentScene.checkActive ? this.moveRight(this.cheatFactor) : this.moveRight(1) : this.cursor.down.isDown || (n = this.sKey) != null && n.isDown ? (o = this.shiftKey) != null && o.isDown && this.parentScene.checkActive ? this.moveDown(this.cheatFactor) : this.moveDown(1) : this.cursor.left.isDown || (l = this.aKey) != null && l.isDown ? (a = this.shiftKey) != null && a.isDown && this.parentScene.checkActive ? this.moveLeft(this.cheatFactor) : this.moveLeft(1) : this.idle(), this.parentScene.joystick) {
         const h = this.parentScene.joystick.forceX, d = this.parentScene.joystick.forceY;
         Math.abs(h) > 0.1 || Math.abs(d) > 0.1 ? Math.abs(h) > Math.abs(d) ? h > 0 ? this.moveRight(1) : this.moveLeft(1) : d > 0 ? this.moveDown(1) : this.moveUp(1) : this.idle();
       }
@@ -3406,13 +3430,13 @@ class Rt extends We.Arcade.Sprite {
     }
   }
 }
-class Bt extends pe.Image {
+class Rt extends pe.Image {
   constructor(e, t, s, i, n = !1) {
     super(
       e,
       t + e.tileSize,
       s,
-      R.openDungeon.key
+      B.openDungeon.key
     ), this.setVisible(!1), e.add.existing(this), this.parentScene = e, this.setDepth(10), this.setScale(0.4), this.canEnter = !1, this.dungeonIndex = i, this.diasbled = n;
   }
   checkIfPlayerIsNear() {
@@ -3669,8 +3693,8 @@ class Vt extends Nt {
       return this.clearVector(), this;
     this.noKeyDown = !0;
     var n = zt(this.angle, this.dirMode, !0);
-    for (var l in n)
-      this.setKeyState(l, n[l]);
+    for (var o in n)
+      this.setKeyState(o, n[o]);
     return this;
   }
   get forceX() {
@@ -3693,7 +3717,7 @@ class Vt extends Nt {
     return this.rightKeyDown ? e = this.downKeyDown ? 45 : 0 : this.downKeyDown ? e = this.leftKeyDown ? 135 : 90 : this.leftKeyDown ? e = this.upKeyDown ? 225 : 180 : this.upKeyDown && (e = this.rightKeyDown ? 315 : 270), e;
   }
 }
-const Re = {
+const Be = {
   setEventEmitter(r, e) {
     return e === void 0 && (e = Phaser.Events.EventEmitter), this._privateEE = r === !0 || r === void 0, this._eventEmitter = this._privateEE ? new e() : r, this;
   },
@@ -3739,7 +3763,7 @@ var Xt = function(r, e, t) {
   return s ? (t === void 0 ? t = {} : t === !0 && (t = Ut), s === e ? (t.x = r.worldX, t.y = r.worldY) : s.getWorldPoint(r.x, r.y, t), t) : null;
 }, Ut = {};
 const xe = Phaser.Utils.Objects.GetValue, $t = Phaser.Geom.Circle, Jt = Phaser.Geom.Circle.Contains;
-class Be extends Vt {
+class Re extends Vt {
   constructor(e, t) {
     var s = e.scene;
     super(s, t);
@@ -3780,8 +3804,8 @@ class Be extends Vt {
     if (this.pointer === e) {
       var t = Xt(e, this.mainCamera, !0);
       if (t) {
-        var s = e.camera, i = this.gameObject, n = i.x - s.scrollX * (i.scrollFactorX - 1), l = i.y - s.scrollY * (i.scrollFactorY - 1);
-        this.setVector(n, l, t.x, t.y), this.end.x = t.x, this.end.y = t.y, this.emit("update");
+        var s = e.camera, i = this.gameObject, n = i.x - s.scrollX * (i.scrollFactorX - 1), o = i.y - s.scrollY * (i.scrollFactorY - 1);
+        this.setVector(n, o, t.x, t.y), this.end.x = t.x, this.end.y = t.y, this.emit("update");
       }
     }
   }
@@ -3794,8 +3818,8 @@ class Be extends Vt {
   }
 }
 Object.assign(
-  Be.prototype,
-  Re
+  Re.prototype,
+  Be
 );
 const X = Phaser.Utils.Objects.GetValue;
 class Le {
@@ -3803,8 +3827,8 @@ class Le {
     t === void 0 && (t = {});
     var s = X(t, "eventEmitter", void 0), i = X(t, "EventEmitterClass", void 0);
     this.setEventEmitter(s, i), t.eventEmitter = this.getEventEmitter(), this.scene = e, this.base = void 0, this.thumb = void 0, this.touchCursor = void 0, this.setRadius(X(t, "radius", 100)), this.addBase(X(t, "base", void 0), t), this.addThumb(X(t, "thumb", void 0));
-    var n = X(t, "x", 0), l = X(t, "y", 0);
-    this.base.setPosition(n, l), this.thumb.setPosition(n, l), X(t, "fixed", !0) && this.setScrollFactor(0), this.boot();
+    var n = X(t, "x", 0), o = X(t, "y", 0);
+    this.base.setPosition(n, o), this.thumb.setPosition(n, o), X(t, "fixed", !0) && this.setScrollFactor(0), this.boot();
   }
   destroy() {
     this.destroyEventEmitter(), this.base.destroy(), this.thumb.destroy(), this.scene = void 0, this.base = void 0, this.thumb = void 0, this.touchCursor = void 0;
@@ -3894,7 +3918,7 @@ class Le {
     return this.radius = e, this;
   }
   addBase(e, t) {
-    return this.base && this.base.destroy(), e === void 0 && (e = this.scene.add.circle(0, 0, this.radius).setStrokeStyle(3, 255)), t === void 0 && (t = {}), t.eventEmitter = this.getEventEmitter(), this.touchCursor = new Be(e, t), this.base = e, this;
+    return this.base && this.base.destroy(), e === void 0 && (e = this.scene.add.circle(0, 0, this.radius).setStrokeStyle(3, 255)), t === void 0 && (t = {}), t.eventEmitter = this.getEventEmitter(), this.touchCursor = new Re(e, t), this.base = e, this;
   }
   addThumb(e) {
     return this.thumb && this.thumb.destroy(), e === void 0 && (e = this.scene.add.circle(0, 0, 40).setStrokeStyle(3, 65280)), this.thumb = e, this;
@@ -3924,7 +3948,7 @@ class Le {
 }
 Object.assign(
   Le.prototype,
-  Re
+  Be
 );
 class qt extends pe.Rectangle {
   constructor(e, t, s) {
@@ -3941,7 +3965,7 @@ class qt extends pe.Rectangle {
     this.canMatchmake = !0, this.matchmaking = !1, this.startMatchImage && (this.startMatchImage.visible = !0);
   }
   showPopup() {
-    const e = this.parentScene.sys.game.device.os.desktop ? R.arena.startMatchImage.key : R.arena.startMatchImageMobile.key;
+    const e = this.parentScene.sys.game.device.os.desktop ? B.arena.startMatchImage.key : B.arena.startMatchImageMobile.key;
     this.startMatchImage = this.parentScene.add.image(this.x, this.y, e).setDepth(10).setScale(0.3);
   }
   triggerMatchmake() {
@@ -3982,8 +4006,8 @@ class Qt extends Me {
     }, this.perlin = new Tt(), this.lootboxDetails = e, this.seed = "erg", this.polygons = new pt(this.seed);
   }
   preload() {
-    const { lootboxOpen: e, lootboxClosed: t, openLootbox: s, openDungeon: i } = R;
-    this.load.image(e.key, e.url), this.load.image(t.key, t.url), this.load.image(s.key, s.url), this.load.image(i.key, i.url), this.checkForCheat(), this.load.image(R.arena.startMatchImage.key, R.arena.startMatchImage.url), this.load.image(R.arena.startMatchImageMobile.key, R.arena.startMatchImageMobile.url);
+    const { lootboxOpen: e, lootboxClosed: t, openLootbox: s, openDungeon: i } = B;
+    this.load.image(e.key, e.url), this.load.image(t.key, t.url), this.load.image(s.key, s.url), this.load.image(i.key, i.url), this.checkForCheat(), this.load.image(B.arena.startMatchImage.key, B.arena.startMatchImage.url), this.load.image(B.arena.startMatchImageMobile.key, B.arena.startMatchImageMobile.url);
     for (let n = 0; n < 2; n++)
       this.load.image(P.Interactives[n].image.key, P.Interactives[n].image.url);
     this.load.spritesheet("adventurer", Ie("adventurer.webp"), {
@@ -4109,7 +4133,7 @@ class Qt extends Me {
   create() {
     this.cursor = this.input.keyboard.createCursorKeys(), this.ekey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E), this.enterKey = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.ENTER
-    ), this.setPolygonData(), this.spawnPoint = { x: this.polygonData[0].centroid.x, y: this.polygonData[0].centroid.y }, this.player && this.player.destroy(), this.player = new Rt(
+    ), this.setPolygonData(), this.spawnPoint = { x: this.polygonData[0].centroid.x, y: this.polygonData[0].centroid.y }, this.player && this.player.destroy(), this.player = new Bt(
       this,
       this.spawnPoint.x,
       this.spawnPoint.y,
@@ -4188,16 +4212,16 @@ class Qt extends Me {
       16,
       1,
       2
-    ), l = this.make.tilemap({ key: P.asset.glitchMap.key }), o = l.addTilesetImage(
+    ), o = this.make.tilemap({ key: P.asset.glitchMap.key }), l = o.addTilesetImage(
       P.asset.glitchTiles.key,
       P.asset.glitchTiles.key,
       16,
       16
     );
-    if (!i || !l || !n || !o)
+    if (!i || !o || !n || !l)
       return;
-    const a = s.widthInPixels, h = s.heightInPixels, d = e - a / 2, c = t - h / 2 - this.tileSize * 3, u = e - l.widthInPixels / 2, m = t - l.heightInPixels / 2 - this.tileSize * 3;
-    s.createLayer(ne.BELOW_PLAYER, i, d, c).setDepth(1), l.createLayer(ne.GLTICH_LAYER, o, u, m).setDepth(2);
+    const a = s.widthInPixels, h = s.heightInPixels, d = e - a / 2, c = t - h / 2 - this.tileSize * 3, u = e - o.widthInPixels / 2, m = t - o.heightInPixels / 2 - this.tileSize * 3;
+    s.createLayer(ne.BELOW_PLAYER, i, d, c).setDepth(1), o.createLayer(ne.GLTICH_LAYER, l, u, m).setDepth(2);
     const p = s.createLayer(ne.OBJECTS, i, d, c).setDepth(5).setCollisionByProperty({ collides: !0 });
     s.createLayer(ne.ABOVE_PLAYER, [i, n], d, c).setDepth(6), this.physics.add.collider(this.player, p);
   }
@@ -4244,16 +4268,16 @@ class Qt extends Me {
     for (let s of this.polygonData) {
       const i = [];
       for (let n of s.lootBoxesCoordinates) {
-        let l = !0;
-        for (let o of i)
-          if (Phaser.Math.Distance.Between(n.x, n.y, o.x, o.y) < 500) {
-            l = !1;
+        let o = !0;
+        for (let l of i)
+          if (Phaser.Math.Distance.Between(n.x, n.y, l.x, l.y) < 500) {
+            o = !1;
             break;
           }
-        if (l && t < 65 && s.index !== 0) {
+        if (o && t < 65 && s.index !== 0) {
           console.log("lootbox", t);
-          const o = new Pt(this, n.x, n.y, !1, t);
-          o.loadState(), this.lootboxes.push(o), i.push(n), t++;
+          const l = new Pt(this, n.x, n.y, !1, t);
+          l.loadState(), this.lootboxes.push(l), i.push(n), t++;
         }
       }
     }
@@ -4279,8 +4303,8 @@ class Qt extends Me {
       this.characterURL,
       Ie(this.characterURL),
       {
-        frameWidth: R.player.frameWidth,
-        frameHeight: R.player.frameHeight
+        frameWidth: B.player.frameWidth,
+        frameHeight: B.player.frameHeight
       }
     ), this.loader.once("complete", () => {
       var t;
@@ -4296,12 +4320,12 @@ class Qt extends Me {
   }
   getDungeonVertices(e = 12345) {
     const t = this.getCenterVertices(), s = 500, i = (n) => {
-      const l = Math.sin(e + n) * 2 * Math.PI % (2 * Math.PI);
-      return { x: Math.cos(l) * s, y: Math.sin(l) * s };
+      const o = Math.sin(e + n) * 2 * Math.PI % (2 * Math.PI);
+      return { x: Math.cos(o) * s, y: Math.sin(o) * s };
     };
-    return t.map((n, l) => {
-      const o = i(l);
-      return { x: n.x + o.x, y: n.y + o.y, index: n.polygonIndex };
+    return t.map((n, o) => {
+      const l = i(o);
+      return { x: n.x + l.x, y: n.y + l.y, index: n.polygonIndex };
     });
   }
   placeDungeonForEachPolygon() {
@@ -4311,8 +4335,8 @@ class Qt extends Me {
       e.index === 0 && (t = !0);
       const s = e.centroid, { x: i, y: n } = At(s, this.chunkSize, this.tileSize, this.seed);
       this.dungeons[e.index] = { x: i, y: n };
-      const l = i * (this.chunkSize * this.tileSize) + this.chunkSize * this.tileSize / 2, o = n * (this.chunkSize * this.tileSize) + this.chunkSize * this.tileSize / 2;
-      console.log("Peak:", e.index, l, o), this.dungeonObjects.push(new Bt(this, l, o, e.index, t)), this.perlin.addPeakPoint(l / 500, o / 500, 1, 20 * this.tileSize / 500), console.log("Dungeon:", this.dungeons[e.index]);
+      const o = i * (this.chunkSize * this.tileSize) + this.chunkSize * this.tileSize / 2, l = n * (this.chunkSize * this.tileSize) + this.chunkSize * this.tileSize / 2;
+      console.log("Peak:", e.index, o, l), this.dungeonObjects.push(new Rt(this, o, l, e.index, t)), this.perlin.addPeakPoint(o / 500, l / 500, 1, 20 * this.tileSize / 500), console.log("Dungeon:", this.dungeons[e.index]);
     }
   }
   isWithinBounds(e, t) {
@@ -4322,26 +4346,26 @@ class Qt extends Me {
       { x: e * s, y: (t + 1) * s },
       { x: (e + 1) * s, y: (t + 1) * s }
     ];
-    for (let l of this.polygonData)
-      for (let o of i)
-        if (this.point_in_polygon(o, l.outerBorderCoordinates)) {
+    for (let o of this.polygonData)
+      for (let l of i)
+        if (this.point_in_polygon(l, o.outerBorderCoordinates)) {
           var n;
-          return l.index == 0 ? n = "home" : l.index >= 0 && l.index < 5 ? n = "flying" : l.index >= 5 && l.index < 10 ? n = "ground" : l.index >= 10 && l.index < 15 ? n = "steel" : n = "psychic", { withinBounds: !0, biomeType: n, index: l.index };
+          return o.index == 0 ? n = "home" : o.index >= 0 && o.index < 5 ? n = "flying" : o.index >= 5 && o.index < 10 ? n = "ground" : o.index >= 10 && o.index < 15 ? n = "steel" : n = "psychic", { withinBounds: !0, biomeType: n, index: o.index };
         }
     return { withinBounds: !1 };
   }
   point_in_polygon(e, t) {
     const s = t.length;
     var i = e.x, n = e.y;
-    let l = !1, o = t[0], a;
+    let o = !1, l = t[0], a;
     for (let h = 1; h <= s; h++) {
-      if (a = t[h % s], n > Math.min(o.y, a.y) && n <= Math.max(o.y, a.y) && i <= Math.max(o.x, a.x)) {
-        const d = (n - o.y) * (a.x - o.x) / (a.y - o.y) + o.x;
-        (o.x === a.x || i <= d) && (l = !l);
+      if (a = t[h % s], n > Math.min(l.y, a.y) && n <= Math.max(l.y, a.y) && i <= Math.max(l.x, a.x)) {
+        const d = (n - l.y) * (a.x - l.x) / (a.y - l.y) + l.x;
+        (l.x === a.x || i <= d) && (o = !o);
       }
-      o = a;
+      l = a;
     }
-    return l;
+    return o;
   }
   getChunk(e, t) {
     for (var s = null, i = 0; i < this.chunks.length; i++)
@@ -4365,8 +4389,8 @@ class Qt extends Me {
       for (var n = s - 2; n < s + 2; n++) {
         const d = this.isWithinBounds(i, n), c = this.checkIfDungeon(i, n);
         if (d.withinBounds) {
-          var l = this.getChunk(i, n);
-          if (l == null) {
+          var o = this.getChunk(i, n);
+          if (o == null) {
             let u;
             switch (d.biomeType) {
               case "home":
@@ -4405,15 +4429,15 @@ class Qt extends Me {
             this.chunks.push(u);
           }
         } else {
-          var l = this.getChunk(i, n);
-          if (l === null) {
+          var o = this.getChunk(i, n);
+          if (o === null) {
             const m = new Oe(this, i, n, this.chunkSize, this.tileSize, -1, this.perlin);
             this.chunks.push(m);
           }
         }
       }
-    for (var o = 0; o < this.chunks.length; o++) {
-      var a = this.chunks[o];
+    for (var l = 0; l < this.chunks.length; l++) {
+      var a = this.chunks[l];
       Phaser.Math.Distance.Between(
         t,
         s,
@@ -4443,8 +4467,8 @@ class ei extends Me {
   }
 }
 var ti = Object.defineProperty, ii = Object.getOwnPropertyDescriptor, ae = (r, e, t, s) => {
-  for (var i = s > 1 ? void 0 : s ? ii(e, t) : e, n = r.length - 1, l; n >= 0; n--)
-    (l = r[n]) && (i = (s ? l(e, t, i) : l(i)) || i);
+  for (var i = s > 1 ? void 0 : s ? ii(e, t) : e, n = r.length - 1, o; n >= 0; n--)
+    (o = r[n]) && (i = (s ? o(e, t, i) : o(i)) || i);
   return s && i && ti(e, t, i), i;
 };
 let U = class extends Ke {
@@ -4472,14 +4496,14 @@ let U = class extends Ke {
         mode: se.Scale.RESIZE,
         autoCenter: se.Scale.CENTER_BOTH
       },
-      fps: R.fps,
+      fps: B.fps,
       backgroundColor: "#292634",
       physics: {
         default: "arcade",
         arcade: {
           gravity: { x: 0, y: 0 },
           debug: !1,
-          fps: R.fps.target
+          fps: B.fps.target
         }
       },
       banner: !1
@@ -4515,15 +4539,9 @@ ae([
 U = ae([
   je("free-roam")
 ], U);
-const hi = Xe({
+Xe({
   tagName: "free-roam",
   elementClass: U,
   react: ze
 });
-export {
-  H as Events,
-  U as FreeRoam,
-  hi as FreeRoamLayer,
-  G as eventEmitter
-};
 //# sourceMappingURL=freeroam-arcadia-23.mjs.map
